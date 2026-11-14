@@ -23,6 +23,49 @@
       }
     }
 
+    // Film Projector Ticking Sound (for 3-2-1 countdown)
+    playFilmProjectorTick() {
+      if (this.isMuted) return;
+      this.init();
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(800, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(120, this.ctx.currentTime + 0.035);
+      gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.04);
+    }
+
+    // Theater Curtain Opening Whoosh
+    playCurtainWhoosh() {
+      if (this.isMuted) return;
+      this.init();
+      const bufferSize = this.ctx.sampleRate * 0.7;
+      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (this.ctx.sampleRate * 0.25));
+      }
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = buffer;
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(350, this.ctx.currentTime);
+      filter.frequency.linearRampToValueAtTime(700, this.ctx.currentTime + 0.35);
+      filter.frequency.exponentialRampToValueAtTime(80, this.ctx.currentTime + 0.7);
+      const gain = this.ctx.createGain();
+      gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.7);
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.ctx.destination);
+      noise.start();
+    }
+
     // Gentle harp chords
     playHarpChime(chord = [523.25, 659.25, 783.99, 1046.5]) {
       if (this.isMuted) return;
@@ -282,13 +325,13 @@
     }
 
     window.addEventListener('click', (e) => {
-      if (e.target.closest('button, input, a, video, .cake-container, #cakeStage')) return;
+      if (e.target.closest('button, input, a, video, .cake-container, #cakeStage, .cinema-stage-wrapper')) return;
       createFlower(e.clientX, e.clientY);
     });
 
     window.addEventListener('touchstart', (e) => {
       const touch = e.touches[0];
-      if (touch && !e.target.closest('button, input, a, video, .cake-container, #cakeStage')) {
+      if (touch && !e.target.closest('button, input, a, video, .cake-container, #cakeStage, .cinema-stage-wrapper')) {
         createFlower(touch.clientX, touch.clientY);
       }
     }, { passive: true });
@@ -318,7 +361,7 @@
       });
     }
 
-    // Inject 5-Item Bottom Navigation (Whispers Removed)
+    // Inject 5-Item Bottom Navigation
     if (!document.querySelector('.bottom-nav-bar')) {
       const nav = document.createElement('nav');
       nav.className = 'bottom-nav-bar';

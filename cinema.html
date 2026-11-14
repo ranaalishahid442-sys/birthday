@@ -19,96 +19,239 @@
       overflow: hidden;
     }
 
-    /* VIP Holographic Ticket */
-    .ticket-container {
+    /* ═══════════════════════════════════════════
+       1. TACTILE TEARABLE VIP PASS
+       ═══════════════════════════════════════════ */
+    .ticket-stage {
       width: 100%;
-      max-width: 360px;
+      max-width: 370px;
       margin: 15px auto 25px;
-      perspective: 1000px;
-      transition: transform 0.6s ease, opacity 0.5s ease;
+      perspective: 1200px;
     }
 
-    .cinema-ticket {
+    .vip-pass-card {
       position: relative;
-      background: linear-gradient(135deg, #ffffff 0%, #faf3ff 60%, #fff0f6 100%);
-      border: 2px dashed #b580d1;
+      display: flex;
+      width: 100%;
+      height: 195px;
+      background: linear-gradient(135deg, #ffffff 0%, #fff7fc 50%, #fcf0f8 100%);
+      border: 2px solid rgba(212, 160, 23, 0.45);
       border-radius: 20px;
-      padding: 24px 20px;
-      box-shadow: 0 15px 35px rgba(181, 128, 209, 0.25);
+      box-shadow: 0 15px 40px rgba(181, 128, 209, 0.28), 0 0 25px rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.4s ease;
+    }
+
+    .vip-pass-card:active {
+      transform: scale(0.98);
+    }
+
+    /* Holographic Shimmer Sweep */
+    .vip-pass-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.6) 45%,
+        rgba(255, 215, 0, 0.3) 50%,
+        rgba(255, 105, 180, 0.3) 55%,
+        transparent 70%
+      );
+      transform: rotate(25deg);
+      pointer-events: none;
+      animation: holoShine 4s infinite linear;
+    }
+
+    @keyframes holoShine {
+      0% { transform: rotate(25deg) translateY(-100%); }
+      100% { transform: rotate(25deg) translateY(100%); }
+    }
+
+    /* Main Ticket Body (Left) */
+    .ticket-main-body {
+      flex: 1;
+      padding: 18px 14px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .vip-premiere-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      background: linear-gradient(135deg, #e84393, #b81b6c);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      width: fit-content;
+    }
+
+    .pass-movie-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 700;
+      color: #3b114d;
+      line-height: 1.2;
+      margin: 6px 0 2px;
+    }
+
+    .pass-meta-row {
+      font-size: 11.5px;
+      color: #7b4d8d;
+      display: flex;
+      gap: 12px;
+    }
+
+    /* Glowing Perforated Tear Line */
+    .ticket-perforation-line {
+      width: 0;
+      border-left: 2.5px dashed #d4af37;
+      position: relative;
+      z-index: 3;
+    }
+
+    .ticket-perforation-line::before,
+    .ticket-perforation-line::after {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: #ebd9fc;
+      border-radius: 50%;
+      left: -11px;
+    }
+
+    .ticket-perforation-line::before { top: -11px; }
+    .ticket-perforation-line::after { bottom: -11px; }
+
+    /* The Detachable Right Stub */
+    .ticket-tear-stub {
+      width: 95px;
+      background: linear-gradient(135deg, #fff0f6, #ffe8f2);
       display: flex;
       flex-direction: column;
       align-items: center;
-      cursor: pointer;
-      transition: all 0.5s ease;
-    }
-
-    .cinema-ticket::before,
-    .cinema-ticket::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      width: 24px;
-      height: 24px;
-      background: #f4ebff;
-      border-radius: 50%;
-      transform: translateY(-50%);
-    }
-
-    .cinema-ticket::before { left: -14px; }
-    .cinema-ticket::after { right: -14px; }
-
-    .ticket-badge {
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: #fff;
-      background: linear-gradient(135deg, #9b59b6, #e84393);
-      padding: 5px 16px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .ticket-title {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      color: #3b114d;
-      font-weight: 700;
+      justify-content: center;
+      padding: 10px;
       text-align: center;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
+    }
+
+    .rip-icon-guide {
+      font-size: 26px;
+      color: var(--rose-deep);
+      animation: pulseGlowSoft 2s infinite ease-in-out;
       margin-bottom: 4px;
     }
 
-    .ticket-meta {
-      font-size: 12px;
-      color: #7b4d8d;
-      margin-bottom: 14px;
-      display: flex;
-      gap: 15px;
-    }
-
-    .ticket-tear-btn {
-      padding: 12px 26px;
-      border-radius: 50px;
-      background: linear-gradient(135deg, #a29bfe 0%, #e84393 100%);
-      border: none;
-      color: white;
+    .rip-label {
+      font-size: 10px;
       font-weight: 700;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 6px 20px rgba(162, 155, 254, 0.45);
-      cursor: pointer;
+      color: var(--rose-deep);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
     }
 
-    .cinema-ticket.torn {
-      transform: scale(0.85) translateY(-30px) rotate(-4deg);
+    /* When Ticket is Torn */
+    .vip-pass-card.is-ripped .ticket-tear-stub {
+      transform: translateY(120px) rotate(25deg);
       opacity: 0;
       pointer-events: none;
     }
 
+    .vip-pass-card.is-ripped .ticket-main-body {
+      transform: translateX(-40px) scale(0.95);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
     /* ═══════════════════════════════════════════
-       THE FULLSCREEN MORPHING THEATER
+       2. VINTAGE 3-2-1 FILM REEL COUNTDOWN
+       ═══════════════════════════════════════════ */
+    .film-countdown-overlay {
+      position: fixed;
+      inset: 0;
+      background: #11031d;
+      z-index: 10001;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .film-circle-stage {
+      width: 220px;
+      height: 220px;
+      border: 3px solid rgba(255, 215, 0, 0.6);
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.35);
+    }
+
+    /* Crosshairs */
+    .film-circle-stage::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      width: 1.5px; height: 100%;
+      background: rgba(255, 215, 0, 0.4);
+      transform: translateX(-50%);
+    }
+
+    .film-circle-stage::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 0;
+      width: 100%; height: 1.5px;
+      background: rgba(255, 215, 0, 0.4);
+      transform: translateY(-50%);
+    }
+
+    /* Sweeping Radial Clock Hand */
+    .film-sweeper {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, rgba(255, 215, 0, 0.35) 0deg, transparent 90deg, transparent 360deg);
+      animation: sweepFilm 1s infinite linear;
+    }
+
+    @keyframes sweepFilm {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .film-count-number {
+      font-family: var(--font-serif);
+      font-size: 84px;
+      font-weight: 800;
+      color: #ffd700;
+      text-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ═══════════════════════════════════════════
+       3. FULLSCREEN MORPHING CINEMA THEATER
        ═══════════════════════════════════════════ */
     .cinema-stage-wrapper {
       position: fixed;
@@ -125,18 +268,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: #000;
+      background: #000000;
       transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    /* When Fullscreen Theater is Active */
     .cinema-stage-wrapper.fullscreen-active {
       transform: translate(-50%, -50%) scale(1);
       opacity: 1;
       pointer-events: all;
     }
 
-    /* Video Player */
     .theater-video-player {
       width: 100%;
       height: 100%;
@@ -144,16 +285,18 @@
       background: #000;
     }
 
-    /* Ambient Ambilight Glow in Theater */
-    .theater-ambilight {
+    /* Top Corner Festive Birthday Garland Overlay */
+    .theater-festive-corners {
       position: absolute;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 220px;
       pointer-events: none;
-      box-shadow: inset 0 0 60px rgba(232, 67, 147, 0.5), inset 0 0 100px rgba(162, 155, 254, 0.35);
-      z-index: 2;
+      z-index: 5;
     }
 
-    /* Floating Minimalist Top HUD */
+    /* Floating Minimal Top HUD */
     .theater-top-hud {
       position: absolute;
       top: 16px;
@@ -224,7 +367,6 @@
       transform: scale(1.4);
     }
 
-    /* Floating Reaction Stream */
     .theater-stream-container {
       position: absolute;
       bottom: 70px;
@@ -251,7 +393,7 @@
     }
 
     /* ═══════════════════════════════════════════
-       POST-SCREENING COMMEMORATIVE CARD
+       4. COMMEMORATIVE PREMIERE CARD (RETURN)
        ═══════════════════════════════════════════ */
     .post-screening-card {
       display: none;
@@ -271,7 +413,7 @@
       background: #fff;
       border: 1.5px solid var(--border-rose);
       color: var(--rose-deep);
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 50px;
       font-size: 13px;
       font-weight: 700;
@@ -290,22 +432,36 @@
 </head>
 <body>
 
-  <!-- Fullscreen Morphing Cinema Overlay -->
+  <!-- Retro 3-2-1 Film Reel Countdown Overlay -->
+  <div class="film-countdown-overlay" id="filmCountdown">
+    <div class="film-circle-stage">
+      <div class="film-sweeper"></div>
+      <div class="film-count-number" id="countdownDigit">3</div>
+    </div>
+    <div style="font-family: var(--font-serif); font-size: 14px; letter-spacing: 2px; color: #ffd700; text-transform: uppercase; margin-top: 25px; font-weight: 700;">
+      ✦ Screening Commencing ✦
+    </div>
+  </div>
+
+  <!-- Fullscreen Morphing Cinema Stage -->
   <div class="cinema-stage-wrapper" id="fullscreenStage">
-    <div class="theater-ambilight"></div>
+    <!-- Non-Intrusive Top Corner Birthday Garlands & Fairy Lights -->
+    <div class="theater-festive-corners">
+      <img src="assets/cinema-corners.svg" alt="Birthday Corner Garland" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
     
-    <!-- Top HUD -->
+    <!-- Top Minimal HUD -->
     <div class="theater-top-hud">
       <div class="theater-badge-live">
-        <span style="color: #e84393;">●</span> THEATER MODE • 20TH PREMIERE
+        <span style="color: #e84393;">●</span> 20TH PREMIERE SCREENING
       </div>
       <button class="theater-exit-btn" id="exitTheaterBtn" aria-label="Exit Fullscreen">✕</button>
     </div>
 
-    <!-- Live Stream Emojis -->
+    <!-- Live Reaction Stream -->
     <div class="theater-stream-container" id="streamContainer"></div>
 
-    <!-- The POV Gallery Video -->
+    <!-- The Video: POV Gallery & Song (assets/video.mp4) -->
     <video class="theater-video-player" id="herVideo" playsinline preload="auto">
       <source src="assets/video.mp4" type="video/mp4">
     </video>
@@ -333,21 +489,32 @@
     <h1 class="title-romantic" style="font-size: 42px;">Our Story In Motion</h1>
     <p class="subtitle-soft">A private premiere of your gallery & our song</p>
 
-    <!-- Interactive VIP Ticket -->
-    <div class="ticket-container" id="ticketContainer">
-      <div class="cinema-ticket" id="cinemaTicket">
-        <div class="ticket-badge">⭐ VIP PRIVATE SCREENING ⭐</div>
-        <div class="ticket-title">The Queen of My Heart</div>
-        <div class="ticket-meta">
-          <span>📅 15-NOV-2026</span>
-          <span>🎟️ SEAT: #1 IN MY HEART</span>
+    <!-- Interactive Tearable Holographic VIP Pass Stage -->
+    <div class="ticket-stage" id="ticketStage">
+      <div class="vip-pass-card" id="vipPassCard">
+        <!-- Main Pass Body -->
+        <div class="ticket-main-body">
+          <div>
+            <div class="vip-premiere-pill">⭐ VIP PRIVATE SCREENING ⭐</div>
+            <div class="pass-movie-title">The Queen of My Heart</div>
+            <div class="pass-meta-row">
+              <span>📅 15-NOV-2026</span>
+              <span>🎟️ SEAT: #1 IN MY HEART</span>
+            </div>
+          </div>
+          <div style="font-size: 11.5px; color: #8e44ad; font-style: italic;">
+            Tap or tear the perforated pass to begin screening →
+          </div>
         </div>
-        <p style="font-size: 13px; color: #5a2770; text-align: center; margin-bottom: 16px; font-style: italic;">
-          Tear this golden ticket to expand into an immersive private theater experience!
-        </p>
-        <button class="ticket-tear-btn" id="tearTicketBtn">
-          <span>🎟️</span> Tear Ticket & Enter Cinema
-        </button>
+
+        <!-- Glowing Perforated Tear Line -->
+        <div class="ticket-perforation-line"></div>
+
+        <!-- Detachable Tear Stub -->
+        <div class="ticket-tear-stub" id="tearStub">
+          <div class="rip-icon-guide">✂️</div>
+          <div class="rip-label">TAP TO TEAR PASS</div>
+        </div>
       </div>
     </div>
 
@@ -355,7 +522,7 @@
     <div class="post-screening-card" id="postScreeningCard">
       <div style="font-size: 38px; margin-bottom: 8px;">🎬 ⭐ 💖 🌹 🎆</div>
       
-      <div class="urdu-poetry" style="font-size: 24px; color: var(--rose-deep); font-weight: 700; margin-bottom: 6px;">
+      <div class="urdu-poetry" style="font-size: 25px; color: var(--rose-deep); font-weight: 700; margin-bottom: 6px;">
         تم مری زندگی کا سب سے خوبصورت باب ہو ❤️
       </div>
 
@@ -384,9 +551,11 @@
   <script src="assets/fireworks.js"></script>
   <script src="shared.js"></script>
   <script>
-    const tearBtn = document.getElementById('tearTicketBtn');
-    const cinemaTicket = document.getElementById('cinemaTicket');
-    const ticketContainer = document.getElementById('ticketContainer');
+    const passCard = document.getElementById('vipPassCard');
+    const tearStub = document.getElementById('tearStub');
+    const ticketStage = document.getElementById('ticketStage');
+    const countdownOverlay = document.getElementById('filmCountdown');
+    const countdownDigit = document.getElementById('countdownDigit');
     const stage = document.getElementById('fullscreenStage');
     const video = document.getElementById('herVideo');
     const exitBtn = document.getElementById('exitTheaterBtn');
@@ -394,39 +563,65 @@
     const replayBtn = document.getElementById('replayBtn');
     const stream = document.getElementById('streamContainer');
 
-    function launchFullscreenCinema() {
-      window.triggerHaptic([30, 60, 30]);
-      if (window.BirthdayAudio) {
-        window.BirthdayAudio.playSealBreak();
-      }
+    function tearAndStartScreening() {
+      if (passCard.classList.contains('is-ripped')) return;
 
-      cinemaTicket.classList.add('torn');
+      // 1. Physical Ticket Tear Animation & Haptics
+      window.triggerHaptic([40, 60, 40]);
+      if (window.BirthdayAudio) window.BirthdayAudio.playSealBreak();
 
+      passCard.classList.add('is-ripped');
+
+      // 2. Launch 3-2-1 Retro Film Reel Countdown
       setTimeout(() => {
-        ticketContainer.style.display = 'none';
-
-        // 1. Enter Fullscreen Mode
-        document.body.classList.add('in-theater-mode');
-        stage.classList.add('fullscreen-active');
-
-        // 2. Hide Bottom Nav Bar during screening
-        const nav = document.querySelector('.bottom-nav-bar');
-        if (nav) nav.classList.add('hidden');
-
-        // 3. Play Video with Audio
-        video.currentTime = 0;
-        video.play().catch(e => {
-          console.log("Autoplay gesture handled:", e);
-        });
-
-        // 4. Initial fireworks burst
-        if (window.Fireworks) {
-          window.Fireworks.grandCelebration(4);
-        }
-      }, 500);
+        ticketStage.style.display = 'none';
+        runFilmCountdown();
+      }, 550);
     }
 
-    // AUTOMATIC TRANSIT RETURN: Triggered when video completes!
+    function runFilmCountdown() {
+      countdownOverlay.style.display = 'flex';
+      let count = 3;
+      countdownDigit.textContent = count;
+
+      if (window.BirthdayAudio) window.BirthdayAudio.playFilmProjectorTick();
+
+      const timer = setInterval(() => {
+        count--;
+        if (count > 0) {
+          countdownDigit.textContent = count;
+          if (window.BirthdayAudio) window.BirthdayAudio.playFilmProjectorTick();
+        } else {
+          clearInterval(timer);
+          // 3. Part Curtains & Enter Fullscreen!
+          if (window.BirthdayAudio) window.BirthdayAudio.playCurtainWhoosh();
+          countdownOverlay.style.display = 'none';
+          enterFullscreenTheater();
+        }
+      }, 900);
+    }
+
+    function enterFullscreenTheater() {
+      document.body.classList.add('in-theater-mode');
+      stage.classList.add('fullscreen-active');
+
+      // Hide Bottom Nav
+      const nav = document.querySelector('.bottom-nav-bar');
+      if (nav) nav.classList.add('hidden');
+
+      // Play video with audio
+      video.currentTime = 0;
+      video.play().catch(e => {
+        console.log("Autoplay handled:", e);
+      });
+
+      // Opening celebratory fireworks
+      if (window.Fireworks) {
+        window.Fireworks.grandCelebration(5);
+      }
+    }
+
+    // AUTOMATIC TRANSIT RETURN WHEN VIDEO COMPLETES
     function exitCinemaTheater() {
       video.pause();
       stage.classList.remove('fullscreen-active');
@@ -436,11 +631,11 @@
       const nav = document.querySelector('.bottom-nav-bar');
       if (nav) nav.classList.remove('hidden');
 
-      // Show Commemorative Post-Screening Card
+      // Reveal Post-Screening Commemorative Card
       postCard.style.display = 'block';
       postCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-      // Spectacular Fireworks Celebration Finale!
+      // Spectacular Fireworks Finale!
       if (window.Fireworks) {
         window.Fireworks.grandCelebration(8);
       }
@@ -449,15 +644,15 @@
     video.addEventListener('ended', exitCinemaTheater);
     exitBtn.addEventListener('click', exitCinemaTheater);
 
-    tearBtn.addEventListener('click', launchFullscreenCinema);
-    cinemaTicket.addEventListener('click', launchFullscreenCinema);
+    tearStub.addEventListener('click', tearAndStartScreening);
+    passCard.addEventListener('click', tearAndStartScreening);
 
     replayBtn.addEventListener('click', () => {
       postCard.style.display = 'none';
-      launchFullscreenCinema();
+      runFilmCountdown();
     });
 
-    // In-Theater Emoji & Fireworks Reactions
+    // In-Theater Floating Emoji & Fireworks Reactions
     document.querySelectorAll('.theater-rx-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const emoji = btn.getAttribute('data-emoji');
