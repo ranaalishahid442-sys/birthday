@@ -46,49 +46,87 @@
       this.height = this.canvas.height = window.innerHeight;
     }
 
-    // Play fireworks sound via Web Audio API
+    // Play fireworks sound via Web Audio API with natural voice mixing support
     playBoom(pitch = 1) {
       if (window.BirthdayAudio && !window.BirthdayAudio.isMuted) {
         try {
           const ctx = window.BirthdayAudio.ctx;
           if (!ctx) return;
           
+          const isAmb = this.isAmbient;
+          const boomGainVal = isAmb ? 0.07 : 0.25; // Soft distant boom when voice is playing
+          const crackleGainVal = isAmb ? 0.035 : 0.15; // Delicate crackle
+
           // Low frequency boom
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(140 * pitch, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.5);
+          osc.frequency.setValueAtTime((isAmb ? 100 : 140) * pitch, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(25, ctx.currentTime + (isAmb ? 0.65 : 0.5));
 
-          gain.gain.setValueAtTime(0.25, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.55);
+          gain.gain.setValueAtTime(boomGainVal, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (isAmb ? 0.65 : 0.55));
 
-          osc.connect(gain);
+          // Soft lowpass filter when ambient for natural open-air distance reverb
+          if (isAmb) {
+            const lpf = ctx.createBiquadFilter();
+            lpf.type = 'lowpass';
+            lpf.frequency.setValueAtTime(450, ctx.currentTime);
+            osc.connect(lpf);
+            lpf.connect(gain);
+          } else {
+            osc.connect(gain);
+          }
           gain.connect(ctx.destination);
           osc.start();
-          osc.stop(ctx.currentTime + 0.55);
+          osc.stop(ctx.currentTime + (isAmb ? 0.65 : 0.55));
 
           // Crackle sound
-          const bufferSize = ctx.sampleRate * 0.4;
+          const bufferSize = ctx.sampleRate * (isAmb ? 0.25 : 0.4);
           const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
           const data = buffer.getChannelData(0);
           for (let i = 0; i < bufferSize; i++) {
-            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.08));
+            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * (isAmb ? 0.12 : 0.08)));
           }
           const noise = ctx.createBufferSource();
           noise.buffer = buffer;
           const filter = ctx.createBiquadFilter();
-          filter.type = 'highpass';
-          filter.frequency.setValueAtTime(1500, ctx.currentTime);
+          filter.type = isAmb ? 'bandpass' : 'highpass';
+          filter.frequency.setValueAtTime(isAmb ? 1100 : 1500, ctx.currentTime);
           const noiseGain = ctx.createGain();
-          noiseGain.gain.setValueAtTime(0.15, ctx.currentTime);
-          noiseGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+          noiseGain.gain.setValueAtTime(crackleGainVal, ctx.currentTime);
+          noiseGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (isAmb ? 0.35 : 0.4));
 
           noise.connect(filter);
           filter.connect(noiseGain);
           noiseGain.connect(ctx.destination);
           noise.start();
         } catch (e) {}
+      }
+    }
+
+    // Continuous Romantic Ambient Serenade mode for voice notes
+    startAmbientSerenade(intervalMs = 1400) {
+      this.isAmbient = true;
+      if (this.ambientTimer) clearInterval(this.ambientTimer);
+
+      const launchSerenade = () => {
+        const isHeart = Math.random() < 0.45;
+        const startX = Math.random() * (this.width * 0.75) + (this.width * 0.12);
+        const targetX = startX + (Math.random() * 60 - 30);
+        const targetY = Math.random() * (this.height * 0.36) + (this.height * 0.12);
+        this.launch(startX, this.height, targetX, targetY, isHeart);
+      };
+
+      launchSerenade();
+      this.ambientTimer = setInterval(launchSerenade, intervalMs);
+    }
+
+    stopAmbientSerenade() {
+      this.isAmbient = false;
+      if (this.ambientTimer) {
+        clearInterval(this.ambientTimer);
+        this.ambientTimer = null;
       }
     }
 
