@@ -3,40 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Sanctuary of Noor • Sacred Quranic Blessings</title>
+  <title>Sanctuary of Noor • Sacred Blessings & Eternal Union</title>
   <link rel="stylesheet" href="shared.css">
   <style>
     /* ═══════════════════════════════════════════
-       PAGE 2 THEME: GOLDEN SUNLIGHT & WHITE JASMINE
+       PAGE 2 THEME: GOLDEN SUNLIGHT & SACRED NOOR
        ═══════════════════════════════════════════ */
     body {
       background: radial-gradient(circle at 50% 15%, #fffdf2 0%, #fef9ea 50%, #f7ebd4 100%);
     }
 
+    /* ═══════════════════════════════════════════
+       1. INTERACTIVE PEARL TASBIH (7 BLESSINGS)
+       ═══════════════════════════════════════════ */
+    .tasbih-container {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1.5px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 18px 14px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 30px rgba(212, 160, 23, 0.12);
+      text-align: center;
+    }
+
+    .tasbih-header-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold-warm);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* Pearl Beads Track */
+    .pearls-track {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .pearl-bead {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffffff, #fff2cc 60%, #ffd700 100%);
+      border: 2px solid #e0c068;
+      box-shadow: 0 4px 10px rgba(212, 160, 23, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 700;
+      color: #7a5500;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .pearl-bead.active {
+      transform: scale(1.22);
+      background: radial-gradient(circle at 35% 35%, #ffffff, #ffd700 60%, #b8860b 100%);
+      border-color: #b8860b;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: #3b2800;
+    }
+
+    /* Active Pearl Prayer Display Box */
+    .pearl-prayer-box {
+      background: linear-gradient(135deg, #fffdf8 0%, #fff7eb 100%);
+      border: 1.5px solid rgba(212, 160, 23, 0.35);
+      border-radius: 16px;
+      padding: 16px 14px;
+      animation: popDua 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      min-height: 125px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @keyframes popDua {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .pearl-dua-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-warm);
+      margin-bottom: 6px;
+    }
+
+    .pearl-dua-ar {
+      font-family: var(--font-arabic);
+      font-size: 21px;
+      color: #8c5b00;
+      direction: rtl;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .pearl-dua-ur {
+      font-family: var(--font-urdu);
+      font-size: 16px;
+      color: #3a1c06;
+      direction: rtl;
+      line-height: 1.8;
+    }
+
+    /* ═══════════════════════════════════════════
+       2. SACRED QURANIC VERSES FRAME
+       ═══════════════════════════════════════════ */
     .sacred-frame {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.94);
       border: 2px solid rgba(212, 160, 23, 0.4);
       border-radius: var(--radius-lg);
-      padding: 30px 18px;
+      padding: 26px 18px;
       position: relative;
       box-shadow: 0 15px 40px rgba(212, 160, 23, 0.15), inset 0 0 25px rgba(255, 255, 255, 0.8);
       margin-bottom: 22px;
-    }
-
-    .sacred-frame::before {
-      content: '🌼';
-      position: absolute;
-      top: 10px;
-      left: 14px;
-      font-size: 16px;
-    }
-
-    .sacred-frame::after {
-      content: '🌼';
-      position: absolute;
-      bottom: 10px;
-      right: 14px;
-      font-size: 16px;
     }
 
     .bismillah {
@@ -44,17 +137,17 @@
       font-size: 26px;
       text-align: center;
       color: var(--gold-warm);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .quran-verse-ar {
       font-family: var(--font-arabic);
-      font-size: clamp(20px, 5.5vw, 25px);
+      font-size: clamp(20px, 5.5vw, 24px);
       line-height: 2.1;
       text-align: center;
       color: #3b1904;
       direction: rtl;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .quran-reference {
@@ -64,18 +157,18 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .quran-verse-en {
       font-family: var(--font-classy);
-      font-size: 16px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.55;
       text-align: center;
       color: #59351a;
       font-style: italic;
-      margin-bottom: 20px;
-      padding: 0 8px;
+      margin-bottom: 18px;
+      padding: 0 6px;
     }
 
     .divider-crescent {
@@ -84,47 +177,129 @@
       justify-content: center;
       gap: 12px;
       color: var(--gold-warm);
-      font-size: 18px;
-      margin: 18px 0;
+      font-size: 16px;
+      margin: 16px 0;
     }
 
     .divider-line {
-      width: 45px;
+      width: 40px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold-warm), transparent);
     }
 
-    /* Dua Card */
-    .dua-card {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-md);
-      padding: 22px 18px;
-      margin: 15px 0 22px;
+    /* ═══════════════════════════════════════════
+       3. HIGHLIGHTED CENTERPIECE: ETERNAL UNION PRAYER
+       ═══════════════════════════════════════════ */
+    .eternal-union-chamber {
+      width: 100%;
+      background: linear-gradient(145deg, #ffffff 0%, #fff9ee 40%, #fff0f6 100%);
+      border: 2.5px solid #d4af37;
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(212, 160, 23, 0.28), 0 0 35px rgba(255, 215, 0, 0.25);
+      margin-bottom: 24px;
       text-align: center;
-      box-shadow: 0 8px 25px rgba(212, 160, 23, 0.12);
+      overflow: hidden;
     }
 
-    .dua-title {
+    /* Corner Jasmine Flourishes */
+    .eternal-union-chamber::before {
+      content: '🌼 ✦ 💍';
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .eternal-union-chamber::after {
+      content: '💍 ✦ 🌼';
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .union-crown-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 18px;
+      background: linear-gradient(135deg, #ffd700, #b8860b);
+      color: #3b2800;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(212, 160, 23, 0.35);
+      margin-bottom: 14px;
+    }
+
+    .union-title {
       font-family: var(--font-serif);
-      font-size: 18px;
+      font-size: 21px;
       font-weight: 700;
-      color: var(--gold-warm);
-      margin-bottom: 10px;
+      color: var(--rose-deep);
+      margin-bottom: 16px;
+    }
+
+    /* Furqan 25:74 */
+    .furqan-verse-box {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px dashed #d4af37;
+      border-radius: 14px;
+      padding: 14px 12px;
+      margin-bottom: 16px;
+    }
+
+    .union-urdu-vow {
+      font-family: var(--font-urdu);
+      font-size: 17.5px;
+      line-height: 2.3;
+      color: #4a1532;
+      direction: rtl;
+      margin: 14px 0 20px;
+      padding: 0 6px;
+    }
+
+    /* Interactive "Seal Our Hearts" Button */
+    .seal-union-btn {
+      width: 100%;
+      padding: 15px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #ff75a0 0%, #e84393 50%, #b81b6c 100%);
+      border: none;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
+      box-shadow: 0 8px 25px rgba(232, 67, 147, 0.4);
+      transition: all 0.3s ease;
     }
 
-    .dua-text {
-      font-family: var(--font-classy);
-      font-size: 16px;
-      line-height: 1.7;
-      color: #4a2810;
+    .seal-union-btn:active {
+      transform: scale(0.96);
     }
 
-    /* Floating Jasmine / Lantern Button */
+    .union-seal-status {
+      font-size: 12.5px;
+      color: var(--gold-warm);
+      font-weight: 700;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       4. INTERACTIVE LANTERN BLESSING
+       ═══════════════════════════════════════════ */
     .lantern-spawner-btn {
       width: 100%;
       padding: 16px;
@@ -166,18 +341,9 @@
     }
 
     @keyframes driftJasmine {
-      0% {
-        transform: translate(-50%, 0) scale(0.5);
-        opacity: 0;
-      }
-      20% {
-        opacity: 1;
-        transform: translate(-50%, -30px) scale(1.1);
-      }
-      100% {
-        transform: translate(-50%, -550px) scale(0.8) rotate(35deg);
-        opacity: 0;
-      }
+      0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; }
+      20% { opacity: 1; transform: translate(-50%, -30px) scale(1.1); }
+      100% { transform: translate(-50%, -550px) scale(0.8) rotate(35deg); opacity: 0; }
     }
   </style>
 </head>
@@ -196,19 +362,46 @@
     <h1 class="title-romantic" style="font-size: 44px; background: linear-gradient(135deg, #b8860b 0%, #d4a017 50%, #e84393 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
       Sanctuary of Blessings
     </h1>
-    <p class="subtitle-soft">Divine prayers for your health, peace, and long life</p>
+    <p class="subtitle-soft">Divine prayers for your health, peace, and our eternal love</p>
 
-    <!-- Sacred Frame -->
+    <!-- ═══════════════════════════════════════════
+         PART 1: INTERACTIVE PEARL TASBIH (7 BLESSINGS)
+         ═══════════════════════════════════════════ -->
+    <div class="tasbih-container">
+      <div class="tasbih-header-title">
+        <span>📿</span> Tap The 7 Pearls of Blessing For Her
+      </div>
+
+      <!-- 7 Pearls Track -->
+      <div class="pearls-track" id="pearlsTrack">
+        <div class="pearl-bead active" data-index="0">1</div>
+        <div class="pearl-bead" data-index="1">2</div>
+        <div class="pearl-bead" data-index="2">3</div>
+        <div class="pearl-bead" data-index="3">4</div>
+        <div class="pearl-bead" data-index="4">5</div>
+        <div class="pearl-bead" data-index="5">6</div>
+        <div class="pearl-bead" data-index="6">7</div>
+      </div>
+
+      <!-- Active Prayer Reveal Card -->
+      <div class="pearl-prayer-box" id="pearlPrayerBox">
+        <div class="pearl-dua-badge" id="duaBadge">Pearl 1 • Health & Long Life</div>
+        <div class="pearl-dua-ar" id="duaAr">اللَّهُمَّ عَافِهَا فِي بَدَنِهَا وَأَطِلْ عُمْرَهَا فِي طَاعَتِكَ</div>
+        <div class="pearl-dua-ur" id="duaUr">یا اللہ! اسے ہمیشہ صحت و تندرستی والی لمبی اور پرسکون زندگی عطا فرما۔ آمین!</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         PART 2: SACRED QURANIC VERSES
+         ═══════════════════════════════════════════ -->
     <div class="sacred-frame">
       <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
       
-      <!-- Surah Ar-Rum 30:21 -->
+      <!-- 1. Surah Ar-Rum 30:21 -->
       <div class="quran-verse-ar">
         وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
       </div>
-      
       <div class="quran-reference">✦ Surah Ar-Rum • 30:21 ✦</div>
-      
       <div class="quran-verse-en">
         "And of His signs is that He created for you from yourselves partners that you may find tranquility in them; and He placed between you affection and mercy."
       </div>
@@ -219,29 +412,70 @@
         <span class="divider-line"></span>
       </div>
 
-      <!-- Surah Al-Furqan 25:74 -->
+      <!-- 2. Ayat An-Nur 24:35 (Divine Radiance for Her) -->
       <div class="quran-verse-ar" style="font-size: 21px;">
-        رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ
+        نُّورٌ عَلَىٰ نُورٍ ۗ يَهْدِي اللَّهُ لِنُورِهِ مَن يَشَاءُ
       </div>
-      
-      <div class="quran-reference">✦ Surah Al-Furqan • 25:74 ✦</div>
-      
+      <div class="quran-reference">✦ Surah An-Nur • 24:35 ✦</div>
       <div class="quran-verse-en" style="margin-bottom: 0;">
-        "Our Lord, grant us in our partners the coolness and comfort of our eyes..."
+        "Light upon light! Allah guides to His light whom He wills."<br>
+        <em>(May every step of your 20th year be enveloped in divine radiance and peace).</em>
       </div>
     </div>
 
-    <!-- Personal Dua For Her 20th Birthday -->
-    <div class="dua-card">
-      <div class="dua-title">✨ My Prayer For Your 20th Year ✨</div>
-      <p class="dua-text">
-        "O Allah, bless her as she completes 20 beautiful years of life. Wrap her in Your endless light, protect her gentle soul, and grant her boundless health, radiant joy, and peace in her heart.
-        <br><br>
-        May every year ahead be sweeter than the last, and may our hearts always beat together in love and tranquility. Ameen."
-      </p>
+    <!-- ═══════════════════════════════════════════
+         PART 3: THE HIGHLIGHTED CENTERPIECE:
+         PRAYER FOR KEEPING US TOGETHER FOREVER
+         ═══════════════════════════════════════════ -->
+    <div class="eternal-union-chamber">
+      <div class="union-crown-badge">
+        <span>💍</span> دعائے ہمیشگی • PRAYER FOR ETERNAL UNION
+      </div>
+
+      <h2 class="union-title">
+        May Allah Keep Us United Forever
+      </h2>
+
+      <!-- Surah Al-Furqan 25:74 -->
+      <div class="furqan-verse-box">
+        <div class="quran-verse-ar" style="color: #b81b6c; font-weight: bold; font-size: 21px; margin-bottom: 4px;">
+          رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
+        </div>
+        <div style="font-size: 11px; font-weight: 700; color: #b8860b; text-transform: uppercase;">
+          ✦ Surah Al-Furqan • 25:74 ✦
+        </div>
+        <div style="font-family: var(--font-classy); font-size: 14px; font-style: italic; color: #5a2e12; margin-top: 4px;">
+          "Our Lord, grant us in our partners the comfort and coolness of our eyes..."
+        </div>
+      </div>
+
+      <!-- Prophetic Prayer for Uniting Hearts -->
+      <div style="font-family: var(--font-arabic); font-size: 20px; color: #8e44ad; direction: rtl; margin-bottom: 6px;">
+        اللَّهُمَّ أَلِّفْ بَيْنَ قُلُوبِنَا وَأَصْلِحْ ذَاتَ بَيْنِنَا وَاهْدِنَا سُبُلَ السَّلَامِ
+      </div>
+      <div style="font-size: 11px; color: #7a3a99; font-weight: 600; margin-bottom: 12px;">
+        "O Allah, unite our hearts together, mend our bond, and guide us on the paths of peace."
+      </div>
+
+      <!-- Soulful Urdu Vow -->
+      <div class="union-urdu-vow">
+        یا اللہ! میرے اور اس کے دل کو اس طرح محبت اور رحمت کے رشتے میں جوڑے رکھ کہ دنیا کا کوئی طوفان ہمیں کبھی جدا نہ کر سکے۔  
+        جس طرح تو نے دنیا میں ہمارے دل ملائے، اسی طرح جنت الفردوس کے ابدی گلشنوں میں بھی ہمیں ایک دوسرے کا ہم سفر بنا۔ آمین یا رب العالمین! ❤️
+      </div>
+
+      <!-- Interactive Seal Button -->
+      <button class="seal-union-btn" id="sealUnionBtn">
+        <span>💍</span> Tap To Seal Our Hearts with Ameen
+      </button>
+
+      <div class="union-seal-status" id="unionSealStatus">
+        ✨ Our Hearts Sealed in Allah's Protection • آمین یا رب العالمین ✨
+      </div>
     </div>
 
-    <!-- Interactive Blessing Button -->
+    <!-- ═══════════════════════════════════════════
+         PART 4: INTERACTIVE JASMINE & LANTERNS
+         ═══════════════════════════════════════════ -->
     <button class="lantern-spawner-btn" id="lanternBtn">
       <span>🕊️</span> Tap to Send an Ameen & Raise Jasmine Flowers
     </button>
@@ -253,8 +487,103 @@
     </a>
   </div>
 
+  <script src="assets/fireworks.js"></script>
   <script src="shared.js"></script>
   <script>
+    // ─── 7 PEARLS OF BLESSINGS DATA ───
+    const PEARL_BLESSINGS = [
+      {
+        badge: "Pearl 1 • Health & Long Life",
+        ar: "اللَّهُمَّ عَافِهَا فِي بَدَنِهَا وَأَطِلْ عُمْرَهَا فِي طَاعَتِكَ",
+        ur: "یا اللہ! اسے ہمیشہ صحت و تندرستی والی لمبی اور پرسکون زندگی عطا فرما۔ آمین!"
+      },
+      {
+        badge: "Pearl 2 • Peace of Mind & Heart",
+        ar: "رَبِّ اشْرَحْ لَهَا صَدْرَهَا وَيَسِّرْ لَهَا أَمْرَهَا",
+        ur: "یا اللہ! اس کے دل کو ہر پریشانی سے پاک رکھ کر ہمیشہ سکون کا گہوارہ بنا دے۔ آمین!"
+      },
+      {
+        badge: "Pearl 3 • Divine Noor & Radiance",
+        ar: "اللَّهُمَّ اجْعَلْ لَهَا فِي قَلْبِهَا نُورًا وَفِي وَجْهِهَا نُورًا",
+        ur: "یا اللہ! اس کی زندگی، اس کے دل اور اس کے چہرے کو ہمیشہ اپنے نور سے منور رکھ۔ آمین!"
+      },
+      {
+        badge: "Pearl 4 • Barakah in Her 20s",
+        ar: "اللَّهُمَّ بَارِكْ لَهَا فِي عُمْرِهَا وَشَبَابِهَا وَعَمَلِهَا",
+        ur: "بیسویں سالگرہ پر یا رب! اس کی عمر اور جوانی میں بے حساب برکتیں اور خوشیاں عطا فرما۔ آمین!"
+      },
+      {
+        badge: "Pearl 5 • Divine Protection from Harm",
+        ar: "فَاللَّهُ خَيْرٌ حَافِظًا ۖ وَهُوَ أَرْحَمُ الرَّاحِمِينَ",
+        ur: "یا اللہ! اسے ہر بری نظر، ہر غم اور ہر مصیبت سے اپنی پناہ میں محفوظ رکھ۔ آمین!"
+      },
+      {
+        badge: "Pearl 6 • Fulfillment of Dreams",
+        ar: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً",
+        ur: "اس کے دل کی ہر پاکیزہ خواہش اور چھپی دعا کو اپنی بارگاہ میں قبولیت بخش۔ آمین!"
+      },
+      {
+        badge: "Pearl 7 • United Forever in Jannah",
+        ar: "اللَّهُمَّ اجْمَعْنَا فِي ظِلِّ عَرْشِكَ وَفِي فِرْدَوْسِكَ الْأَعْلَى",
+        ur: "یا اللہ! ہماری محبت کو دنیا سے لے کر جنت الفردوس کے اعلیٰ ترین مقام تک ہمیشہ قائم رکھ۔ آمین!"
+      }
+    ];
+
+    const track = document.getElementById('pearlsTrack');
+    const beads = document.querySelectorAll('.pearl-bead');
+    const prayerBox = document.getElementById('pearlPrayerBox');
+    const badge = document.getElementById('duaBadge');
+    const arText = document.getElementById('duaAr');
+    const urText = document.getElementById('duaUr');
+
+    beads.forEach(bead => {
+      bead.addEventListener('click', () => {
+        const idx = parseInt(bead.getAttribute('data-index'));
+        selectPearl(idx);
+      });
+    });
+
+    function selectPearl(idx) {
+      beads.forEach(b => b.classList.remove('active'));
+      beads[idx].classList.add('active');
+
+      window.triggerHaptic(20);
+      if (window.BirthdayAudio) {
+        window.BirthdayAudio.playHarpChime([659.25, 783.99, 987.77, 1174.66]);
+      }
+
+      const item = PEARL_BLESSINGS[idx];
+      badge.textContent = item.badge;
+      arText.textContent = item.ar;
+      urText.textContent = item.ur;
+
+      // Re-trigger animation
+      prayerBox.style.animation = 'none';
+      prayerBox.offsetHeight;
+      prayerBox.style.animation = 'popDua 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+    }
+
+    // ─── SEAL OUR HEARTS INTERACTION ───
+    const sealBtn = document.getElementById('sealUnionBtn');
+    const sealStatus = document.getElementById('unionSealStatus');
+
+    sealBtn.addEventListener('click', () => {
+      window.triggerHaptic([50, 100, 50, 100]);
+      if (window.BirthdayAudio) {
+        window.BirthdayAudio.playHarpChime([523.25, 659.25, 783.99, 1046.5, 1318.5]);
+      }
+
+      sealStatus.style.display = 'block';
+      sealBtn.style.background = 'linear-gradient(135deg, #ffd700, #b8860b)';
+      sealBtn.innerHTML = '<span>💍</span> Sealed With Eternal Ameen ❤️';
+
+      // Launch gentle heart fireworks
+      if (window.Fireworks) {
+        window.Fireworks.launch(null, null, window.innerWidth * 0.5, window.innerHeight * 0.35, true);
+      }
+    });
+
+    // ─── LANTERN BLESSING INTERACTION ───
     const lanternBtn = document.getElementById('lanternBtn');
     const ameenCounter = document.getElementById('ameenCounter');
     let count = 0;
