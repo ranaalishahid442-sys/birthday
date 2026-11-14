@@ -403,10 +403,29 @@
     .insignia-crown { font-size: 18px; line-height: 1; }
     .insignia-date { font-family: var(--font-serif); font-size: 8px; font-weight: 700; color: #b8860b; letter-spacing: 1px; text-transform: uppercase; }
 
+    /* Royal Monogram Crest: A 💖 I */
+    .royal-crest-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 6px auto 2px;
+      user-select: none;
+    }
+
+    .crest-tagline {
+      font-family: var(--font-serif);
+      font-size: 8px;
+      font-weight: 800;
+      color: var(--gold-warm);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
     /* Shimmering Golden Calligraphy Header */
     .parchment-header {
       text-align: center;
-      margin-top: 12px;
+      margin-top: 8px;
       margin-bottom: 8px;
     }
 
@@ -414,7 +433,7 @@
       font-family: var(--font-romantic);
       font-size: 38px;
       line-height: 1.15;
-      background: linear-gradient(135deg, #d81b60 0%, #b8860b 40%, #e84393 70%, #d4af37 100%);
+      background: linear-gradient(135deg, #d81b6c 0%, #b8860b 40%, #e84393 70%, #d4af37 100%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -492,9 +511,9 @@
       text-align: right;
       margin-top: 14px;
       font-family: var(--font-romantic);
-      font-size: 26px;
+      font-size: 24px;
       color: var(--rose-deep);
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     .parchment-signature-sub {
@@ -504,14 +523,15 @@
       color: var(--gold-warm);
       letter-spacing: 1px;
       text-transform: uppercase;
+      margin-top: 3px;
     }
 
     /* ═══════════════════════════════════════════
-       OUT-OF-THE-BOX SURPRISE 1: THE SECRET GOLDEN HEART LOCKET
+       AUTHENTIC JEWELRY-GRADE 3D CLAMSHELL LOCKET
        ═══════════════════════════════════════════ */
     .locket-section {
-      margin-top: 26px;
-      padding-top: 20px;
+      margin-top: 24px;
+      padding-top: 18px;
       margin-bottom: 20px;
       border-top: 1.5px dashed rgba(212, 175, 55, 0.45);
       display: flex;
@@ -532,103 +552,178 @@
       border-radius: 50px;
       border: 1px solid #ffd700;
       margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(212, 160, 23, 0.2);
+      box-shadow: 0 2px 10px rgba(212, 160, 23, 0.25);
       animation: pulseGentle 2s infinite ease-in-out;
       transition: all 0.3s ease;
+      cursor: pointer;
     }
 
-    /* 3D Heart Locket */
+    /* 3D Clamshell Locket Stage */
     .heart-locket-wrap {
-      width: 270px;
-      min-height: 130px;
-      perspective: 900px;
       position: relative;
       cursor: pointer;
       user-select: none;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       justify-content: center;
-      margin: 4px auto 0;
-    }
-
-    /* The Closed Golden Heart Face */
-    .locket-cover {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 140px;
-      height: 125px;
-      transform-origin: left center;
-      transform-style: preserve-3d;
-      transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
-      z-index: 10;
-      filter: drop-shadow(0 8px 18px rgba(184, 134, 11, 0.45));
-    }
-
-    .heart-locket-wrap.opened .locket-cover {
-      transform: translateX(-105%) rotateY(-145deg);
-      opacity: 0.75;
-      pointer-events: none;
-    }
-
-    /* The Inside Base of the Locket (Reveals Photo & Message) */
-    .locket-inside {
+      align-items: center;
+      margin: 4px auto;
       width: 100%;
-      min-height: 125px;
+    }
+
+    /* ── CLOSED STATE: SINGLE 3D PENDANT ── */
+    .locket-closed-pendant {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      filter: drop-shadow(0 10px 22px rgba(184, 134, 11, 0.5)) drop-shadow(0 0 14px rgba(255, 215, 0, 0.35));
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .locket-closed-pendant:hover {
+      transform: scale(1.06);
+    }
+
+    .heart-locket-wrap.opened .locket-closed-pendant {
+      display: none;
+    }
+
+    /* ── OPENED STATE: DUAL-HEART CLAMSHELL ── */
+    .locket-clamshell-open {
+      display: none;
+      width: 100%;
+      max-width: 326px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: locketReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      filter: drop-shadow(0 12px 28px rgba(184, 134, 11, 0.45));
+    }
+
+    .heart-locket-wrap.opened .locket-clamshell-open {
+      display: flex;
+    }
+
+    @keyframes locketReveal {
+      0% { opacity: 0; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Individual Heart Halves */
+    .clamshell-heart-half {
+      position: relative;
+      width: 155px;
+      height: 155px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 12px 16px;
-      background: radial-gradient(ellipse at 50% 50%, #fffdf8 0%, #fff4e5 75%, #fedca8 100%);
-      border: 2px solid #d4af37;
-      border-radius: 20px;
-      box-shadow: inset 0 0 14px rgba(184, 134, 11, 0.22), 0 4px 15px rgba(0, 0, 0, 0.08);
-      opacity: 0.15;
-      transition: opacity 0.5s ease;
-    }
-
-    .heart-locket-wrap.opened .locket-inside {
-      opacity: 1;
-    }
-
-    .locket-photo-frame {
-      width: 68px;
-      height: 82px;
-      border-radius: 50% 50% 45% 45%;
-      overflow: hidden;
-      border: 2px solid #d4af37;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-      background: #fff;
+      justify-content: center;
       flex-shrink: 0;
     }
 
-    .locket-photo-frame img {
+    .heart-svg-plate {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Left Chamber: Bezeled Photo */
+    .clamshell-photo-content {
+      position: relative;
+      width: 76px;
+      height: 94px;
+      border-radius: 50% 50% 45% 45%;
+      overflow: hidden;
+      border: 2px solid #ffd700;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), inset 0 0 8px rgba(0, 0, 0, 0.2);
+      background: #fff;
+      margin-top: -6px;
+      z-index: 2;
+    }
+
+    .clamshell-photo-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center 15%;
+      display: block;
     }
 
-    .locket-micro-letter {
-      flex: 1;
-      font-family: var(--font-serif);
-      font-size: 11.5px;
-      line-height: 1.5;
-      color: #5c183b;
-      font-weight: 700;
-      text-align: left;
+    .clamshell-photo-glare {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, transparent 55%);
+      pointer-events: none;
     }
 
-    .locket-micro-header {
-      font-size: 10px;
-      font-weight: 800;
-      color: #b81b6c;
-      letter-spacing: 0.5px;
-      margin-bottom: 5px;
+    /* Right Chamber: Royal Velvet & Gold Engraving */
+    .clamshell-vow-content {
+      position: relative;
+      width: 110px;
+      padding: 0 4px;
+      margin-top: -6px;
+      z-index: 2;
+      text-align: center;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 4px;
+    }
+
+    .vow-gold-title {
+      font-family: var(--font-serif);
+      font-size: 9px;
+      font-weight: 800;
+      color: #ffd700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      margin-bottom: 3px;
+    }
+
+    .vow-gold-text {
+      font-family: var(--font-serif);
+      font-size: 9px;
+      line-height: 1.35;
+      color: #fff9ea;
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+      margin-bottom: 4px;
+    }
+
+    .vow-gold-sign {
+      font-family: var(--font-romantic);
+      font-size: 13.5px;
+      color: #ffd700;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      line-height: 1;
+    }
+
+    /* Center 3D Gold Hinge linking the two hearts */
+    .clamshell-center-hinge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 70px;
+      z-index: 5;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+    .hinge-knuckle {
+      width: 8px;
+      height: 18px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #b8860b, #ffd700, #fff2a3, #b8860b);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
     }
 
     /* ═══════════════════════════════════════════
@@ -837,9 +932,9 @@
           </div>
         </div>
         <div class="envelope-postmark">
-          <span>★ ROYAL ★</span>
+          <span>★ ALI &amp; IQRA ★</span>
           <span>15 NOV</span>
-          <span>PARIS/ISL</span>
+          <span>FOREVER</span>
         </div>
 
         <!-- Silk Ribbon Layer (Step 1) -->
@@ -910,10 +1005,40 @@
           <div class="insignia-date">15 • XI • 2026</div>
         </div>
 
+        <!-- Royal Monogram Crest: A 💖 I -->
+        <div class="royal-crest-wrap">
+          <svg viewBox="0 0 160 52" width="145" height="46">
+            <defs>
+              <linearGradient id="crestGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff4b8"/>
+                <stop offset="35%" stop-color="#ffd700"/>
+                <stop offset="70%" stop-color="#d4af37"/>
+                <stop offset="100%" stop-color="#996515"/>
+              </linearGradient>
+            </defs>
+            <!-- Royal Tiara Crown -->
+            <path d="M 72 12 L 76 16 L 80 7 L 84 16 L 88 12 L 86 20 L 74 20 Z" fill="url(#crestGold)"/>
+            <circle cx="80" cy="5.5" r="1.5" fill="#fff"/>
+            <!-- Left Laurel Branch -->
+            <path d="M 48 34 C 54 20 64 18 72 20" fill="none" stroke="url(#crestGold)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 50 25 Q 46 21 52 19 Q 56 23 50 25 Z" fill="url(#crestGold)"/>
+            <path d="M 56 19 Q 54 14 60 14 Q 62 19 56 19 Z" fill="url(#crestGold)"/>
+            <!-- Right Laurel Branch -->
+            <path d="M 112 34 C 106 20 96 18 88 20" fill="none" stroke="url(#crestGold)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 110 25 Q 114 21 108 19 Q 104 23 110 25 Z" fill="url(#crestGold)"/>
+            <path d="M 104 19 Q 106 14 100 14 Q 98 19 104 19 Z" fill="url(#crestGold)"/>
+            <!-- Interlocking Monogram Text: A & I -->
+            <text x="80" y="38" font-family="'Playfair Display', 'Cinzel', serif" font-size="16.5" font-weight="bold" fill="url(#crestGold)" text-anchor="middle" letter-spacing="2">A  &amp;  I</text>
+            <!-- Center Heart -->
+            <path d="M 80 28 C 80 28 77 24.5 77 22.5 C 77 21 78.2 20 79.5 20 C 80.2 20 80.8 20.5 81 21 C 81.2 20.5 81.8 20 82.5 20 C 83.8 20 85 21 85 22.5 C 85 24.5 82 28 82 28 Z" fill="#e84393"/>
+          </svg>
+          <div class="crest-tagline">ALI &amp; IQRA • WRITTEN IN THE STARS</div>
+        </div>
+
         <!-- Shimmering Calligraphy Header -->
         <div class="parchment-header">
           <h2 class="shimmer-script-title">To My Dearest Iqra</h2>
-          <div class="parchment-subheading">✨ Celebrating 20 Beautiful Years of Your Light ✨</div>
+          <div class="parchment-subheading">A Royal Letter from Ali • Celebrating 20 Beautiful Years</div>
         </div>
 
         <!-- Letter Body -->
@@ -936,60 +1061,106 @@
             تیرے چہرے کی رونق رہے سدا آباد<br>
             تیری مسکان رہے سدا شاداب<br>
             <div class="urdu-shair-divider">✦ 💖 ✦</div>
-            اقراء میری جان! بیسویں سالگرہ مبارک ہو<br>
+            علی کی دعا ہے سلامت رہے اقراء میری جان<br>
             تجھ سے ہی وابستہ ہے میری ہر پہچان
           </div>
         </div>
 
         <!-- Signature -->
         <div class="parchment-signature">
-          Forever & Always Yours,<br>
+          Two Souls, One Heartbeat • <span style="color: #b81b6c; font-weight: 800;">Ali &amp; Iqra</span><br>
+          Forever &amp; Always Yours,<br>
           <span style="font-size: 32px; color: #b81b6c;">Ali</span> 🕊️
-          <div class="parchment-signature-sub">On Your 20th Birthday</div>
+          <div class="parchment-signature-sub">November 15, 2026</div>
         </div>
 
         <!-- ═══════════════════════════════════════════
-             OUT-OF-THE-BOX SURPRISE 1: SECRET GOLDEN HEART LOCKET
+             OUT-OF-THE-BOX SURPRISE 1: AUTHENTIC JEWELRY-GRADE 3D CLAMSHELL LOCKET
              ═══════════════════════════════════════════ -->
         <div class="locket-section">
           <div class="locket-prompt-pill" id="locketPill">
-            <span>✨</span> Tap The Golden Locket to Reveal Secret
+            <span>✨</span> Tap To Open Ali &amp; Iqra's Secret Locket
           </div>
 
-          <div class="heart-locket-wrap" id="heartLocket" title="Tap to open locket">
-            <!-- Inside (Photo & Secret Promise) -->
-            <div class="locket-inside">
-              <div class="locket-photo-frame">
-                <img src="assets/pics/pic2.jpg" alt="Her Radiant Smile">
-              </div>
-              <div class="locket-micro-letter">
-                <div class="locket-micro-header"><span>💌</span> A FOREVER PROMISE</div>
-                In a world of 8 billion souls, my eyes and my heart will always look only for you, my Iqra. Happy 20th, my whole world! 👑
-              </div>
+          <div class="heart-locket-wrap" id="heartLocket" title="Tap to open or close locket">
+            <!-- ── 1. CLOSED STATE: 3D GOLDEN HEART PENDANT ── -->
+            <div class="locket-closed-pendant">
+              <svg viewBox="0 0 140 140" width="135" height="135">
+                <defs>
+                  <linearGradient id="pendantGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fff8db"/>
+                    <stop offset="25%" stop-color="#ffd700"/>
+                    <stop offset="55%" stop-color="#d4af37"/>
+                    <stop offset="85%" stop-color="#b8860b"/>
+                    <stop offset="100%" stop-color="#6a4400"/>
+                  </linearGradient>
+                  <radialGradient id="gemGrad" cx="35%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#ffb3d9"/>
+                    <stop offset="35%" stop-color="#ff1493"/>
+                    <stop offset="75%" stop-color="#c2185b"/>
+                    <stop offset="100%" stop-color="#880e4f"/>
+                  </radialGradient>
+                </defs>
+                <!-- Top Bail Loop & Ribbon -->
+                <circle cx="70" cy="12" r="7" fill="none" stroke="url(#pendantGold)" stroke-width="2.5"/>
+                <path d="M 66 12 Q 55 -2 48 6 Q 64 8 68 12 Z" fill="#e84393"/>
+                <path d="M 74 12 Q 85 -2 92 6 Q 76 8 72 12 Z" fill="#e84393"/>
+                <!-- Sculpted 3D Golden Heart Outer -->
+                <path d="M 70 130 C 70 130 12 90 12 50 C 12 26 30 16 50 16 C 61 16 68 22 70 29 C 72 22 79 16 90 16 C 110 16 128 26 128 50 C 128 90 70 130 70 130 Z" 
+                      fill="url(#pendantGold)" stroke="#ffffff" stroke-width="1.2"/>
+                <!-- Inner Beaded Filigree Border -->
+                <path d="M 70 122 C 70 122 20 85 20 52 C 20 32 34 23 50 23 C 59 23 66 28 70 34 C 74 28 81 23 90 23 C 106 23 120 32 120 52 C 120 85 70 122 70 122 Z" 
+                      fill="none" stroke="#fff4b8" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8"/>
+                <!-- Monogram A ∞ I -->
+                <text x="70" y="56" font-family="'Cinzel', 'Playfair Display', serif" font-size="14.5" font-weight="bold" fill="#6a4400" text-anchor="middle" letter-spacing="1.5">A  ∞  I</text>
+                <!-- Central Faceted Ruby Gem -->
+                <path d="M 70 88 C 70 88 54 75 54 67 C 54 62 58 58 63 58 C 66 58 69 60 70 63 C 71 60 74 58 77 58 C 82 58 86 62 86 67 C 86 75 70 88 70 88 Z" 
+                      fill="url(#gemGrad)" stroke="#ffffff" stroke-width="0.8" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.3))"/>
+                <circle cx="67" cy="63" r="1.5" fill="#ffffff" opacity="0.9"/>
+                <!-- Side Latch Nub -->
+                <circle cx="127" cy="50" r="3" fill="#fff4b8" stroke="#b8860b" stroke-width="1"/>
+              </svg>
             </div>
 
-            <!-- Front Locket Cover (3D Hinge) -->
-            <div class="locket-cover">
-              <svg viewBox="0 0 140 110" width="100%" height="100%">
-                <defs>
-                  <linearGradient id="locketGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#fff6cc"/>
-                    <stop offset="40%" stop-color="#ffd700"/>
-                    <stop offset="80%" stop-color="#d4af37"/>
-                    <stop offset="100%" stop-color="#aa771c"/>
-                  </linearGradient>
-                  <filter id="locketGlow">
-                    <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
-                  </filter>
-                </defs>
-                <path d="M 70 100 C 70 100 12 60 12 30 C 12 12 28 4 45 4 C 57 4 66 12 70 20 C 74 12 83 4 95 4 C 112 4 128 12 128 30 C 128 60 70 100 70 100 Z" fill="url(#locketGold)" filter="url(#locketGlow)" stroke="#fff" stroke-width="1.5"/>
-                <!-- Filigree Pattern -->
-                <circle cx="70" cy="45" r="18" fill="none" stroke="#aa771c" stroke-width="1.2" stroke-dasharray="3,2"/>
-                <circle cx="70" cy="45" r="8" fill="#e84393"/>
-                <circle cx="70" cy="45" r="3.5" fill="#ffffff"/>
-                <!-- Latch -->
-                <circle cx="124" cy="30" r="3" fill="#ffffff" stroke="#aa771c" stroke-width="1"/>
-              </svg>
+            <!-- ── 2. OPENED STATE: DUAL-HEART CLAMSHELL ── -->
+            <div class="locket-clamshell-open">
+              <!-- Left Heart: Bezeled Photo of Iqra -->
+              <div class="clamshell-heart-half">
+                <svg viewBox="0 0 155 155" class="heart-svg-plate">
+                  <path d="M 78 145 C 78 145 10 100 10 55 C 10 28 30 18 52 18 C 64 18 73 25 78 33 C 83 25 92 18 104 18 C 126 18 146 28 146 55 C 146 100 78 145 78 145 Z" 
+                        fill="url(#pendantGold)" stroke="#fff" stroke-width="1.5"/>
+                  <path d="M 78 136 C 78 136 20 95 20 56 C 20 34 36 26 53 26 C 63 26 71 31 78 38 C 85 31 93 26 103 26 C 120 26 136 34 136 56 C 136 95 78 136 78 136 Z" 
+                        fill="#fff8ec" stroke="#d4af37" stroke-width="1.2"/>
+                </svg>
+                <div class="clamshell-photo-content">
+                  <img src="assets/pics/pic2.jpg" alt="Iqra's Radiant Smile" class="clamshell-photo-img">
+                  <div class="clamshell-photo-glare"></div>
+                </div>
+              </div>
+
+              <!-- Center 3D Gold Hinge -->
+              <div class="clamshell-center-hinge">
+                <div class="hinge-knuckle"></div>
+                <div class="hinge-knuckle"></div>
+                <div class="hinge-knuckle"></div>
+              </div>
+
+              <!-- Right Heart: Royal Velvet & Gold Engraved Vow -->
+              <div class="clamshell-heart-half">
+                <svg viewBox="0 0 155 155" class="heart-svg-plate">
+                  <path d="M 78 145 C 78 145 10 100 10 55 C 10 28 30 18 52 18 C 64 18 73 25 78 33 C 83 25 92 18 104 18 C 126 18 146 28 146 55 C 146 100 78 145 78 145 Z" 
+                        fill="url(#pendantGold)" stroke="#fff" stroke-width="1.5"/>
+                  <path d="M 78 136 C 78 136 20 95 20 56 C 20 34 36 26 53 26 C 63 26 71 31 78 38 C 85 31 93 26 103 26 C 120 26 136 34 136 56 C 136 95 78 136 78 136 Z" 
+                        fill="radial-gradient(circle at 50% 50%, #750835, #3b021a)" stroke="#ffd700" stroke-width="1.2"/>
+                </svg>
+                <div class="clamshell-vow-content">
+                  <div class="vow-gold-title">✨ ALI &amp; IQRA ✨</div>
+                  <div class="vow-gold-text">
+                    "In a world of 8 billion souls, my eyes and my heart will always look only for you, my Iqra. From 21-08-24 to eternity. Happy 20th Birthday, my Queen 👑"
+                  </div>
+                  <div class="vow-gold-sign">— Yours Forever, Ali 🕊️</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1167,7 +1338,7 @@
     });
 
     // ─── SURPRISE 1: GOLDEN HEART LOCKET ───
-    heartLocket.addEventListener('click', () => {
+    function toggleLocket() {
       const isOpened = heartLocket.classList.toggle('opened');
       window.triggerHaptic([40, 60]);
 
@@ -1176,7 +1347,7 @@
       }
 
       if (isOpened) {
-        locketPill.innerHTML = '<span>💖</span> Secret Revealed! A Forever Promise';
+        locketPill.innerHTML = '<span>💖</span> Secret Revealed! A Forever Promise • Tap to Close';
         locketPill.style.background = '#ffe6ef';
         locketPill.style.borderColor = '#ff75a0';
         locketPill.style.color = '#d81b60';
@@ -1186,12 +1357,15 @@
           window.Fireworks.launchSparkles(window.innerWidth / 2, window.innerHeight * 0.65);
         }
       } else {
-        locketPill.innerHTML = '<span>✨</span> Tap The Golden Locket to Reveal Secret';
+        locketPill.innerHTML = '<span>✨</span> Tap To Open Ali &amp; Iqra\'s Secret Locket';
         locketPill.style.background = '#fff8e7';
         locketPill.style.borderColor = '#ffd700';
         locketPill.style.color = '#995c00';
       }
-    });
+    }
+
+    heartLocket.addEventListener('click', toggleLocket);
+    locketPill.addEventListener('click', toggleLocket);
 
     // ─── SURPRISE 2: "SEAL WITH A KISS" (💋) ───
     function stampKiss(x, y) {
