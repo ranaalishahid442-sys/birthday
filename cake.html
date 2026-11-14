@@ -31,10 +31,190 @@
     /* Cake Stage */
     .cake-stage {
       width: 100%;
-      max-width: 340px;
-      margin: 10px auto 16px;
+      max-width: 380px;
+      margin: 10px auto 18px;
       position: relative;
+    }
+
+    /* ═══════════════════════════════════════════
+       HANGING PHOTO & LAMP CANOPY ON TOP OF CAKE
+       ═══════════════════════════════════════════ */
+    .hanging-cake-canopy {
+      position: relative;
+      width: 100%;
+      height: 195px;
+      margin-bottom: -18px;
+      z-index: 10;
+      pointer-events: all;
+    }
+
+    /* Top Curved Festoon Wire */
+    .canopy-festoon-wire {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      width: calc(100% - 12px);
+      height: 25px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Festoon micro fairy lights */
+    .canopy-bulbs-track {
+      position: absolute;
+      top: 2px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .festoon-bulb {
+      width: 8px;
+      height: 11px;
+      border-radius: 50% 50% 40% 40%;
+      background: #ffd700;
+      box-shadow: 0 0 10px #ffd700, 0 0 18px #ff75a0;
+      animation: bulbTwinkle 1.8s infinite alternate ease-in-out;
+    }
+    .festoon-bulb:nth-child(even) {
+      animation-delay: 0.9s;
+      background: #ff9800;
+    }
+
+    /* Hanging Track containing all 5 photos + 4 glowing lamps */
+    .hanging-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 6px 2px 0;
+    }
+
+    /* Individual Hanging Column with Sway Animation */
+    .hanging-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform-origin: top center;
       cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease;
+      animation: swayPendulum var(--sway-dur, 3.5s) infinite ease-in-out alternate;
+      animation-delay: var(--sway-delay, 0s);
+    }
+    .hanging-col:hover, .hanging-col.active-tap {
+      animation-play-state: paused;
+      transform: scale(1.15) rotate(0deg) !important;
+      z-index: 25;
+    }
+
+    @keyframes swayPendulum {
+      0% { transform: rotate(calc(-1 * var(--sway-deg, 2.5deg))); }
+      100% { transform: rotate(var(--sway-deg, 2.5deg)); }
+    }
+
+    /* Golden Braided Hanging Thread */
+    .hanging-thread {
+      width: 1.5px;
+      height: var(--thread-len, 55px);
+      background: linear-gradient(180deg, #d4af37 0%, #ffd700 50%, #b8860b 100%);
+      box-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Attachment Clip / Ribbon Bow */
+    .hanging-clip {
+      font-size: 11px;
+      line-height: 1;
+      margin-top: -3px;
+      margin-bottom: -1px;
+      z-index: 4;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+    }
+
+    /* Hanging Mini Polaroid Card */
+    .hanging-photo-card {
+      background: #ffffff;
+      padding: 4px 4px 6px;
+      border-radius: 8px;
+      box-shadow: 0 8px 18px rgba(184, 134, 11, 0.28), 0 2px 6px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: var(--photo-w, 54px);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hanging-photo-card.featured {
+      width: 62px;
+      box-shadow: 0 10px 24px rgba(232, 67, 147, 0.35), 0 0 15px rgba(255, 215, 0, 0.5);
+      border-color: #ffd700;
+    }
+
+    /* Mini Washi Tape on Photo */
+    .hanging-washi-tape {
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 7px;
+      background: linear-gradient(90deg, rgba(255, 182, 193, 0.9), rgba(255, 222, 173, 0.9));
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      z-index: 5;
+    }
+
+    .hanging-img-frame {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 5px;
+      overflow: hidden;
+      background: #fbfbfb;
+      position: relative;
+      border: 0.5px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .hanging-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hanging-label {
+      font-family: var(--font-serif);
+      font-size: 8px;
+      font-weight: 700;
+      color: #4a1532;
+      margin-top: 3px;
+      white-space: nowrap;
+      letter-spacing: 0.2px;
+    }
+
+    /* Hanging Glowing Lamp / Lantern */
+    .hanging-lamp-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform-origin: top center;
+      animation: swayPendulum var(--sway-dur, 3.8s) infinite ease-in-out alternate;
+      animation-delay: var(--sway-delay, 0.4s);
+      pointer-events: none;
+    }
+
+    .lamp-glow-wrap {
+      filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.95)) drop-shadow(0 0 18px rgba(255, 117, 160, 0.5));
+      animation: lampGlowPulse 2.2s infinite alternate ease-in-out;
+    }
+
+    @keyframes lampGlowPulse {
+      0% { filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 12px rgba(255, 117, 160, 0.35)); }
+      100% { filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1)) drop-shadow(0 0 24px rgba(255, 117, 160, 0.65)); }
     }
 
     .cake-art-wrapper {
@@ -689,10 +869,159 @@
 
     <!-- The Cake Stage -->
     <div class="cake-stage" id="cakeStage">
+      <!-- ═══════════════════════════════════════════
+           HANGING CANOPY ON TOP OF CAKE (PHOTOS + LAMPS)
+           ═══════════════════════════════════════════ -->
+      <div class="hanging-cake-canopy">
+        <!-- Top Festoon Wire SVG -->
+        <svg class="canopy-festoon-wire" viewBox="0 0 380 30" preserveAspectRatio="none">
+          <path d="M 10 12 Q 190 28 370 12" stroke="#d4af37" stroke-width="2.5" fill="none" stroke-linecap="round" filter="drop-shadow(0 1px 3px rgba(184, 134, 11, 0.5))"/>
+        </svg>
+
+        <!-- Festoon Fairy Twinkle Bulbs -->
+        <div class="canopy-bulbs-track">
+          <div class="festoon-bulb"></div>
+          <div class="festoon-bulb"></div>
+          <div class="festoon-bulb"></div>
+          <div class="festoon-bulb"></div>
+          <div class="festoon-bulb"></div>
+          <div class="festoon-bulb"></div>
+          <div class="festoon-bulb"></div>
+          <div class="festoon-bulb"></div>
+          <div class="festoon-bulb"></div>
+        </div>
+
+        <!-- Hanging Track with 5 Photos & 4 Glowing Lamps -->
+        <div class="hanging-track">
+          <!-- 1. Lamp Left -->
+          <div class="hanging-lamp-col" style="--thread-len: 26px; --sway-dur: 3.2s; --sway-deg: 3deg; --sway-delay: 0.1s;">
+            <div class="hanging-thread"></div>
+            <div class="lamp-glow-wrap">
+              <svg viewBox="0 0 22 36" width="16" height="26">
+                <circle cx="11" cy="3" r="2" fill="none" stroke="#d4af37" stroke-width="1.2"/>
+                <path d="M7,5 L15,5 L17,9 L5,9 Z" fill="#ffd700"/>
+                <path d="M6,9 L16,9 L18,22 L4,22 Z" fill="#fff5cc" stroke="#d4af37" stroke-width="0.8"/>
+                <ellipse cx="11" cy="15" rx="2" ry="3.5" fill="#ffffff"/>
+                <path d="M6,22 L16,22 L13,27 L9,27 Z" fill="#b8860b"/>
+                <circle cx="11" cy="29" r="1.2" fill="#ffd700"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 2. Photo 1: pic1.jpg (Grace) -->
+          <div class="hanging-col" data-gallery-idx="2" style="--thread-len: 44px; --sway-dur: 3.8s; --sway-deg: 2.5deg; --sway-delay: 0.3s; --photo-w: 52px;" title="Pure Grace • Tap to view note">
+            <div class="hanging-thread"></div>
+            <div class="hanging-clip">🎀</div>
+            <div class="hanging-photo-card">
+              <div class="hanging-washi-tape"></div>
+              <div class="hanging-img-frame">
+                <img src="assets/pics/pic1.jpg" alt="Grace" class="hanging-img">
+              </div>
+              <div class="hanging-label">سادگی 🌸</div>
+            </div>
+          </div>
+
+          <!-- 3. Lamp Center-Left -->
+          <div class="hanging-lamp-col" style="--thread-len: 22px; --sway-dur: 4.1s; --sway-deg: 2deg; --sway-delay: 0.5s;">
+            <div class="hanging-thread"></div>
+            <div class="lamp-glow-wrap">
+              <svg viewBox="0 0 22 36" width="15" height="24">
+                <circle cx="11" cy="3" r="2" fill="none" stroke="#d4af37" stroke-width="1.2"/>
+                <path d="M7,5 L15,5 L17,9 L5,9 Z" fill="#ffd700"/>
+                <path d="M6,9 L16,9 L18,22 L4,22 Z" fill="#ffeaa7" stroke="#d4af37" stroke-width="0.8"/>
+                <ellipse cx="11" cy="15" rx="2" ry="3.5" fill="#ffffff"/>
+                <path d="M6,22 L16,22 L13,27 L9,27 Z" fill="#b8860b"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 4. Photo 2: pic4.jpg (Golden Hour) -->
+          <div class="hanging-col" data-gallery-idx="1" style="--thread-len: 62px; --sway-dur: 3.5s; --sway-deg: 3deg; --sway-delay: 0.2s; --photo-w: 54px;" title="Golden Hour • Tap to view note">
+            <div class="hanging-thread"></div>
+            <div class="hanging-clip">📎</div>
+            <div class="hanging-photo-card">
+              <div class="hanging-washi-tape"></div>
+              <div class="hanging-img-frame">
+                <img src="assets/pics/pic4.jpg" alt="Golden Radiance" class="hanging-img">
+              </div>
+              <div class="hanging-label">نور 💫</div>
+            </div>
+          </div>
+
+          <!-- 5. Photo 3: pic5.jpg (Center Queen under Birthday Lights) -->
+          <div class="hanging-col" data-gallery-idx="0" style="--thread-len: 74px; --sway-dur: 4.5s; --sway-deg: 2deg; --sway-delay: 0.6s; --photo-w: 60px;" title="Birthday Queen • Tap to view note">
+            <div class="hanging-thread"></div>
+            <div class="hanging-clip">👑</div>
+            <div class="hanging-photo-card featured">
+              <div class="hanging-washi-tape"></div>
+              <div class="hanging-img-frame">
+                <img src="assets/pics/pic5.jpg" alt="Birthday Queen" class="hanging-img">
+              </div>
+              <div class="hanging-label" style="color: #b81b6c; font-weight: 800;">Queen ✨</div>
+            </div>
+          </div>
+
+          <!-- 6. Photo 4: pic2.jpg (Sweet Smile) -->
+          <div class="hanging-col" data-gallery-idx="3" style="--thread-len: 62px; --sway-dur: 3.7s; --sway-deg: 2.8deg; --sway-delay: 0.4s; --photo-w: 54px;" title="Sweet Smile • Tap to view note">
+            <div class="hanging-thread"></div>
+            <div class="hanging-clip">📎</div>
+            <div class="hanging-photo-card">
+              <div class="hanging-washi-tape"></div>
+              <div class="hanging-img-frame">
+                <img src="assets/pics/pic2.jpg" alt="Smile" class="hanging-img">
+              </div>
+              <div class="hanging-label">مسکان 💖</div>
+            </div>
+          </div>
+
+          <!-- 7. Lamp Center-Right -->
+          <div class="hanging-lamp-col" style="--thread-len: 22px; --sway-dur: 3.9s; --sway-deg: 2.5deg; --sway-delay: 0.7s;">
+            <div class="hanging-thread"></div>
+            <div class="lamp-glow-wrap">
+              <svg viewBox="0 0 22 36" width="15" height="24">
+                <circle cx="11" cy="3" r="2" fill="none" stroke="#d4af37" stroke-width="1.2"/>
+                <path d="M7,5 L15,5 L17,9 L5,9 Z" fill="#ffd700"/>
+                <path d="M6,9 L16,9 L18,22 L4,22 Z" fill="#ffeaa7" stroke="#d4af37" stroke-width="0.8"/>
+                <ellipse cx="11" cy="15" rx="2" ry="3.5" fill="#ffffff"/>
+                <path d="M6,22 L16,22 L13,27 L9,27 Z" fill="#b8860b"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 8. Photo 5: pic3.jpg (Sanctuary) -->
+          <div class="hanging-col" data-gallery-idx="4" style="--thread-len: 44px; --sway-dur: 4.2s; --sway-deg: 2.2deg; --sway-delay: 0.2s; --photo-w: 52px;" title="Sanctuary • Tap to view note">
+            <div class="hanging-thread"></div>
+            <div class="hanging-clip">🎀</div>
+            <div class="hanging-photo-card">
+              <div class="hanging-washi-tape"></div>
+              <div class="hanging-img-frame">
+                <img src="assets/pics/pic3.jpg" alt="Sanctuary" class="hanging-img">
+              </div>
+              <div class="hanging-label">سکون 🕊️</div>
+            </div>
+          </div>
+
+          <!-- 9. Lamp Right -->
+          <div class="hanging-lamp-col" style="--thread-len: 26px; --sway-dur: 3.4s; --sway-deg: 3deg; --sway-delay: 0.3s;">
+            <div class="hanging-thread"></div>
+            <div class="lamp-glow-wrap">
+              <svg viewBox="0 0 22 36" width="16" height="26">
+                <circle cx="11" cy="3" r="2" fill="none" stroke="#d4af37" stroke-width="1.2"/>
+                <path d="M7,5 L15,5 L17,9 L5,9 Z" fill="#ffd700"/>
+                <path d="M6,9 L16,9 L18,22 L4,22 Z" fill="#fff5cc" stroke="#d4af37" stroke-width="0.8"/>
+                <ellipse cx="11" cy="15" rx="2" ry="3.5" fill="#ffffff"/>
+                <path d="M6,22 L16,22 L13,27 L9,27 Z" fill="#b8860b"/>
+                <circle cx="11" cy="29" r="1.2" fill="#ffd700"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Golden Knife -->
       <div class="cake-knife" id="cakeKnife">🗡️</div>
 
-      <!-- Vector Cake Art -->
+      <!-- Vector Cake Art (Directly below the hanging photos & lamps) -->
       <div class="cake-art-wrapper">
         <img src="assets/cake-art.svg" alt="20th Birthday Cake" style="width: 100%; display: block;">
         
@@ -1074,7 +1403,9 @@
     flameL.addEventListener('click', blowCandles);
     flameR.addEventListener('click', blowCandles);
     knife.addEventListener('click', cutCake);
-    cakeStage.addEventListener('click', () => {
+    cakeStage.addEventListener('click', (e) => {
+      // Don't trigger candle blow if clicking hanging canopy photos
+      if (e.target.closest('.hanging-cake-canopy')) return;
       if (step === 1) blowCandles();
       else if (step === 2) cutCake();
     });
@@ -1082,6 +1413,30 @@
     actionBtn.addEventListener('click', () => {
       if (step === 1) blowCandles();
       else if (step === 2) cutCake();
+    });
+
+    // Hanging Photos Tap-To-View Interaction
+    document.querySelectorAll('.hanging-col[data-gallery-idx]').forEach(col => {
+      col.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const gIdx = parseInt(col.getAttribute('data-gallery-idx'));
+        
+        // Visual tap bounce
+        col.classList.add('active-tap');
+        setTimeout(() => col.classList.remove('active-tap'), 800);
+
+        window.triggerHaptic(25);
+        if (window.BirthdayAudio) {
+          window.BirthdayAudio.playHarpChime([659.25, 783.99, 1046.5, 1318.5]);
+        }
+
+        // Activate that photo in the detailed card & scroll smoothly to it
+        showPhoto(gIdx);
+        const memSec = document.getElementById('memorySection');
+        if (memSec) {
+          memSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
     });
 
     function spawnCelebrationBalloons() {
