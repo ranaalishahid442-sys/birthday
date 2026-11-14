@@ -152,6 +152,521 @@
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(-750px) rotate(20deg); opacity: 0; }
     }
+
+    /* ═══════════════════════════════════════════
+       THE 20TH BIRTHDAY MEMORY CONSTELLATION
+       ═══════════════════════════════════════════ */
+    .memory-gallery-section {
+      width: 100%;
+      background: radial-gradient(ellipse at 50% 25%, #ffffff 0%, #fffbfc 50%, #fff0f5 100%);
+      border: 2px solid rgba(255, 117, 160, 0.45);
+      border-radius: var(--radius-lg);
+      padding: 24px 14px 26px;
+      margin: 26px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 45px rgba(232, 67, 147, 0.18), inset 0 0 25px rgba(255, 255, 255, 0.95);
+      transition: all 0.5s ease;
+    }
+
+    .memory-gallery-section::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px dashed rgba(255, 117, 160, 0.35);
+      border-radius: calc(var(--radius-lg) - 6px);
+      pointer-events: none;
+    }
+
+    /* Fairy-Light Clothesline Garland */
+    .fairy-garland {
+      position: relative;
+      width: 100%;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      margin-bottom: 12px;
+    }
+
+    .fairy-wire {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      background: linear-gradient(90deg, #d4af37, #ffe277, #ff75a0, #ffd700);
+      transform: translateY(-50%);
+      box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+      z-index: 1;
+    }
+
+    .fairy-bulb {
+      width: 10px;
+      height: 14px;
+      border-radius: 50% 50% 40% 40%;
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ffd700 50%, #ff9800 100%);
+      box-shadow: 0 0 10px #ffd700, 0 0 20px #ff75a0;
+      position: relative;
+      z-index: 2;
+      animation: bulbTwinkle 2.2s infinite alternate ease-in-out;
+    }
+    .fairy-bulb:nth-child(2) { animation-delay: 0.3s; }
+    .fairy-bulb:nth-child(3) { animation-delay: 0.7s; }
+    .fairy-bulb:nth-child(4) { animation-delay: 1.1s; }
+    .fairy-bulb:nth-child(5) { animation-delay: 1.5s; }
+    .fairy-bulb:nth-child(6) { animation-delay: 0.5s; }
+
+    @keyframes bulbTwinkle {
+      0% { opacity: 0.6; transform: scale(0.9); box-shadow: 0 0 6px #ffd700; }
+      100% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 16px #ffd700, 0 0 30px #ff75a0; }
+    }
+
+    .gallery-header-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--rose-deep);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .gallery-subtitle {
+      font-size: 12.5px;
+      color: #632d47;
+      font-style: italic;
+      margin-bottom: 18px;
+    }
+
+    /* 3D Polaroid Card Stage */
+    .polaroid-stage {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      perspective: 1200px;
+      min-height: 480px;
+    }
+
+    .polaroid-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+      cursor: pointer;
+      display: none;
+    }
+
+    .polaroid-card.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .polaroid-card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    /* Front & Back Faces */
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 18px;
+      padding: 16px 14px 18px;
+      box-shadow: 0 16px 36px rgba(232, 67, 147, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* FRONT FACE: High-Gloss Aesthetic Polaroid */
+    .card-face-front {
+      background: #ffffff;
+      border: 1.5px solid rgba(255, 117, 160, 0.35);
+    }
+
+    /* Washi Tape Accent */
+    .washi-tape {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1deg);
+      width: 110px;
+      height: 22px;
+      background: linear-gradient(135deg, rgba(255, 182, 193, 0.85) 0%, rgba(255, 218, 185, 0.85) 100%);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-left: 2px dashed rgba(255, 255, 255, 0.7);
+      border-right: 2px dashed rgba(255, 255, 255, 0.7);
+      z-index: 5;
+    }
+
+    /* Golden Clip on top */
+    .garland-clip {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      z-index: 6;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+    }
+
+    /* Flower Sticker on Corner */
+    .pressed-flower {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 20px;
+      z-index: 5;
+      filter: drop-shadow(0 2px 4px rgba(232, 67, 147, 0.3));
+    }
+
+    /* Photo Frame inside Polaroid */
+    .photo-frame-inner {
+      width: 100%;
+      height: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      background: #fbfbfb;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .polaroid-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      transition: transform 0.5s ease;
+    }
+
+    .polaroid-card:hover .polaroid-img {
+      transform: scale(1.03);
+    }
+
+    .photo-glint {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    /* Enlarge Button */
+    .enlarge-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(232, 67, 147, 0.35);
+      border-radius: 50px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--rose-deep);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease;
+      z-index: 10;
+    }
+    .enlarge-badge:hover {
+      transform: scale(1.08);
+    }
+
+    /* Polaroid Caption Area */
+    .polaroid-caption {
+      width: 100%;
+      margin-top: 14px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .polaroid-memory-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-warm);
+      margin-bottom: 2px;
+    }
+
+    .polaroid-title {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: #3b1429;
+      margin-bottom: 4px;
+    }
+
+    .polaroid-urdu-caption {
+      font-family: var(--font-urdu);
+      font-size: 16px;
+      color: #5c183b;
+      direction: rtl;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .tap-to-flip-hint {
+      font-size: 11px;
+      color: var(--rose-deep);
+      font-weight: 600;
+      background: rgba(232, 67, 147, 0.08);
+      border-radius: 20px;
+      padding: 4px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      animation: pulseSoft 2s infinite ease-in-out;
+    }
+
+    /* BACK FACE: Antique Blush-Parchment Love Letter */
+    .card-face-back {
+      background: radial-gradient(circle at 50% 25%, #fffdf8 0%, #fff7ef 60%, #fae8d8 100%);
+      border: 2px solid #d4af37;
+      transform: rotateY(180deg);
+      justify-content: space-between;
+      text-align: center;
+      padding: 22px 16px 18px;
+    }
+
+    .back-letter-header {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: #7b4a00;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-bottom: 1px dashed rgba(212, 160, 23, 0.4);
+      padding-bottom: 8px;
+      width: 100%;
+    }
+
+    .back-urdu-letter {
+      font-family: var(--font-urdu);
+      font-size: 16px;
+      line-height: 2.1;
+      color: #3b1904;
+      direction: rtl;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+
+    .back-en-letter {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-style: italic;
+      line-height: 1.6;
+      color: #5a2e05;
+      margin-bottom: 16px;
+    }
+
+    .back-flip-btn {
+      background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+      color: #2b1800;
+      border: none;
+      border-radius: 20px;
+      padding: 7px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease;
+    }
+    .back-flip-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Carousel Controls & Thumbnails */
+    .gallery-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .gallery-nav-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1.5px solid var(--border-rose);
+      color: var(--rose-deep);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(232, 67, 147, 0.18);
+      transition: all 0.25s ease;
+    }
+    .gallery-nav-btn:hover, .gallery-nav-btn:active {
+      background: var(--rose-deep);
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    /* Dot indicators */
+    .gallery-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gallery-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(232, 67, 147, 0.25);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-dot.active {
+      width: 22px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #ff75a0, #e84393);
+      box-shadow: 0 0 10px rgba(232, 67, 147, 0.5);
+    }
+
+    /* Quick Thumbnail Strip */
+    .gallery-thumb-strip {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+      overflow-x: auto;
+      padding: 6px 4px;
+    }
+
+    .gallery-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      flex-shrink: 0;
+      opacity: 0.65;
+    }
+
+    .gallery-thumb.active {
+      border-color: var(--rose-deep);
+      transform: scale(1.15) translateY(-3px);
+      box-shadow: 0 6px 16px rgba(232, 67, 147, 0.4);
+      opacity: 1;
+    }
+
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Fullscreen Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 5, 14, 0.94);
+      backdrop-filter: blur(14px);
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+    .lightbox-close-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.1);
+    }
+
+    .lightbox-frame {
+      max-width: 90vw;
+      max-height: 75vh;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 3px solid rgba(255, 182, 193, 0.6);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(232, 67, 147, 0.4);
+    }
+
+    .lightbox-frame img {
+      width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-caption {
+      margin-top: 14px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .lightbox-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffe277;
+      margin-bottom: 4px;
+    }
+
+    .lightbox-urdu {
+      font-family: var(--font-urdu);
+      font-size: 17px;
+      color: #ffffff;
+      direction: rtl;
+    }
   </style>
 </head>
 <body>
@@ -232,16 +747,252 @@
       <p class="urdu-poetry" style="font-size: 17px; line-height: 2; color: #4a1532; margin-bottom: 18px;">
         دعا ہے کہ تری عمر کے اس بیسویں سال میں ہر قدم پر خوشیاں اور برکتیں تیرے قدم چومیں۔ اللہ تعالیٰ تیری معصوم مسکراہٹ کو ہمیشہ سلامت رکھے اور ہمارا ساتھ تا ابد شاداب رکھے۔ آمین۔
       </p>
-      
-      <a href="cinema.html" class="btn-royal">
-        Watch Our Memories In VIP Cinema 🎬 →
-      </a>
     </div>
 
     <!-- Primary Ceremony Action Button -->
     <button class="btn-royal" id="ceremonyActionBtn" style="margin-top: 15px;">
       <span>🕯️</span> Tap To Blow Out The 20th Candles
     </button>
+
+    <!-- ═══════════════════════════════════════════
+         THE 20TH BIRTHDAY MEMORY CONSTELLATION
+         ═══════════════════════════════════════════ -->
+    <div class="memory-gallery-section" id="memorySection">
+      <!-- Fairy-Light Clothesline Garland with blinking micro-bulbs -->
+      <div class="fairy-garland">
+        <div class="fairy-wire"></div>
+        <div class="fairy-bulb"></div>
+        <div class="fairy-bulb"></div>
+        <div class="fairy-bulb"></div>
+        <div class="fairy-bulb"></div>
+        <div class="fairy-bulb"></div>
+        <div class="fairy-bulb"></div>
+      </div>
+
+      <div class="gallery-header-title">
+        <span>📸</span> یادوں کے جگمگاتے چراغ • The 20th Birthday Memory Constellation
+      </div>
+      <div class="gallery-subtitle">
+        Tap each luxury polaroid to flip and reveal a secret handwritten love letter
+      </div>
+
+      <!-- 3D Polaroid Card Stage -->
+      <div class="polaroid-stage">
+        <!-- Photo 1: pic5.jpg (The Birthday Queen under lights) -->
+        <div class="polaroid-card active" data-index="0">
+          <div class="card-face card-face-front">
+            <div class="washi-tape"></div>
+            <div class="garland-clip">📎</div>
+            <div class="pressed-flower">✨</div>
+            <div class="photo-frame-inner">
+              <img src="assets/pics/pic5.jpg" alt="The Queen of the Night" class="polaroid-img">
+              <div class="photo-glint"></div>
+              <div class="enlarge-badge" data-pic="assets/pics/pic5.jpg" data-title="The Queen of the Night • نورِ محفل" data-urdu="بیسویں سالگرہ کے اس سنگ میل پر چاند بھی مدہم ہے">
+                <span>🔍</span> Enlarge
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <div class="polaroid-memory-tag">✨ Memory 1 of 5 • Birthday Night</div>
+              <div class="polaroid-title">The Queen of the Night • نورِ محفل</div>
+              <div class="polaroid-urdu-caption">بیسویں سالگرہ کے اس سنگ میل پر چاند بھی مدہم ہے</div>
+              <div class="tap-to-flip-hint"><span>🔄</span> Tap to read secret letter</div>
+            </div>
+          </div>
+          <div class="card-face card-face-back">
+            <div class="washi-tape"></div>
+            <div class="back-letter-header">
+              <span>💌</span> To My Birthday Queen 👑
+            </div>
+            <div class="back-urdu-letter">
+              تم اس کائنات کا وہ خوبصورت ترین تحفہ ہو جس کے دم سے میری زندگی میں روشنی ہے۔ بیسویں سالگرہ کے اس سنگ میل پر دعا ہے کہ تمہاری مسکراہٹ ہمیشہ یونہی چمکتی رہے۔
+            </div>
+            <div class="back-en-letter">
+              "Under every fairy light and balloon, no star shines brighter than your eyes. Happy 20th, my whole world."
+            </div>
+            <button class="back-flip-btn"><span>↺</span> Flip back to photo</button>
+          </div>
+        </div>
+
+        <!-- Photo 2: pic4.jpg (Golden Hour Radiance) -->
+        <div class="polaroid-card" data-index="1">
+          <div class="card-face card-face-front">
+            <div class="washi-tape"></div>
+            <div class="garland-clip">📎</div>
+            <div class="pressed-flower">🌸</div>
+            <div class="photo-frame-inner">
+              <img src="assets/pics/pic4.jpg" alt="Golden Hour Radiance" class="polaroid-img">
+              <div class="photo-glint"></div>
+              <div class="enlarge-badge" data-pic="assets/pics/pic4.jpg" data-title="Golden Hour Radiance • تیری چمک سورج سے حسیں" data-urdu="جب تم اپنے بالوں کو سنوارتی ہو، حسن بکھر جاتا ہے">
+                <span>🔍</span> Enlarge
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <div class="polaroid-memory-tag">✨ Memory 2 of 5 • Timeless Grace</div>
+              <div class="polaroid-title">Golden Hour Radiance • تیری چمک سورج سے حسیں</div>
+              <div class="polaroid-urdu-caption">جب تم اپنے بالوں کو سنوارتی ہو، حسن بکھر جاتا ہے</div>
+              <div class="tap-to-flip-hint"><span>🔄</span> Tap to read secret letter</div>
+            </div>
+          </div>
+          <div class="card-face card-face-back">
+            <div class="washi-tape"></div>
+            <div class="back-letter-header">
+              <span>💫</span> Timeless Grace & Light
+            </div>
+            <div class="back-urdu-letter">
+              جب تم اپنے بالوں کو سنوارتی ہو، دنیا کا سارا حسن تم پر سمٹ آتا ہے۔ تمہاری یہ ادائیں میرے دل کو ہر پل نیا دیوانہ بناتی ہیں۔
+            </div>
+            <div class="back-en-letter">
+              "Even the sunset pauses to admire you. In every lifetime, I would still look for you in every crowd."
+            </div>
+            <button class="back-flip-btn"><span>↺</span> Flip back to photo</button>
+          </div>
+        </div>
+
+        <!-- Photo 3: pic1.jpg (Pure Grace & Elegance) -->
+        <div class="polaroid-card" data-index="2">
+          <div class="card-face card-face-front">
+            <div class="washi-tape"></div>
+            <div class="garland-clip">📎</div>
+            <div class="pressed-flower">🌹</div>
+            <div class="photo-frame-inner">
+              <img src="assets/pics/pic1.jpg" alt="Pure Grace & Elegance" class="polaroid-img">
+              <div class="photo-glint"></div>
+              <div class="enlarge-badge" data-pic="assets/pics/pic1.jpg" data-title="Pure Grace & Elegance • سادگی میں بھی قیامت" data-urdu="سادگی ایسی کہ پھول بھی شرما جائیں">
+                <span>🔍</span> Enlarge
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <div class="polaroid-memory-tag">✨ Memory 3 of 5 • Effortless Charm</div>
+              <div class="polaroid-title">Pure Grace & Elegance • سادگی میں بھی قیامت</div>
+              <div class="polaroid-urdu-caption">سادگی ایسی کہ پھول بھی شرما جائیں</div>
+              <div class="tap-to-flip-hint"><span>🔄</span> Tap to read secret letter</div>
+            </div>
+          </div>
+          <div class="card-face card-face-back">
+            <div class="washi-tape"></div>
+            <div class="back-letter-header">
+              <span>🌸</span> Effortless Elegance
+            </div>
+            <div class="back-urdu-letter">
+              سادگی ایسی کہ پھول بھی شرما جائیں، اور وقار ایسا کہ دل خود بخود جھک جائے۔ تمہارا ساتھ میری زندگی کا سب سے انمول سرمایہ ہے۔
+            </div>
+            <div class="back-en-letter">
+              "You make simple moments feel like royal fairy tales. I fall in love with you all over again, every single day."
+            </div>
+            <button class="back-flip-btn"><span>↺</span> Flip back to photo</button>
+          </div>
+        </div>
+
+        <!-- Photo 4: pic2.jpg (The World's Favorite Smile) -->
+        <div class="polaroid-card" data-index="3">
+          <div class="card-face card-face-front">
+            <div class="washi-tape"></div>
+            <div class="garland-clip">📎</div>
+            <div class="pressed-flower">💖</div>
+            <div class="photo-frame-inner">
+              <img src="assets/pics/pic2.jpg" alt="The World's Favorite Smile" class="polaroid-img">
+              <div class="photo-glint"></div>
+              <div class="enlarge-badge" data-pic="assets/pics/pic2.jpg" data-title="The World's Favorite Smile • تیری ایک مسکراہٹ" data-urdu="تیری مسکان پر میری دونوں جہاں قربان">
+                <span>🔍</span> Enlarge
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <div class="polaroid-memory-tag">✨ Memory 4 of 5 • Healing Smile</div>
+              <div class="polaroid-title">The World's Favorite Smile • تیری ایک مسکراہٹ</div>
+              <div class="polaroid-urdu-caption">تیری مسکان پر میری دونوں جہاں قربان</div>
+              <div class="tap-to-flip-hint"><span>🔄</span> Tap to read secret letter</div>
+            </div>
+          </div>
+          <div class="card-face card-face-back">
+            <div class="washi-tape"></div>
+            <div class="back-letter-header">
+              <span>💕</span> My Favorite Smile
+            </div>
+            <div class="back-urdu-letter">
+              تیری ایک مسکراہٹ پر میری دونوں جہاں قربان۔ تمہاری یہ ہنسی میری ہر تھکن اور ہر غم کا علاج ہے۔ کبھی مت اداس ہونا میری جان۔
+            </div>
+            <div class="back-en-letter">
+              "Your smile has healed every wound I ever had. Keep smiling like this for a hundred years to come."
+            </div>
+            <button class="back-flip-btn"><span>↺</span> Flip back to photo</button>
+          </div>
+        </div>
+
+        <!-- Photo 5: pic3.jpg (My Sanctuary & Peace) -->
+        <div class="polaroid-card" data-index="4">
+          <div class="card-face card-face-front">
+            <div class="washi-tape"></div>
+            <div class="garland-clip">📎</div>
+            <div class="pressed-flower">🕊️</div>
+            <div class="photo-frame-inner">
+              <img src="assets/pics/pic3.jpg" alt="My Sanctuary & Peace" class="polaroid-img">
+              <div class="photo-glint"></div>
+              <div class="enlarge-badge" data-pic="assets/pics/pic3.jpg" data-title="My Sanctuary & Peace • تیرا دیدار سکونِ قلب" data-urdu="تمہاری آنکھوں کا سکون میرا گھر ہے">
+                <span>🔍</span> Enlarge
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <div class="polaroid-memory-tag">✨ Memory 5 of 5 • Eternal Peace</div>
+              <div class="polaroid-title">My Sanctuary & Peace • تیرا دیدار سکونِ قلب</div>
+              <div class="polaroid-urdu-caption">تمہاری آنکھوں کا سکون میرا گھر ہے</div>
+              <div class="tap-to-flip-hint"><span>🔄</span> Tap to read secret letter</div>
+            </div>
+          </div>
+          <div class="card-face card-face-back">
+            <div class="washi-tape"></div>
+            <div class="back-letter-header">
+              <span>🕊️</span> My Safe Harbor
+            </div>
+            <div class="back-urdu-letter">
+              تمہاری معصوم آنکھوں میں جو سکون ہے، وہ دنیا کی کسی نعمت میں نہیں۔ تم صرف میری محبت نہیں، میرے دل کا سکون اور میری دعا ہو۔
+            </div>
+            <div class="back-en-letter">
+              "In your warmth, I found my safe harbor. May Allah keep our hearts intertwined until Jannah and beyond."
+            </div>
+            <button class="back-flip-btn"><span>↺</span> Flip back to photo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Arrows & Dots -->
+      <div class="gallery-nav-bar">
+        <button class="gallery-nav-btn" id="prevPicBtn" aria-label="Previous Photo">←</button>
+        <div class="gallery-dots" id="galleryDots">
+          <div class="gallery-dot active" data-index="0"></div>
+          <div class="gallery-dot" data-index="1"></div>
+          <div class="gallery-dot" data-index="2"></div>
+          <div class="gallery-dot" data-index="3"></div>
+          <div class="gallery-dot" data-index="4"></div>
+        </div>
+        <button class="gallery-nav-btn" id="nextPicBtn" aria-label="Next Photo">➔</button>
+      </div>
+
+      <!-- Quick Thumbnail Preview Strip -->
+      <div class="gallery-thumb-strip">
+        <div class="gallery-thumb active" data-index="0"><img src="assets/pics/pic5.jpg" alt="Thumb 1"></div>
+        <div class="gallery-thumb" data-index="1"><img src="assets/pics/pic4.jpg" alt="Thumb 2"></div>
+        <div class="gallery-thumb" data-index="2"><img src="assets/pics/pic1.jpg" alt="Thumb 3"></div>
+        <div class="gallery-thumb" data-index="3"><img src="assets/pics/pic2.jpg" alt="Thumb 4"></div>
+        <div class="gallery-thumb" data-index="4"><img src="assets/pics/pic3.jpg" alt="Thumb 5"></div>
+      </div>
+    </div>
+
+    <!-- VIP Cinema Next Chapter Button -->
+    <a href="cinema.html" class="btn-royal" style="margin-top: 10px; margin-bottom: 25px;">
+      Watch Our Memories In VIP Cinema 🎬 →
+    </a>
+
+    <!-- Fullscreen Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+      <button class="lightbox-close-btn" id="lightboxCloseBtn">✕</button>
+      <div class="lightbox-frame">
+        <img src="" alt="Enlarged Memory" id="lightboxImg">
+      </div>
+      <div class="lightbox-caption">
+        <div class="lightbox-title" id="lightboxTitle"></div>
+        <div class="lightbox-urdu" id="lightboxUrdu"></div>
+      </div>
+    </div>
   </div>
 
   <script src="assets/fireworks.js"></script>
@@ -309,6 +1060,12 @@
         }
         spawnCelebrationBalloons();
 
+        // Animate memory section golden aura
+        const memSec = document.getElementById('memorySection');
+        if (memSec) {
+          memSec.style.boxShadow = '0 0 35px rgba(255, 215, 0, 0.8), 0 16px 45px rgba(232, 67, 147, 0.4)';
+        }
+
         // Scroll smoothly to the poetry
         celebrationCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 700);
@@ -340,6 +1097,149 @@
           setTimeout(() => b.remove(), 4000);
         }, i * 140);
       }
+    }
+
+    // ═══════════════════════════════════════════
+    // 20TH BIRTHDAY MEMORY CONSTELLATION LOGIC
+    // ═══════════════════════════════════════════
+    let currentPicIdx = 0;
+    const cards = document.querySelectorAll('.polaroid-card');
+    const dots = document.querySelectorAll('.gallery-dot');
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    const prevBtn = document.getElementById('prevPicBtn');
+    const nextBtn = document.getElementById('nextPicBtn');
+
+    function showPhoto(idx) {
+      if (idx < 0) idx = cards.length - 1;
+      if (idx >= cards.length) idx = 0;
+      currentPicIdx = idx;
+
+      cards.forEach((card, i) => {
+        card.classList.remove('active', 'flipped');
+        if (i === idx) {
+          card.classList.add('active');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
+
+      thumbs.forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === idx);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.triggerHaptic(15);
+        if (window.BirthdayAudio && typeof window.BirthdayAudio.playPearlClick === 'function') {
+          window.BirthdayAudio.playPearlClick();
+        }
+        showPhoto(currentPicIdx - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.triggerHaptic(15);
+        if (window.BirthdayAudio && typeof window.BirthdayAudio.playPearlClick === 'function') {
+          window.BirthdayAudio.playPearlClick();
+        }
+        showPhoto(currentPicIdx + 1);
+      });
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = parseInt(dot.getAttribute('data-index'));
+        window.triggerHaptic(15);
+        if (window.BirthdayAudio && typeof window.BirthdayAudio.playPearlClick === 'function') {
+          window.BirthdayAudio.playPearlClick();
+        }
+        showPhoto(idx);
+      });
+    });
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = parseInt(thumb.getAttribute('data-index'));
+        window.triggerHaptic(15);
+        if (window.BirthdayAudio && typeof window.BirthdayAudio.playPearlClick === 'function') {
+          window.BirthdayAudio.playPearlClick();
+        }
+        showPhoto(idx);
+      });
+    });
+
+    // 3D Card Flip on Click
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.enlarge-badge') || e.target.closest('.back-flip-btn')) return;
+
+        card.classList.toggle('flipped');
+        window.triggerHaptic(20);
+        if (window.BirthdayAudio) {
+          window.BirthdayAudio.playHarpChime([659.25, 880, 1174.66]);
+        }
+      });
+    });
+
+    // Flip back buttons
+    document.querySelectorAll('.back-flip-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = btn.closest('.polaroid-card');
+        if (card) card.classList.remove('flipped');
+        window.triggerHaptic(20);
+        if (window.BirthdayAudio) {
+          window.BirthdayAudio.playHarpChime([659.25, 880, 1174.66]);
+        }
+      });
+    });
+
+    // Fullscreen Lightbox
+    const lightbox = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxUrdu = document.getElementById('lightboxUrdu');
+    const lightboxClose = document.getElementById('lightboxCloseBtn');
+
+    document.querySelectorAll('.enlarge-badge').forEach(badge => {
+      badge.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const pic = badge.getAttribute('data-pic');
+        const title = badge.getAttribute('data-title');
+        const urdu = badge.getAttribute('data-urdu');
+
+        lightboxImg.src = pic;
+        lightboxTitle.textContent = title;
+        lightboxUrdu.textContent = urdu;
+
+        lightbox.classList.add('active');
+        window.triggerHaptic(25);
+        if (window.BirthdayAudio) {
+          window.BirthdayAudio.playHarpChime([523.25, 659.25, 783.99, 1046.5]);
+        }
+      });
+    });
+
+    if (lightboxClose) {
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+      });
+    }
+
+    if (lightbox) {
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+        }
+      });
     }
   </script>
 </body>
