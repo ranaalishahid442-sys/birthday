@@ -14,109 +14,486 @@
     }
 
     /* ═══════════════════════════════════════════
-       1. INTERACTIVE PEARL TASBIH (7 BLESSINGS)
+       1. JEWELRY-GRADE PEARL TASBIH (7 SACRED PEARLS)
        ═══════════════════════════════════════════ */
     .tasbih-container {
       width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1.5px solid var(--border-gold);
-      border-radius: var(--radius-md);
-      padding: 18px 14px;
-      margin-bottom: 22px;
-      box-shadow: 0 10px 30px rgba(212, 160, 23, 0.12);
+      background: radial-gradient(ellipse at 50% 30%, #ffffff 0%, #fffdf8 45%, #fef5ea 80%, #f7e6d4 100%);
+      border: 2px solid rgba(212, 160, 23, 0.45);
+      border-radius: var(--radius-lg);
+      padding: 22px 12px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 16px 42px rgba(212, 160, 23, 0.18), 
+                  inset 0 0 25px rgba(255, 255, 255, 0.95),
+                  inset 0 2px 4px rgba(212, 160, 23, 0.12);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tasbih-container::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px dashed rgba(212, 160, 23, 0.35);
+      border-radius: calc(var(--radius-lg) - 6px);
+      pointer-events: none;
     }
 
     .tasbih-header-title {
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 11.5px;
+      font-weight: 800;
       color: var(--gold-warm);
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* Pearl Beads Track */
+    .tasbih-subtitle-hint {
+      font-size: 12px;
+      color: #7b4d24;
+      font-style: italic;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Tasbih Strand Wrapper & Natural Curved Cord */
+    .tasbih-strand-wrapper {
+      position: relative;
+      width: 100%;
+      padding: 22px 0 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 105px;
+    }
+
+    .tasbih-cord-curve {
+      position: absolute;
+      top: 50%;
+      left: 2px;
+      right: 2px;
+      width: calc(100% - 4px);
+      height: 60px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* The Pearls Track */
     .pearls-track {
+      position: relative;
+      z-index: 2;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 15px;
+      width: 100%;
+      max-width: 410px;
+      padding: 0 4px;
     }
 
-    .pearl-bead {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ffffff, #fff2cc 60%, #ffd700 100%);
-      border: 2px solid #e0c068;
-      box-shadow: 0 4px 10px rgba(212, 160, 23, 0.25);
+    /* Imam Minaret Bead (Left Headpiece) */
+    .tasbih-imam-wrapper {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 14px;
-      font-weight: 700;
-      color: #7a5500;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      margin-right: 2px;
+      filter: drop-shadow(0 3px 6px rgba(184, 134, 11, 0.35));
+    }
+    .tasbih-imam-wrapper:hover, .tasbih-imam-wrapper:active {
+      transform: scale(1.12) rotate(-3deg);
     }
 
+    /* Terminal 24k Gold Crescent Charm (Right) */
+    .tasbih-tail-charm {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      margin-left: 2px;
+      filter: drop-shadow(0 3px 6px rgba(184, 134, 11, 0.35));
+    }
+    .tasbih-tail-charm:hover, .tasbih-tail-charm:active {
+      transform: scale(1.15) rotate(8deg);
+    }
+
+    /* Pearl Wrapper & Interactive Catenary Offsets */
+    .pearl-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Catenary Curve Drape offsets for 7 Pearls */
+    .pearl-wrapper:nth-of-type(1) { transform: translateY(0px); }
+    .pearl-wrapper:nth-of-type(2) { transform: translateY(4px); }
+    .pearl-wrapper:nth-of-type(3) { transform: translateY(7px); }
+    .pearl-wrapper:nth-of-type(4) { transform: translateY(9px); }
+    .pearl-wrapper:nth-of-type(5) { transform: translateY(7px); }
+    .pearl-wrapper:nth-of-type(6) { transform: translateY(4px); }
+    .pearl-wrapper:nth-of-type(7) { transform: translateY(0px); }
+
+    /* 3D Realistic Akoya Pearl Bead */
+    .pearl-bead {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* 3D Sphere Modeling */
+    .pearl-sphere {
+      width: clamp(37px, 8.8vw, 44px);
+      height: clamp(37px, 8.8vw, 44px);
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* Photorealistic multi-layered South Sea / Akoya pearl gradient */
+      background: radial-gradient(circle at 30% 26%, #ffffff 0%, #fffef8 14%, #fdf2e2 36%, #fad5b2 62%, #d49f64 84%, #8c5620 100%);
+      box-shadow: 0 8px 20px rgba(184, 134, 11, 0.28), 
+                  0 3px 6px rgba(0, 0, 0, 0.1), 
+                  inset 0 2px 4px rgba(255, 255, 255, 0.95), 
+                  inset -2px -4px 6px rgba(140, 86, 32, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Iridescent Nacre Orient Shimmer */
+    .pearl-nacre-orient {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 70% 75%, rgba(255, 182, 193, 0.55) 0%, rgba(221, 160, 221, 0.32) 45%, rgba(255, 239, 213, 0) 75%);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    /* Specular Primary Glint */
+    .pearl-highlight-glint {
+      position: absolute;
+      top: 10%;
+      left: 14%;
+      width: 30%;
+      height: 18%;
+      border-radius: 50%;
+      transform: rotate(-35deg);
+      background: radial-gradient(ellipse at center, #ffffff 0%, rgba(255, 255, 255, 0.95) 45%, rgba(255, 255, 255, 0) 100%);
+      filter: blur(0.3px);
+      pointer-events: none;
+    }
+
+    /* Secondary Pinpoint Catchlight */
+    .pearl-secondary-glint {
+      position: absolute;
+      top: 26%;
+      left: 10%;
+      width: 10%;
+      height: 10%;
+      border-radius: 50%;
+      background: #ffffff;
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    /* Ambient Rim Bounce Light */
+    .pearl-rim-bounce {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: inset -2.5px -4px 7px rgba(255, 225, 175, 0.7);
+      pointer-events: none;
+    }
+
+    /* 24k Gold Filigree Bead Caps (Left & Right) */
+    .bead-cap {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 20px;
+      z-index: 3;
+      pointer-events: none;
+      filter: drop-shadow(0 1px 2px rgba(120, 75, 20, 0.4));
+    }
+    .bead-cap-left { left: -4px; }
+    .bead-cap-right { right: -4px; }
+
+    /* Gold-Embossed Numeral & Star */
+    .pearl-content {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .pearl-num {
+      font-family: var(--font-serif);
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #4a2c00;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.95), 0 -1px 0 rgba(110, 65, 0, 0.25);
+    }
+    .pearl-star {
+      font-size: 7px;
+      color: #b8860b;
+      margin-top: 1px;
+      opacity: 0.85;
+    }
+
+    /* Active Glowing State */
     .pearl-bead.active {
-      transform: scale(1.22);
-      background: radial-gradient(circle at 35% 35%, #ffffff, #ffd700 60%, #b8860b 100%);
-      border-color: #b8860b;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.15);
-      color: #3b2800;
+      transform: translateY(-11px) scale(1.22);
+      z-index: 10;
+    }
+    .pearl-bead.active .pearl-sphere {
+      background: radial-gradient(circle at 30% 24%, #ffffff 0%, #fffbe6 15%, #ffe685 45%, #ffd700 70%, #c48b0c 90%, #754f00 100%);
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.5), 
+                  0 0 28px rgba(255, 215, 0, 0.95), 
+                  0 0 52px rgba(232, 67, 147, 0.45), 
+                  0 14px 28px rgba(0, 0, 0, 0.22),
+                  inset 0 2px 5px #ffffff;
+      animation: activePearlPulse 2.8s infinite ease-in-out;
+    }
+    .pearl-bead.active .pearl-num {
+      color: #2b1800;
+      font-size: 14.5px;
+    }
+
+    @keyframes activePearlPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.45), 0 0 26px rgba(255, 215, 0, 0.9), 0 0 45px rgba(232, 67, 147, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 0 4.5px rgba(255, 215, 0, 0.7), 0 0 38px rgba(255, 215, 0, 1), 0 0 65px rgba(232, 67, 147, 0.6);
+      }
+    }
+
+    /* Celestial Orbit Halo */
+    .pearl-orbit-halo {
+      display: none;
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 215, 0, 0.85);
+      pointer-events: none;
+      animation: rotateHalo 8s linear infinite;
+    }
+    .pearl-bead.active .pearl-orbit-halo {
+      display: block;
+    }
+    @keyframes rotateHalo {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Floating Sparkle */
+    .pearl-floating-sparkle {
+      display: none;
+      position: absolute;
+      top: -15px;
+      right: -6px;
+      font-size: 13px;
+      pointer-events: none;
+      animation: floatSparkle 1.8s infinite ease-in-out;
+    }
+    .pearl-bead.active .pearl-floating-sparkle {
+      display: block;
+    }
+    @keyframes floatSparkle {
+      0%, 100% { transform: translateY(0) scale(0.9); opacity: 0.8; }
+      50% { transform: translateY(-4px) scale(1.2); opacity: 1; }
+    }
+
+    /* Faceted 24k Gold Spacer Rondelles */
+    .pearl-spacer {
+      width: clamp(5px, 1.4vw, 7px);
+      height: clamp(13px, 3.4vw, 17px);
+      background: linear-gradient(180deg, #fff3b0 0%, #ffd700 25%, #b8860b 55%, #ffd700 80%, #68430a 100%);
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(184, 134, 11, 0.4), inset 0 1px 1px #ffffff, inset 0 -1px 1px #4a2e00;
+      position: relative;
+      z-index: 2;
+      margin: 0 1px;
+    }
+    .pearl-spacer:nth-of-type(1) { transform: translateY(2px); }
+    .pearl-spacer:nth-of-type(2) { transform: translateY(5.5px); }
+    .pearl-spacer:nth-of-type(3) { transform: translateY(8px); }
+    .pearl-spacer:nth-of-type(4) { transform: translateY(8px); }
+    .pearl-spacer:nth-of-type(5) { transform: translateY(5.5px); }
+    .pearl-spacer:nth-of-type(6) { transform: translateY(2px); }
+
+    /* Status dot beneath each pearl */
+    .pearl-status-dot {
+      margin-top: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(212, 160, 23, 0.35);
+      transition: all 0.3s ease;
+    }
+    .pearl-status-dot.completed {
+      background: #ffd700;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.95);
+      transform: scale(1.3);
     }
 
     /* Active Pearl Prayer Display Box */
     .pearl-prayer-box {
-      background: linear-gradient(135deg, #fffdf8 0%, #fff7eb 100%);
-      border: 1.5px solid rgba(212, 160, 23, 0.35);
-      border-radius: 16px;
-      padding: 16px 14px;
-      animation: popDua 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      min-height: 125px;
+      background: linear-gradient(135deg, #ffffff 0%, #fffdf8 50%, #fff6ec 100%);
+      border: 1.5px solid rgba(212, 160, 23, 0.5);
+      border-radius: 18px;
+      padding: 18px 16px;
+      margin-top: 10px;
+      animation: popDua 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      min-height: 140px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      box-shadow: 0 8px 24px rgba(212, 160, 23, 0.15), inset 0 0 16px rgba(255, 255, 255, 0.95);
+      position: relative;
     }
 
     @keyframes popDua {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+      from { transform: translateY(6px); opacity: 0.85; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .pearl-prayer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
     }
 
     .pearl-dua-badge {
-      font-size: 10px;
-      font-weight: 700;
+      font-size: 11px;
+      font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--gold-warm);
-      margin-bottom: 6px;
+      color: #945d00;
+    }
+
+    .pearl-recited-pill {
+      font-size: 11px;
+      font-weight: 800;
+      color: #1e8449;
+      background: rgba(39, 174, 96, 0.14);
+      border: 1px solid rgba(39, 174, 96, 0.45);
+      border-radius: 12px;
+      padding: 2px 10px;
     }
 
     .pearl-dua-ar {
       font-family: var(--font-arabic);
-      font-size: 21px;
-      color: #8c5b00;
+      font-size: 22px;
+      font-weight: 700;
+      color: #4a2800;
       direction: rtl;
       line-height: 1.5;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
     .pearl-dua-ur {
       font-family: var(--font-urdu);
-      font-size: 16px;
-      color: #3a1c06;
+      font-size: 16.5px;
+      font-weight: 600;
+      color: #2b1404;
       direction: rtl;
-      line-height: 1.8;
+      line-height: 1.85;
+    }
+
+    .pearl-action-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .pearl-recite-btn {
+      background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
+      color: #2b1800;
+      border: 1.5px solid #ffffff;
+      border-radius: 20px;
+      padding: 9px 20px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(184, 134, 11, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+    .pearl-recite-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(184, 134, 11, 0.55);
+    }
+    .pearl-recite-btn.sealed {
+      background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(39, 174, 96, 0.4);
+    }
+
+    .pearl-next-btn {
+      background: #ffffff;
+      color: #8c5b00;
+      border: 1.5px solid #d4af37;
+      border-radius: 20px;
+      padding: 9px 16px;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(184, 134, 11, 0.15);
+      transition: all 0.3s ease;
+    }
+    .pearl-next-btn:hover {
+      background: #fff8e8;
+      border-color: var(--gold-warm);
+    }
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .pearl-next-btn:hover {
+      background: #ffffff;
+      border-color: var(--gold-warm);
+    }
+
+    .tasbih-completion-banner {
+      background: linear-gradient(135deg, #fffcf2 0%, #ffeaa7 50%, #fed330 100%);
+      border: 2px solid #ffd700;
+      border-radius: 16px;
+      padding: 16px 14px;
+      margin-top: 12px;
+      animation: popDua 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
     }
 
     /* ═══════════════════════════════════════════
@@ -203,7 +580,6 @@
       overflow: hidden;
     }
 
-    /* Corner Jasmine Flourishes */
     .eternal-union-chamber::before {
       content: '🌼 ✦ 💍';
       position: absolute;
@@ -246,7 +622,6 @@
       margin-bottom: 16px;
     }
 
-    /* Furqan 25:74 */
     .furqan-verse-box {
       background: rgba(255, 255, 255, 0.85);
       border: 1px dashed #d4af37;
@@ -265,7 +640,6 @@
       padding: 0 6px;
     }
 
-    /* Interactive "Seal Our Hearts" Button */
     .seal-union-btn {
       width: 100%;
       padding: 15px;
@@ -364,30 +738,322 @@
     </h1>
     <p class="subtitle-soft">Divine prayers for your health, peace, and our eternal love</p>
 
+    <!-- Shared SVG Gradients for Jewelry-Grade Tasbih -->
+    <svg width="0" height="0" style="position: absolute; pointer-events: none;">
+      <defs>
+        <!-- 24k Royal Gold Gradient for Bead Caps & Rondelles -->
+        <linearGradient id="capGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fff8d1"/>
+          <stop offset="25%" stop-color="#ffd700"/>
+          <stop offset="60%" stop-color="#d4af37"/>
+          <stop offset="85%" stop-color="#b8860b"/>
+          <stop offset="100%" stop-color="#6a4400"/>
+        </linearGradient>
+
+        <!-- Imam Minaret Gold Gradient -->
+        <linearGradient id="imamGoldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#fff8d1"/>
+          <stop offset="35%" stop-color="#ffd700"/>
+          <stop offset="70%" stop-color="#b8860b"/>
+          <stop offset="100%" stop-color="#5a3800"/>
+        </linearGradient>
+
+        <!-- Golden & Rose Silk Tassel Threads -->
+        <linearGradient id="tasselSilkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#ffd700"/>
+          <stop offset="40%" stop-color="#e84393"/>
+          <stop offset="75%" stop-color="#ff7675"/>
+          <stop offset="100%" stop-color="#d4af37"/>
+        </linearGradient>
+
+        <!-- Braided Silk Cord Metallic Glow -->
+        <linearGradient id="cordBraidGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#b8860b"/>
+          <stop offset="15%" stop-color="#ffd700"/>
+          <stop offset="30%" stop-color="#fff0aa"/>
+          <stop offset="50%" stop-color="#d4af37"/>
+          <stop offset="70%" stop-color="#fff0aa"/>
+          <stop offset="85%" stop-color="#ffd700"/>
+          <stop offset="100%" stop-color="#b8860b"/>
+        </linearGradient>
+
+        <!-- Cord Drop Shadow Filter -->
+        <filter id="cordShadow" x="-10%" y="-30%" width="120%" height="200%">
+          <feDropShadow dx="0" dy="2.5" stdDeviation="2" flood-color="rgba(140, 86, 20, 0.45)"/>
+        </filter>
+      </defs>
+    </svg>
+
     <!-- ═══════════════════════════════════════════
-         PART 1: INTERACTIVE PEARL TASBIH (7 BLESSINGS)
+         PART 1: JEWELRY-GRADE PEARL TASBIH (7 SACRED PEARLS)
          ═══════════════════════════════════════════ -->
     <div class="tasbih-container">
       <div class="tasbih-header-title">
-        <span>📿</span> Tap The 7 Pearls of Blessing For Her
+        <span>📿</span> تسبيح النور • The 7 Sacred Pearls of Blessing
+      </div>
+      <div class="tasbih-subtitle-hint">
+        Tap each luminous pearl to unlock a sacred Dua for her
       </div>
 
-      <!-- 7 Pearls Track -->
-      <div class="pearls-track" id="pearlsTrack">
-        <div class="pearl-bead active" data-index="0">1</div>
-        <div class="pearl-bead" data-index="1">2</div>
-        <div class="pearl-bead" data-index="2">3</div>
-        <div class="pearl-bead" data-index="3">4</div>
-        <div class="pearl-bead" data-index="4">5</div>
-        <div class="pearl-bead" data-index="5">6</div>
-        <div class="pearl-bead" data-index="6">7</div>
+      <!-- Natural Curved Braided Silk Strand with 7 Pearls, Minaret & Spacers -->
+      <div class="tasbih-strand-wrapper">
+        <svg class="tasbih-cord-curve" viewBox="0 0 380 60" preserveAspectRatio="none">
+          <path d="M 15 22 Q 190 48 365 22" stroke="url(#cordBraidGrad)" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#cordShadow)"/>
+        </svg>
+
+        <div class="pearls-track" id="pearlsTrack">
+          <!-- 1. The Sculpted 24k Gold Imam Minaret Headpiece & Silk Tassel -->
+          <div class="tasbih-imam-wrapper" id="imamBead" title="Imam Headpiece • شاہد">
+            <svg class="tasbih-imam-svg" viewBox="0 0 32 76" width="28" height="66">
+              <path d="M16,2 A3.5,3.5 0 1,0 20,5.5 A2.8,2.8 0 1,1 16,2 Z" fill="url(#imamGoldGrad)"/>
+              <path d="M13,7 Q16,4 19,7 L21,13 L11,13 Z" fill="url(#imamGoldGrad)"/>
+              <rect x="9" y="13" width="14" height="2.5" rx="1.2" fill="url(#imamGoldGrad)"/>
+              <path d="M11,15.5 L21,15.5 L19,30 L13,30 Z" fill="url(#imamGoldGrad)"/>
+              <polygon points="16,20 18,23 16,26 14,23" fill="#ffffff" opacity="0.95"/>
+              <rect x="10" y="30" width="12" height="3.5" rx="1.7" fill="url(#imamGoldGrad)"/>
+              <path d="M12,33.5 Q9,50 11,62 M14,33.5 Q13,52 14,64 M16,33.5 Q16,54 16,66 M18,33.5 Q19,52 18,64 M20,33.5 Q23,50 21,62" stroke="url(#tasselSilkGrad)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+              <circle cx="16" cy="66" r="2.8" fill="#fffdf9" stroke="#d4af37" stroke-width="0.8"/>
+            </svg>
+          </div>
+
+          <!-- Pearl 1 -->
+          <div class="pearl-wrapper" data-index="0" title="Pearl 1 • Health & Long Life">
+            <div class="pearl-bead active">
+              <svg class="bead-cap bead-cap-left" viewBox="0 0 10 24">
+                <path d="M10,2 Q4,6 1,12 Q4,18 10,22 Q6,17 6,12 Q6,7 10,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="2" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-sphere">
+                <div class="pearl-nacre-orient"></div>
+                <div class="pearl-highlight-glint"></div>
+                <div class="pearl-secondary-glint"></div>
+                <div class="pearl-rim-bounce"></div>
+                <div class="pearl-content">
+                  <span class="pearl-num">1</span>
+                  <span class="pearl-star">✦</span>
+                </div>
+              </div>
+              <svg class="bead-cap bead-cap-right" viewBox="0 0 10 24">
+                <path d="M0,2 Q6,6 9,12 Q6,18 0,22 Q4,17 4,12 Q4,7 0,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="8" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-orbit-halo"></div>
+              <div class="pearl-floating-sparkle">✨</div>
+            </div>
+            <div class="pearl-status-dot" id="dot-0"></div>
+          </div>
+
+          <div class="pearl-spacer"></div>
+
+          <!-- Pearl 2 -->
+          <div class="pearl-wrapper" data-index="1" title="Pearl 2 • Peace of Mind & Heart">
+            <div class="pearl-bead">
+              <svg class="bead-cap bead-cap-left" viewBox="0 0 10 24">
+                <path d="M10,2 Q4,6 1,12 Q4,18 10,22 Q6,17 6,12 Q6,7 10,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="2" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-sphere">
+                <div class="pearl-nacre-orient"></div>
+                <div class="pearl-highlight-glint"></div>
+                <div class="pearl-secondary-glint"></div>
+                <div class="pearl-rim-bounce"></div>
+                <div class="pearl-content">
+                  <span class="pearl-num">2</span>
+                  <span class="pearl-star">✦</span>
+                </div>
+              </div>
+              <svg class="bead-cap bead-cap-right" viewBox="0 0 10 24">
+                <path d="M0,2 Q6,6 9,12 Q6,18 0,22 Q4,17 4,12 Q4,7 0,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="8" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-orbit-halo"></div>
+              <div class="pearl-floating-sparkle">✨</div>
+            </div>
+            <div class="pearl-status-dot" id="dot-1"></div>
+          </div>
+
+          <div class="pearl-spacer"></div>
+
+          <!-- Pearl 3 -->
+          <div class="pearl-wrapper" data-index="2" title="Pearl 3 • Divine Noor & Radiance">
+            <div class="pearl-bead">
+              <svg class="bead-cap bead-cap-left" viewBox="0 0 10 24">
+                <path d="M10,2 Q4,6 1,12 Q4,18 10,22 Q6,17 6,12 Q6,7 10,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="2" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-sphere">
+                <div class="pearl-nacre-orient"></div>
+                <div class="pearl-highlight-glint"></div>
+                <div class="pearl-secondary-glint"></div>
+                <div class="pearl-rim-bounce"></div>
+                <div class="pearl-content">
+                  <span class="pearl-num">3</span>
+                  <span class="pearl-star">✦</span>
+                </div>
+              </div>
+              <svg class="bead-cap bead-cap-right" viewBox="0 0 10 24">
+                <path d="M0,2 Q6,6 9,12 Q6,18 0,22 Q4,17 4,12 Q4,7 0,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="8" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-orbit-halo"></div>
+              <div class="pearl-floating-sparkle">✨</div>
+            </div>
+            <div class="pearl-status-dot" id="dot-2"></div>
+          </div>
+
+          <div class="pearl-spacer"></div>
+
+          <!-- Pearl 4 -->
+          <div class="pearl-wrapper" data-index="3" title="Pearl 4 • Barakah in Her 20s">
+            <div class="pearl-bead">
+              <svg class="bead-cap bead-cap-left" viewBox="0 0 10 24">
+                <path d="M10,2 Q4,6 1,12 Q4,18 10,22 Q6,17 6,12 Q6,7 10,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="2" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-sphere">
+                <div class="pearl-nacre-orient"></div>
+                <div class="pearl-highlight-glint"></div>
+                <div class="pearl-secondary-glint"></div>
+                <div class="pearl-rim-bounce"></div>
+                <div class="pearl-content">
+                  <span class="pearl-num">4</span>
+                  <span class="pearl-star">✦</span>
+                </div>
+              </div>
+              <svg class="bead-cap bead-cap-right" viewBox="0 0 10 24">
+                <path d="M0,2 Q6,6 9,12 Q6,18 0,22 Q4,17 4,12 Q4,7 0,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="8" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-orbit-halo"></div>
+              <div class="pearl-floating-sparkle">✨</div>
+            </div>
+            <div class="pearl-status-dot" id="dot-3"></div>
+          </div>
+
+          <div class="pearl-spacer"></div>
+
+          <!-- Pearl 5 -->
+          <div class="pearl-wrapper" data-index="4" title="Pearl 5 • Divine Protection">
+            <div class="pearl-bead">
+              <svg class="bead-cap bead-cap-left" viewBox="0 0 10 24">
+                <path d="M10,2 Q4,6 1,12 Q4,18 10,22 Q6,17 6,12 Q6,7 10,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="2" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-sphere">
+                <div class="pearl-nacre-orient"></div>
+                <div class="pearl-highlight-glint"></div>
+                <div class="pearl-secondary-glint"></div>
+                <div class="pearl-rim-bounce"></div>
+                <div class="pearl-content">
+                  <span class="pearl-num">5</span>
+                  <span class="pearl-star">✦</span>
+                </div>
+              </div>
+              <svg class="bead-cap bead-cap-right" viewBox="0 0 10 24">
+                <path d="M0,2 Q6,6 9,12 Q6,18 0,22 Q4,17 4,12 Q4,7 0,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="8" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-orbit-halo"></div>
+              <div class="pearl-floating-sparkle">✨</div>
+            </div>
+            <div class="pearl-status-dot" id="dot-4"></div>
+          </div>
+
+          <div class="pearl-spacer"></div>
+
+          <!-- Pearl 6 -->
+          <div class="pearl-wrapper" data-index="5" title="Pearl 6 • Fulfillment of Dreams">
+            <div class="pearl-bead">
+              <svg class="bead-cap bead-cap-left" viewBox="0 0 10 24">
+                <path d="M10,2 Q4,6 1,12 Q4,18 10,22 Q6,17 6,12 Q6,7 10,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="2" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-sphere">
+                <div class="pearl-nacre-orient"></div>
+                <div class="pearl-highlight-glint"></div>
+                <div class="pearl-secondary-glint"></div>
+                <div class="pearl-rim-bounce"></div>
+                <div class="pearl-content">
+                  <span class="pearl-num">6</span>
+                  <span class="pearl-star">✦</span>
+                </div>
+              </div>
+              <svg class="bead-cap bead-cap-right" viewBox="0 0 10 24">
+                <path d="M0,2 Q6,6 9,12 Q6,18 0,22 Q4,17 4,12 Q4,7 0,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="8" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-orbit-halo"></div>
+              <div class="pearl-floating-sparkle">✨</div>
+            </div>
+            <div class="pearl-status-dot" id="dot-5"></div>
+          </div>
+
+          <div class="pearl-spacer"></div>
+
+          <!-- Pearl 7 -->
+          <div class="pearl-wrapper" data-index="6" title="Pearl 7 • United Forever in Jannah">
+            <div class="pearl-bead">
+              <svg class="bead-cap bead-cap-left" viewBox="0 0 10 24">
+                <path d="M10,2 Q4,6 1,12 Q4,18 10,22 Q6,17 6,12 Q6,7 10,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="2" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-sphere">
+                <div class="pearl-nacre-orient"></div>
+                <div class="pearl-highlight-glint"></div>
+                <div class="pearl-secondary-glint"></div>
+                <div class="pearl-rim-bounce"></div>
+                <div class="pearl-content">
+                  <span class="pearl-num">7</span>
+                  <span class="pearl-star">✦</span>
+                </div>
+              </div>
+              <svg class="bead-cap bead-cap-right" viewBox="0 0 10 24">
+                <path d="M0,2 Q6,6 9,12 Q6,18 0,22 Q4,17 4,12 Q4,7 0,2 Z" fill="url(#capGoldGrad)"/>
+                <circle cx="8" cy="12" r="1.1" fill="#fff" opacity="0.9"/>
+              </svg>
+              <div class="pearl-orbit-halo"></div>
+              <div class="pearl-floating-sparkle">✨</div>
+            </div>
+            <div class="pearl-status-dot" id="dot-6"></div>
+          </div>
+
+          <!-- 24k Gold Terminal Crescent Charm -->
+          <div class="tasbih-tail-charm" title="Crescent Charm • قمر">
+            <svg viewBox="0 0 24 32" width="20" height="28">
+              <circle cx="12" cy="4" r="2.5" fill="url(#imamGoldGrad)"/>
+              <path d="M12,8 A7,7 0 1,0 19,15 A5.5,5.5 0 1,1 12,8 Z" fill="url(#imamGoldGrad)"/>
+              <polygon points="16,13 16.8,14.6 18.5,14.6 17.2,15.6 17.7,17.2 16,16.2 14.3,17.2 14.8,15.6 13.5,14.6 15.2,14.6" fill="#fff" opacity="0.95"/>
+            </svg>
+          </div>
+        </div>
       </div>
 
       <!-- Active Prayer Reveal Card -->
       <div class="pearl-prayer-box" id="pearlPrayerBox">
-        <div class="pearl-dua-badge" id="duaBadge">Pearl 1 • Health & Long Life</div>
+        <div class="pearl-prayer-header">
+          <div class="pearl-dua-badge" id="duaBadge">Pearl 1 • Health & Long Life</div>
+          <div class="pearl-recited-pill" id="pearlRecitedPill" style="display: none;">✓ Ameen Sealed</div>
+        </div>
         <div class="pearl-dua-ar" id="duaAr">اللَّهُمَّ عَافِهَا فِي بَدَنِهَا وَأَطِلْ عُمْرَهَا فِي طَاعَتِكَ</div>
         <div class="pearl-dua-ur" id="duaUr">یا اللہ! اسے ہمیشہ صحت و تندرستی والی لمبی اور پرسکون زندگی عطا فرما۔ آمین!</div>
+
+        <!-- Interactive Ameen & Advance Bar -->
+        <div class="pearl-action-bar">
+          <button class="pearl-recite-btn" id="pearlReciteBtn">
+            <span>🤲</span> Seal With Ameen (پڑھ لیا)
+          </button>
+          <button class="pearl-next-btn" id="pearlNextBtn" title="Next Pearl">
+            Next ➔
+          </button>
+        </div>
+      </div>
+
+      <!-- Grand Completion Banner (Shown when all 7 pearls sealed) -->
+      <div class="tasbih-completion-banner" id="tasbihCompletionBanner" style="display: none;">
+        <div style="font-size: 26px; margin-bottom: 4px;">🕊️💖✨</div>
+        <div style="font-family: var(--font-arabic); font-size: 22px; color: var(--gold-warm); margin-bottom: 4px;">مَاشَاءَ اللَّهُ تَبَارَكَ اللَّهُ</div>
+        <div style="font-size: 15px; font-weight: 700; color: #3b1904; margin-bottom: 6px;">All 7 Sacred Blessings Sealed For Her 20th Birthday!</div>
+        <div style="font-family: var(--font-urdu); font-size: 15px; color: #5a2e05; line-height: 1.8;">یا رب العالمین! اس کی زندگی میں خوشیوں، سکون اور برکتوں کی بارش فرما، اور ہماری محبت کو ہمیشہ سلامت رکھ۔ آمین!</div>
       </div>
     </div>
 
@@ -529,26 +1195,56 @@
       }
     ];
 
-    const track = document.getElementById('pearlsTrack');
+    let currentPearlIdx = 0;
+    const completedPearls = new Set();
+
+    const wrappers = document.querySelectorAll('.pearl-wrapper');
     const beads = document.querySelectorAll('.pearl-bead');
     const prayerBox = document.getElementById('pearlPrayerBox');
     const badge = document.getElementById('duaBadge');
     const arText = document.getElementById('duaAr');
     const urText = document.getElementById('duaUr');
+    const recitedPill = document.getElementById('pearlRecitedPill');
+    const reciteBtn = document.getElementById('pearlReciteBtn');
+    const nextBtn = document.getElementById('pearlNextBtn');
+    const completionBanner = document.getElementById('tasbihCompletionBanner');
+    const imamBead = document.getElementById('imamBead');
 
-    beads.forEach(bead => {
-      bead.addEventListener('click', () => {
-        const idx = parseInt(bead.getAttribute('data-index'));
+    if (imamBead) {
+      imamBead.addEventListener('click', () => {
+        window.triggerHaptic(20);
+        if (window.BirthdayAudio) {
+          if (typeof window.BirthdayAudio.playPearlClick === 'function') {
+            window.BirthdayAudio.playPearlClick();
+          }
+          window.BirthdayAudio.playHarpChime([783.99, 1046.5, 1318.5, 1567.98]);
+        }
+        selectPearl(0);
+      });
+    }
+
+    wrappers.forEach(wrap => {
+      wrap.addEventListener('click', () => {
+        const idx = parseInt(wrap.getAttribute('data-index'));
         selectPearl(idx);
       });
     });
 
     function selectPearl(idx) {
-      beads.forEach(b => b.classList.remove('active'));
-      beads[idx].classList.add('active');
+      currentPearlIdx = idx;
+      beads.forEach((b, i) => {
+        if (i === idx) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
 
-      window.triggerHaptic(20);
+      window.triggerHaptic(25);
       if (window.BirthdayAudio) {
+        if (typeof window.BirthdayAudio.playPearlClick === 'function') {
+          window.BirthdayAudio.playPearlClick();
+        }
         window.BirthdayAudio.playHarpChime([659.25, 783.99, 987.77, 1174.66]);
       }
 
@@ -557,10 +1253,84 @@
       arText.textContent = item.ar;
       urText.textContent = item.ur;
 
-      // Re-trigger animation
+      // Update recitation state in active card
+      if (completedPearls.has(idx)) {
+        recitedPill.style.display = 'inline-block';
+        reciteBtn.classList.add('sealed');
+        reciteBtn.innerHTML = '<span>✓</span> Ameen Sealed (پڑھ لیا)';
+      } else {
+        recitedPill.style.display = 'none';
+        reciteBtn.classList.remove('sealed');
+        reciteBtn.innerHTML = '<span>🤲</span> Seal With Ameen (پڑھ لیا)';
+      }
+
+      // Re-trigger pop animation
       prayerBox.style.animation = 'none';
       prayerBox.offsetHeight;
-      prayerBox.style.animation = 'popDua 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+      prayerBox.style.animation = 'popDua 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+    }
+
+    // Seal current pearl with Ameen
+    if (reciteBtn) {
+      reciteBtn.addEventListener('click', () => {
+        completedPearls.add(currentPearlIdx);
+
+        // Update active pearl visual indicators
+        const activeBead = beads[currentPearlIdx];
+        const starSpan = activeBead.querySelector('.pearl-star');
+        if (starSpan) starSpan.textContent = '✓';
+        
+        const dot = document.getElementById(`dot-${currentPearlIdx}`);
+        if (dot) dot.classList.add('completed');
+
+        recitedPill.style.display = 'inline-block';
+        reciteBtn.classList.add('sealed');
+        reciteBtn.innerHTML = '<span>✓</span> Ameen Sealed (پڑھ لیا)';
+
+        window.triggerHaptic([40, 80, 40]);
+        if (window.BirthdayAudio) {
+          window.BirthdayAudio.playHarpChime([523.25, 659.25, 783.99, 1046.5, 1318.5]);
+        }
+
+        // Spawn gentle celebratory petals from bead position
+        const rect = activeBead.getBoundingClientRect();
+        for (let i = 0; i < 4; i++) {
+          setTimeout(() => {
+            const fl = document.createElement('div');
+            fl.className = 'floating-jasmine';
+            fl.textContent = i % 2 === 0 ? '✨' : '🌸';
+            fl.style.left = `${rect.left + rect.width / 2 + (Math.random() - 0.5) * 40}px`;
+            fl.style.top = `${rect.top}px`;
+            document.body.appendChild(fl);
+            setTimeout(() => fl.remove(), 2500);
+          }, i * 80);
+        }
+
+        // Check if all 7 blessings are completed
+        if (completedPearls.size === 7) {
+          completionBanner.style.display = 'block';
+          if (window.Fireworks) {
+            window.Fireworks.launch(null, null, window.innerWidth * 0.5, window.innerHeight * 0.35, true);
+          }
+        } else {
+          // Advance to next unread pearl after a graceful delay
+          setTimeout(() => {
+            let nextIdx = (currentPearlIdx + 1) % 7;
+            while (completedPearls.has(nextIdx) && completedPearls.size < 7) {
+              nextIdx = (nextIdx + 1) % 7;
+            }
+            selectPearl(nextIdx);
+          }, 1100);
+        }
+      });
+    }
+
+    // Next pearl button
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const nextIdx = (currentPearlIdx + 1) % 7;
+        selectPearl(nextIdx);
+      });
     }
 
     // ─── SEAL OUR HEARTS INTERACTION ───
@@ -577,7 +1347,6 @@
       sealBtn.style.background = 'linear-gradient(135deg, #ffd700, #b8860b)';
       sealBtn.innerHTML = '<span>💍</span> Sealed With Eternal Ameen ❤️';
 
-      // Launch gentle heart fireworks
       if (window.Fireworks) {
         window.Fireworks.launch(null, null, window.innerWidth * 0.5, window.innerHeight * 0.35, true);
       }
