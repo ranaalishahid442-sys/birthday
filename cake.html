@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>The 20th Cake Cutting Ceremony • Happy Birthday My Love</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ═══════════════════════════════════════════
+       PAGE 3 THEME: 20TH CAKE CUTTING & URDU POETRY
+       ═══════════════════════════════════════════ */
+    body {
+      background: radial-gradient(circle at 50% 15%, #fff5f8 0%, #ffebf0 50%, #fed8e2 100%);
+    }
+
+    .ceremony-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 18px;
+      background: #ffffff;
+      border: 1.5px solid var(--border-rose);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--rose-deep);
+      margin-bottom: 12px;
+      box-shadow: 0 4px 15px rgba(232, 67, 147, 0.15);
+    }
+
+    /* Cake Stage */
+    .cake-stage {
+      width: 100%;
+      max-width: 340px;
+      margin: 10px auto 16px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cake-art-wrapper {
+      width: 100%;
+      position: relative;
+      filter: drop-shadow(0 15px 30px rgba(232, 67, 147, 0.25));
+    }
+
+    /* Candle Flames Overlays */
+    .flame-interactive {
+      position: absolute;
+      top: 14px;
+      width: 22px;
+      height: 32px;
+      background: radial-gradient(ellipse at 50% 80%, #fff 0%, #ffeaa7 30%, #ff7675 80%, transparent 100%);
+      border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+      box-shadow: 0 0 15px #ffd700, 0 0 25px #ff7675;
+      animation: flickerFlame 0.6s infinite alternate ease-in-out;
+      transition: all 0.5s ease;
+      cursor: pointer;
+    }
+
+    .flame-interactive.blown {
+      opacity: 0;
+      transform: scale(0.1) translateY(-25px);
+      box-shadow: none;
+    }
+
+    #flameLeftOverlay { left: 131px; }
+    #flameRightOverlay { left: 187px; }
+
+    @keyframes flickerFlame {
+      0% { transform: scale(1) rotate(-3deg); }
+      100% { transform: scale(1.1) rotate(3deg); }
+    }
+
+    /* Interactive Golden Knife */
+    .cake-knife {
+      position: absolute;
+      top: 130px;
+      right: -10px;
+      font-size: 52px;
+      cursor: pointer;
+      z-index: 30;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: none;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+    }
+
+    .cake-knife.cutting {
+      transform: translate(-100px, 80px) rotate(-50deg);
+    }
+
+    /* Served Slice Reveal */
+    .served-slice-card {
+      display: none;
+      background: #ffffff;
+      border: 2px solid var(--border-rose);
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 10px 0;
+      box-shadow: 0 8px 25px rgba(232, 67, 147, 0.15);
+      animation: popSlice 0.6s ease forwards;
+    }
+
+    @keyframes popSlice {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Grand Urdu Celebration & Poetry Card */
+    .urdu-celebration-card {
+      display: none;
+      width: 100%;
+      background: #ffffff;
+      border: 2px solid var(--border-rose);
+      border-radius: var(--radius-md);
+      padding: 26px 20px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(232, 67, 147, 0.22);
+      animation: fadeInUp 0.8s ease forwards;
+      margin-top: 15px;
+      position: relative;
+    }
+
+    .urdu-poetry-box {
+      background: linear-gradient(135deg, #fffbf5 0%, #fff0f5 100%);
+      border: 1.5px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 18px 14px;
+      margin: 16px 0;
+      box-shadow: inset 0 0 15px rgba(212, 160, 23, 0.1);
+    }
+
+    .shair-divider {
+      color: var(--gold-warm);
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .balloon-spawner {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 34px;
+      animation: balloonFloatUp 4s ease-in forwards;
+    }
+
+    @keyframes balloonFloatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-750px) rotate(20deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+    <!-- Top App Bar -->
+    <div class="top-bar">
+      <div class="chapter-badge">🎂 Chapter III • 20th Cake Ceremony</div>
+      <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound">🎵</button>
+    </div>
+
+    <!-- Status Step Indicator -->
+    <div class="ceremony-status-pill" id="stepPill">
+      <span>✨</span> Step 1: Make a wish & blow the 20th candles
+    </div>
+
+    <!-- Header -->
+    <h1 class="title-romantic" style="font-size: 40px;">The 20th Birthday Cake</h1>
+    <p class="subtitle-soft" id="ceremonySub">Tap the glowing candles to make your wish come true</p>
+
+    <!-- The Cake Stage -->
+    <div class="cake-stage" id="cakeStage">
+      <!-- Golden Knife -->
+      <div class="cake-knife" id="cakeKnife">🗡️</div>
+
+      <!-- Vector Cake Art -->
+      <div class="cake-art-wrapper">
+        <img src="assets/cake-art.svg" alt="20th Birthday Cake" style="width: 100%; display: block;">
+        
+        <!-- Interactive Clickable Candle Flames -->
+        <div class="flame-interactive" id="flameLeftOverlay"></div>
+        <div class="flame-interactive" id="flameRightOverlay"></div>
+      </div>
+    </div>
+
+    <!-- Served Slice Preview -->
+    <div class="served-slice-card" id="servedSliceCard">
+      <div style="font-size: 24px; text-align: center; margin-bottom: 4px;">🍰 🍓 🌸</div>
+      <div style="font-family: var(--font-serif); font-size: 15px; font-weight: 700; color: var(--rose-deep); text-align: center;">
+        A slice of strawberry vanilla cream served with all my love!
+      </div>
+    </div>
+
+    <!-- Grand Celebration Card with Urdu Poetry (Appears after cutting) -->
+    <div class="urdu-celebration-card" id="celebrationCard">
+      <div style="font-size: 36px; margin-bottom: 6px;">🎉 🥳 🎂 🌹 🎆</div>
+      
+      <!-- Urdu Birthday Headline -->
+      <h2 class="urdu-poetry" style="font-size: 28px; color: var(--rose-deep); font-weight: 700; margin-bottom: 4px;">
+        میری جان! بیسویں سالگرہ مبارک ہو ❤️
+      </h2>
+      <p style="font-family: var(--font-classy); font-size: 15px; color: var(--gold-warm); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;">
+        ✦ Happy 20th Birthday, My Eternal Queen ✦
+      </p>
+
+      <!-- Classical Urdu Love Poetry Box -->
+      <div class="urdu-poetry-box">
+        <div style="font-size: 11px; letter-spacing: 2px; color: var(--gold-warm); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">
+          ✦ غالبؔ کی دعائیہ شاعری ✦
+        </div>
+        
+        <!-- Ghalib's timeless wish -->
+        <div class="urdu-poetry" style="color: #b81b6c; font-weight: 700;">
+          تُم سلامت رہو ہزار بَرس<br>
+          ہر بَرس کے ہوں دِن پچاس ہزار
+        </div>
+
+        <div class="shair-divider">✦ 🌸 ✦</div>
+
+        <!-- Romantic Love Sher -->
+        <div class="urdu-poetry" style="font-size: 19px; color: #3b1747;">
+          تری مسکان سے روشن مری دنیا کی ہر صبح<br>
+          ترا ہونا مری سانسوں میں جینے کا سلیقہ ہے
+        </div>
+      </div>
+
+      <!-- Heartfelt Urdu Dua -->
+      <p class="urdu-poetry" style="font-size: 17px; line-height: 2; color: #4a1532; margin-bottom: 18px;">
+        دعا ہے کہ تری عمر کے اس بیسویں سال میں ہر قدم پر خوشیاں اور برکتیں تیرے قدم چومیں۔ اللہ تعالیٰ تیری معصوم مسکراہٹ کو ہمیشہ سلامت رکھے اور ہمارا ساتھ تا ابد شاداب رکھے۔ آمین۔
+      </p>
+      
+      <a href="cinema.html" class="btn-royal">
+        Watch Our Memories In VIP Cinema 🎬 →
+      </a>
+    </div>
+
+    <!-- Primary Ceremony Action Button -->
+    <button class="btn-royal" id="ceremonyActionBtn" style="margin-top: 15px;">
+      <span>🕯️</span> Tap To Blow Out The 20th Candles
+    </button>
+  </div>
+
+  <script src="assets/fireworks.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    const flameL = document.getElementById('flameLeftOverlay');
+    const flameR = document.getElementById('flameRightOverlay');
+    const actionBtn = document.getElementById('ceremonyActionBtn');
+    const stepPill = document.getElementById('stepPill');
+    const subText = document.getElementById('ceremonySub');
+    const knife = document.getElementById('cakeKnife');
+    const cakeStage = document.getElementById('cakeStage');
+    const servedSliceCard = document.getElementById('servedSliceCard');
+    const celebrationCard = document.getElementById('celebrationCard');
+
+    let step = 1;
+
+    function blowCandles() {
+      if (step !== 1) return;
+
+      window.triggerHaptic([40, 60]);
+      if (window.BirthdayAudio) {
+        window.BirthdayAudio.playBlowCandles();
+        setTimeout(() => window.BirthdayAudio.playHarpChime([659.25, 783.99, 1046.5]), 400);
+      }
+
+      flameL.classList.add('blown');
+      flameR.classList.add('blown');
+
+      step = 2;
+      stepPill.innerHTML = `<span>🗡️</span> Step 2: Cut the 20th birthday cake!`;
+      subText.textContent = `Tap the golden knife or the cake to cut your slice!`;
+      actionBtn.innerHTML = `<span>🗡️</span> Cut The Birthday Cake Now!`;
+      knife.style.display = 'block';
+
+      if (window.Fireworks) {
+        window.Fireworks.launch(null, null, window.innerWidth * 0.5, window.innerHeight * 0.25, true);
+      }
+    }
+
+    function cutCake() {
+      if (step !== 2) return;
+
+      window.triggerHaptic([50, 100, 50]);
+      if (window.BirthdayAudio) {
+        window.BirthdayAudio.playCakeSlice();
+        setTimeout(() => window.BirthdayAudio.playBirthdayMelody(), 500);
+      }
+
+      knife.classList.add('cutting');
+
+      setTimeout(() => {
+        knife.style.display = 'none';
+        servedSliceCard.style.display = 'block';
+        step = 3;
+
+        stepPill.innerHTML = `<span>🎉</span> Step 3: Happy 20th Birthday!`;
+        subText.style.display = 'none';
+        actionBtn.style.display = 'none';
+        celebrationCard.style.display = 'block';
+
+        // Fireworks & Balloons
+        if (window.Fireworks) {
+          window.Fireworks.grandCelebration(7);
+        }
+        spawnCelebrationBalloons();
+
+        // Scroll smoothly to the poetry
+        celebrationCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 700);
+    }
+
+    flameL.addEventListener('click', blowCandles);
+    flameR.addEventListener('click', blowCandles);
+    knife.addEventListener('click', cutCake);
+    cakeStage.addEventListener('click', () => {
+      if (step === 1) blowCandles();
+      else if (step === 2) cutCake();
+    });
+
+    actionBtn.addEventListener('click', () => {
+      if (step === 1) blowCandles();
+      else if (step === 2) cutCake();
+    });
+
+    function spawnCelebrationBalloons() {
+      const balloonEmojis = ['🎈', '🌸', '✨', '💖', '🎂', '🥳', '🌹'];
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const b = document.createElement('div');
+          b.className = 'balloon-spawner';
+          b.textContent = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
+          b.style.left = `${Math.random() * (window.innerWidth - 40) + 10}px`;
+          b.style.top = `${window.innerHeight - 50}px`;
+          document.body.appendChild(b);
+          setTimeout(() => b.remove(), 4000);
+        }, i * 140);
+      }
+    }
+  </script>
+</body>
+</html>

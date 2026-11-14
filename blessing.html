@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Sanctuary of Noor • Sacred Quranic Blessings</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ═══════════════════════════════════════════
+       PAGE 2 THEME: GOLDEN SUNLIGHT & WHITE JASMINE
+       ═══════════════════════════════════════════ */
+    body {
+      background: radial-gradient(circle at 50% 15%, #fffdf2 0%, #fef9ea 50%, #f7ebd4 100%);
+    }
+
+    .sacred-frame {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid rgba(212, 160, 23, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 30px 18px;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(212, 160, 23, 0.15), inset 0 0 25px rgba(255, 255, 255, 0.8);
+      margin-bottom: 22px;
+    }
+
+    .sacred-frame::before {
+      content: '🌼';
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-size: 16px;
+    }
+
+    .sacred-frame::after {
+      content: '🌼';
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      font-size: 16px;
+    }
+
+    .bismillah {
+      font-family: var(--font-arabic);
+      font-size: 26px;
+      text-align: center;
+      color: var(--gold-warm);
+      margin-bottom: 18px;
+    }
+
+    .quran-verse-ar {
+      font-family: var(--font-arabic);
+      font-size: clamp(20px, 5.5vw, 25px);
+      line-height: 2.1;
+      text-align: center;
+      color: #3b1904;
+      direction: rtl;
+      margin-bottom: 14px;
+    }
+
+    .quran-reference {
+      font-size: 11px;
+      text-align: center;
+      color: var(--gold-warm);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .quran-verse-en {
+      font-family: var(--font-classy);
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: center;
+      color: #59351a;
+      font-style: italic;
+      margin-bottom: 20px;
+      padding: 0 8px;
+    }
+
+    .divider-crescent {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--gold-warm);
+      font-size: 18px;
+      margin: 18px 0;
+    }
+
+    .divider-line {
+      width: 45px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-warm), transparent);
+    }
+
+    /* Dua Card */
+    .dua-card {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 22px 18px;
+      margin: 15px 0 22px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(212, 160, 23, 0.12);
+    }
+
+    .dua-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold-warm);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .dua-text {
+      font-family: var(--font-classy);
+      font-size: 16px;
+      line-height: 1.7;
+      color: #4a2810;
+    }
+
+    /* Floating Jasmine / Lantern Button */
+    .lantern-spawner-btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #ffd700 0%, #e6b800 50%, #cca000 100%);
+      border: none;
+      color: #3b2800;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 25px rgba(212, 160, 23, 0.35);
+      transition: all 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    .lantern-spawner-btn:active {
+      transform: scale(0.96);
+    }
+
+    .ameen-counter {
+      font-size: 12.5px;
+      color: var(--gold-warm);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .floating-jasmine {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999;
+      font-size: 26px;
+      animation: driftJasmine 3.8s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+    }
+
+    @keyframes driftJasmine {
+      0% {
+        transform: translate(-50%, 0) scale(0.5);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+        transform: translate(-50%, -30px) scale(1.1);
+      }
+      100% {
+        transform: translate(-50%, -550px) scale(0.8) rotate(35deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+    <!-- Top App Bar -->
+    <div class="top-bar">
+      <div class="chapter-badge" style="color: var(--gold-warm); border-color: var(--border-gold);">
+        🕊️ Chapter II • Sacred Noor
+      </div>
+      <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound">🎵</button>
+    </div>
+
+    <!-- Sacred Header -->
+    <h1 class="title-romantic" style="font-size: 44px; background: linear-gradient(135deg, #b8860b 0%, #d4a017 50%, #e84393 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      Sanctuary of Blessings
+    </h1>
+    <p class="subtitle-soft">Divine prayers for your health, peace, and long life</p>
+
+    <!-- Sacred Frame -->
+    <div class="sacred-frame">
+      <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      
+      <!-- Surah Ar-Rum 30:21 -->
+      <div class="quran-verse-ar">
+        وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+      </div>
+      
+      <div class="quran-reference">✦ Surah Ar-Rum • 30:21 ✦</div>
+      
+      <div class="quran-verse-en">
+        "And of His signs is that He created for you from yourselves partners that you may find tranquility in them; and He placed between you affection and mercy."
+      </div>
+
+      <div class="divider-crescent">
+        <span class="divider-line"></span>
+        <span>🌙 ✦ 🤲</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- Surah Al-Furqan 25:74 -->
+      <div class="quran-verse-ar" style="font-size: 21px;">
+        رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ
+      </div>
+      
+      <div class="quran-reference">✦ Surah Al-Furqan • 25:74 ✦</div>
+      
+      <div class="quran-verse-en" style="margin-bottom: 0;">
+        "Our Lord, grant us in our partners the coolness and comfort of our eyes..."
+      </div>
+    </div>
+
+    <!-- Personal Dua For Her 20th Birthday -->
+    <div class="dua-card">
+      <div class="dua-title">✨ My Prayer For Your 20th Year ✨</div>
+      <p class="dua-text">
+        "O Allah, bless her as she completes 20 beautiful years of life. Wrap her in Your endless light, protect her gentle soul, and grant her boundless health, radiant joy, and peace in her heart.
+        <br><br>
+        May every year ahead be sweeter than the last, and may our hearts always beat together in love and tranquility. Ameen."
+      </p>
+    </div>
+
+    <!-- Interactive Blessing Button -->
+    <button class="lantern-spawner-btn" id="lanternBtn">
+      <span>🕊️</span> Tap to Send an Ameen & Raise Jasmine Flowers
+    </button>
+    <div class="ameen-counter" id="ameenCounter">🤲 0 Sacred Blessings Raised</div>
+
+    <!-- Next Chapter Button (To Cake Ceremony!) -->
+    <a href="cake.html" class="btn-royal" style="margin-top: 10px;">
+      Join The 20th Cake Cutting Ceremony 🎂 →
+    </a>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    const lanternBtn = document.getElementById('lanternBtn');
+    const ameenCounter = document.getElementById('ameenCounter');
+    let count = 0;
+
+    lanternBtn.addEventListener('click', (e) => {
+      count++;
+      ameenCounter.innerHTML = `🤲 ${count} Sacred Blessing${count > 1 ? 's' : ''} Raised to the Heavens`;
+
+      window.triggerHaptic(25);
+      if (window.BirthdayAudio) {
+        window.BirthdayAudio.playHarpChime([523.25, 659.25, 783.99, 1046.5]);
+      }
+
+      const numFlowers = 3;
+      for (let i = 0; i < numFlowers; i++) {
+        setTimeout(() => {
+          const fl = document.createElement('div');
+          fl.className = 'floating-jasmine';
+          fl.textContent = Math.random() > 0.4 ? '🌼' : '🕊️';
+          
+          const x = Math.max(30, Math.min(window.innerWidth - 30, e.clientX + (Math.random() - 0.5) * 120));
+          const y = e.clientY - 20;
+
+          fl.style.left = `${x}px`;
+          fl.style.top = `${y}px`;
+          document.body.appendChild(fl);
+
+          setTimeout(() => fl.remove(), 3800);
+        }, i * 180);
+      }
+    });
+  </script>
+</body>
+</html>

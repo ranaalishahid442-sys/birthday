@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>The VIP Cinema • Her Story in Motion</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ═══════════════════════════════════════════
+       PAGE 4 THEME: FULLSCREEN MORPHING CINEMA
+       ═══════════════════════════════════════════ */
+    body {
+      background: radial-gradient(circle at 50% 15%, #fbf8ff 0%, #f4ebff 50%, #ebd9fc 100%);
+      transition: background 0.8s ease;
+    }
+
+    body.in-theater-mode {
+      background: #000000 !important;
+      overflow: hidden;
+    }
+
+    /* VIP Holographic Ticket */
+    .ticket-container {
+      width: 100%;
+      max-width: 360px;
+      margin: 15px auto 25px;
+      perspective: 1000px;
+      transition: transform 0.6s ease, opacity 0.5s ease;
+    }
+
+    .cinema-ticket {
+      position: relative;
+      background: linear-gradient(135deg, #ffffff 0%, #faf3ff 60%, #fff0f6 100%);
+      border: 2px dashed #b580d1;
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 15px 35px rgba(181, 128, 209, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.5s ease;
+    }
+
+    .cinema-ticket::before,
+    .cinema-ticket::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 24px;
+      background: #f4ebff;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    .cinema-ticket::before { left: -14px; }
+    .cinema-ticket::after { right: -14px; }
+
+    .ticket-badge {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #fff;
+      background: linear-gradient(135deg, #9b59b6, #e84393);
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .ticket-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: #3b114d;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .ticket-meta {
+      font-size: 12px;
+      color: #7b4d8d;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .ticket-tear-btn {
+      padding: 12px 26px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #a29bfe 0%, #e84393 100%);
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(162, 155, 254, 0.45);
+      cursor: pointer;
+    }
+
+    .cinema-ticket.torn {
+      transform: scale(0.85) translateY(-30px) rotate(-4deg);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       THE FULLSCREEN MORPHING THEATER
+       ═══════════════════════════════════════════ */
+    .cinema-stage-wrapper {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.6);
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* When Fullscreen Theater is Active */
+    .cinema-stage-wrapper.fullscreen-active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Video Player */
+    .theater-video-player {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* Ambient Ambilight Glow in Theater */
+    .theater-ambilight {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 60px rgba(232, 67, 147, 0.5), inset 0 0 100px rgba(162, 155, 254, 0.35);
+      z-index: 2;
+    }
+
+    /* Floating Minimalist Top HUD */
+    .theater-top-hud {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: auto;
+    }
+
+    .theater-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      backdrop-filter: blur(10px);
+    }
+
+    .theater-exit-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Floating Reaction Bar at Bottom of Fullscreen */
+    .theater-bottom-reactions {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 40px;
+      padding: 6px 14px;
+      backdrop-filter: blur(12px);
+    }
+
+    .theater-rx-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .theater-rx-btn:active {
+      transform: scale(1.4);
+    }
+
+    /* Floating Reaction Stream */
+    .theater-stream-container {
+      position: absolute;
+      bottom: 70px;
+      right: 25px;
+      width: 60px;
+      height: 300px;
+      pointer-events: none;
+      z-index: 8;
+      overflow: hidden;
+    }
+
+    .floating-hud-emoji {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+      font-size: 26px;
+      animation: floatUpHUD 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    @keyframes floatUpHUD {
+      0% { transform: translateY(0) scale(0.5); opacity: 0; }
+      20% { opacity: 1; transform: translateY(-30px) scale(1.2); }
+      100% { transform: translateY(-260px) scale(0.8) rotate(15deg); opacity: 0; }
+    }
+
+    /* ═══════════════════════════════════════════
+       POST-SCREENING COMMEMORATIVE CARD
+       ═══════════════════════════════════════════ */
+    .post-screening-card {
+      display: none;
+      width: 100%;
+      background: #ffffff;
+      border: 2px solid var(--border-rose);
+      border-radius: var(--radius-md);
+      padding: 26px 20px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(181, 128, 209, 0.25);
+      animation: fadeInUp 0.8s ease forwards;
+      margin-top: 15px;
+    }
+
+    .replay-screening-btn {
+      margin-top: 12px;
+      background: #fff;
+      border: 1.5px solid var(--border-rose);
+      color: var(--rose-deep);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(232, 67, 147, 0.12);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fullscreen Morphing Cinema Overlay -->
+  <div class="cinema-stage-wrapper" id="fullscreenStage">
+    <div class="theater-ambilight"></div>
+    
+    <!-- Top HUD -->
+    <div class="theater-top-hud">
+      <div class="theater-badge-live">
+        <span style="color: #e84393;">●</span> THEATER MODE • 20TH PREMIERE
+      </div>
+      <button class="theater-exit-btn" id="exitTheaterBtn" aria-label="Exit Fullscreen">✕</button>
+    </div>
+
+    <!-- Live Stream Emojis -->
+    <div class="theater-stream-container" id="streamContainer"></div>
+
+    <!-- The POV Gallery Video -->
+    <video class="theater-video-player" id="herVideo" playsinline preload="auto">
+      <source src="assets/video.mp4" type="video/mp4">
+    </video>
+
+    <!-- Bottom Floating Reaction Bar -->
+    <div class="theater-bottom-reactions">
+      <button class="theater-rx-btn" data-emoji="💖">💖</button>
+      <button class="theater-rx-btn" data-emoji="🥺">🥺</button>
+      <button class="theater-rx-btn" data-emoji="🌹">🌹</button>
+      <button class="theater-rx-btn" data-emoji="🎆">🎆</button>
+      <button class="theater-rx-btn" data-emoji="✨">✨</button>
+    </div>
+  </div>
+
+  <div class="page-container">
+    <!-- Top App Bar -->
+    <div class="top-bar">
+      <div class="chapter-badge" style="color: #8e44ad; border-color: rgba(142, 68, 173, 0.3);">
+        🎬 Chapter IV • VIP Cinema
+      </div>
+      <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound">🎵</button>
+    </div>
+
+    <!-- Header -->
+    <h1 class="title-romantic" style="font-size: 42px;">Our Story In Motion</h1>
+    <p class="subtitle-soft">A private premiere of your gallery & our song</p>
+
+    <!-- Interactive VIP Ticket -->
+    <div class="ticket-container" id="ticketContainer">
+      <div class="cinema-ticket" id="cinemaTicket">
+        <div class="ticket-badge">⭐ VIP PRIVATE SCREENING ⭐</div>
+        <div class="ticket-title">The Queen of My Heart</div>
+        <div class="ticket-meta">
+          <span>📅 15-NOV-2026</span>
+          <span>🎟️ SEAT: #1 IN MY HEART</span>
+        </div>
+        <p style="font-size: 13px; color: #5a2770; text-align: center; margin-bottom: 16px; font-style: italic;">
+          Tear this golden ticket to expand into an immersive private theater experience!
+        </p>
+        <button class="ticket-tear-btn" id="tearTicketBtn">
+          <span>🎟️</span> Tear Ticket & Enter Cinema
+        </button>
+      </div>
+    </div>
+
+    <!-- Post-Screening Commemorative Card (Shows when video completes) -->
+    <div class="post-screening-card" id="postScreeningCard">
+      <div style="font-size: 38px; margin-bottom: 8px;">🎬 ⭐ 💖 🌹 🎆</div>
+      
+      <div class="urdu-poetry" style="font-size: 24px; color: var(--rose-deep); font-weight: 700; margin-bottom: 6px;">
+        تم مری زندگی کا سب سے خوبصورت باب ہو ❤️
+      </div>
+
+      <h2 style="font-family: var(--font-serif); font-size: 20px; color: #3b114d; margin-bottom: 6px;">
+        The Most Breathtaking Movie in the World
+      </h2>
+
+      <p style="font-family: var(--font-classy); font-size: 16px; line-height: 1.6; color: #4a1532; margin-bottom: 16px;">
+        Every second of your smile captured on camera reminds me how blessed I am. 
+        You are the star of my life today and for all the years to come.
+      </p>
+
+      <!-- Action Buttons -->
+      <a href="vault.html" class="btn-royal" style="margin-bottom: 12px;">
+        Unlock The Secret Vault 🔐 →
+      </a>
+
+      <div>
+        <button class="replay-screening-btn" id="replayBtn">
+          <span>↺</span> Watch Premiere Again
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/fireworks.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    const tearBtn = document.getElementById('tearTicketBtn');
+    const cinemaTicket = document.getElementById('cinemaTicket');
+    const ticketContainer = document.getElementById('ticketContainer');
+    const stage = document.getElementById('fullscreenStage');
+    const video = document.getElementById('herVideo');
+    const exitBtn = document.getElementById('exitTheaterBtn');
+    const postCard = document.getElementById('postScreeningCard');
+    const replayBtn = document.getElementById('replayBtn');
+    const stream = document.getElementById('streamContainer');
+
+    function launchFullscreenCinema() {
+      window.triggerHaptic([30, 60, 30]);
+      if (window.BirthdayAudio) {
+        window.BirthdayAudio.playSealBreak();
+      }
+
+      cinemaTicket.classList.add('torn');
+
+      setTimeout(() => {
+        ticketContainer.style.display = 'none';
+
+        // 1. Enter Fullscreen Mode
+        document.body.classList.add('in-theater-mode');
+        stage.classList.add('fullscreen-active');
+
+        // 2. Hide Bottom Nav Bar during screening
+        const nav = document.querySelector('.bottom-nav-bar');
+        if (nav) nav.classList.add('hidden');
+
+        // 3. Play Video with Audio
+        video.currentTime = 0;
+        video.play().catch(e => {
+          console.log("Autoplay gesture handled:", e);
+        });
+
+        // 4. Initial fireworks burst
+        if (window.Fireworks) {
+          window.Fireworks.grandCelebration(4);
+        }
+      }, 500);
+    }
+
+    // AUTOMATIC TRANSIT RETURN: Triggered when video completes!
+    function exitCinemaTheater() {
+      video.pause();
+      stage.classList.remove('fullscreen-active');
+      document.body.classList.remove('in-theater-mode');
+
+      // Restore Bottom Nav
+      const nav = document.querySelector('.bottom-nav-bar');
+      if (nav) nav.classList.remove('hidden');
+
+      // Show Commemorative Post-Screening Card
+      postCard.style.display = 'block';
+      postCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Spectacular Fireworks Celebration Finale!
+      if (window.Fireworks) {
+        window.Fireworks.grandCelebration(8);
+      }
+    }
+
+    video.addEventListener('ended', exitCinemaTheater);
+    exitBtn.addEventListener('click', exitCinemaTheater);
+
+    tearBtn.addEventListener('click', launchFullscreenCinema);
+    cinemaTicket.addEventListener('click', launchFullscreenCinema);
+
+    replayBtn.addEventListener('click', () => {
+      postCard.style.display = 'none';
+      launchFullscreenCinema();
+    });
+
+    // In-Theater Emoji & Fireworks Reactions
+    document.querySelectorAll('.theater-rx-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const emoji = btn.getAttribute('data-emoji');
+        window.triggerHaptic(15);
+
+        if (emoji === '🎆' && window.Fireworks) {
+          window.Fireworks.launch(null, null, window.innerWidth * 0.5, window.innerHeight * 0.35, true);
+        } else if (window.BirthdayAudio) {
+          window.BirthdayAudio.playHarpChime([880, 1046.5]);
+        }
+
+        const el = document.createElement('div');
+        el.className = 'floating-hud-emoji';
+        el.textContent = emoji;
+        el.style.right = `${Math.floor(Math.random() * 20 + 5)}px`;
+        stream.appendChild(el);
+
+        setTimeout(() => el.remove(), 2000);
+      });
+    });
+  </script>
+</body>
+</html>
