@@ -3,164 +3,456 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>The Secret Vault • A Surprise For You</title>
+  <title>The Secret Vault • A Surprise For Iqra & Ali</title>
   <link rel="stylesheet" href="shared.css">
   <style>
-    /* ═══════════════════════════════════════════
-       PAGE 5 THEME: PEARLESCENT ROSE GOLD VAULT
-       ═══════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════════════
+       CHAPTER V: 3D ROYAL ROSE-GOLD BANK VAULT & TREASURE CHAMBER
+       ═══════════════════════════════════════════════════════════════ */
     body {
-      background: radial-gradient(circle at 50% 15%, #fff0f6 0%, #fde2ef 50%, #f9cadf 100%);
+      background: radial-gradient(circle at 50% 12%, #fff5f9 0%, #fde2ef 45%, #f7c3dc 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
+    /* ─── 1. VAULT EXTERIOR CONTAINER ─── */
     .vault-stage {
       width: 100%;
-      max-width: 380px;
-      margin: 15px auto 30px;
+      max-width: 420px;
+      margin: 10px auto 35px;
       perspective: 1200px;
+      position: relative;
     }
 
-    .vault-box {
-      background: linear-gradient(145deg, #ffffff, #fff0f5);
-      border: 3px solid rgba(232, 67, 147, 0.45);
-      border-radius: var(--radius-lg);
-      padding: 30px 20px;
-      box-shadow: 0 20px 50px rgba(232, 67, 147, 0.25);
+    .vault-card {
+      background: linear-gradient(145deg, #ffffff 0%, #fff2f7 50%, #ffe9f2 100%);
+      border: 2px solid rgba(232, 67, 147, 0.35);
+      border-radius: 28px;
+      padding: 30px 20px 26px;
+      box-shadow: 0 25px 60px rgba(232, 67, 147, 0.22), 0 0 0 1px rgba(255, 215, 0, 0.3);
       position: relative;
       text-align: center;
-      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .vault-wheel {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 18px;
+    /* Monogram Crest on Vault */
+    .vault-monogram-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #fff5ea, #ffe4ec);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #9b2259;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      box-shadow: 0 3px 10px rgba(212, 175, 55, 0.15);
+    }
+
+    /* ─── 2. 3D SCULPTED BANK SAFE PORTAL ─── */
+    .vault-portal-outer {
+      width: 260px;
+      height: 260px;
+      margin: 0 auto 20px;
+      position: relative;
+      perspective: 1000px;
+    }
+
+    /* Heavy outer beveled rim with rivets */
+    .vault-bezel-frame {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ffd700, #e84393 70%, #b81b6c 100%);
-      border: 4px solid #fff;
-      box-shadow: 0 10px 25px rgba(232, 67, 147, 0.35);
+      background: radial-gradient(circle at 35% 30%, #fff7eb 0%, #f0c388 28%, #b37d4e 65%, #7a4628 100%);
+      padding: 12px;
+      box-shadow: 0 15px 35px rgba(120, 60, 20, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.8), inset 0 -6px 12px rgba(0, 0, 0, 0.4);
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 34px;
-      color: #fff;
+    }
+
+    /* Rivets around the circular rim */
+    .vault-rivet {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d4af37 60%, #684812 100%);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 1px #fff;
+    }
+
+    /* 4 Retractable Heavy Locking Bolts */
+    .vault-bolt {
+      position: absolute;
+      background: linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #996515 100%);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      z-index: 5;
+      transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .vault-bolt-top {
+      width: 16px;
+      height: 24px;
+      top: -10px;
+      left: calc(50% - 8px);
+    }
+
+    .vault-bolt-bottom {
+      width: 16px;
+      height: 24px;
+      bottom: -10px;
+      left: calc(50% - 8px);
+    }
+
+    .vault-bolt-left {
+      width: 24px;
+      height: 16px;
+      left: -10px;
+      top: calc(50% - 8px);
+    }
+
+    .vault-bolt-right {
+      width: 24px;
+      height: 16px;
+      right: -10px;
+      top: calc(50% - 8px);
+    }
+
+    /* Bolts retract when unlocked */
+    .vault-portal-outer.unlocked .vault-bolt-top { top: 8px; opacity: 0; }
+    .vault-portal-outer.unlocked .vault-bolt-bottom { bottom: 8px; opacity: 0; }
+    .vault-portal-outer.unlocked .vault-bolt-left { left: 8px; opacity: 0; }
+    .vault-portal-outer.unlocked .vault-bolt-right { right: 8px; opacity: 0; }
+
+    /* The Main Vault Door that swings open */
+    .vault-door {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #ffffff 0%, #ffd6e7 40%, #e88cb2 80%, #a83b6b 100%);
+      border: 3px solid #f9d38c;
+      box-shadow: inset 0 0 25px rgba(168, 59, 107, 0.5), 0 8px 20px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transform-origin: left center;
+      transition: transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 10;
+    }
+
+    .vault-portal-outer.unlocked .vault-door {
+      transform: rotateY(-95deg);
+      box-shadow: -15px 0 35px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Vault Inner Chamber Glow Behind Door */
+    .vault-light-shaft {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fffbe6 0%, #ffd700 45%, #ff75a0 80%, #3b0d25 100%);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .vault-portal-outer.unlocked .vault-light-shaft {
+      opacity: 1;
+      animation: pulseLight 2s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseLight {
+      from { transform: scale(0.96); filter: brightness(1); }
+      to { transform: scale(1.04); filter: brightness(1.2); }
+    }
+
+    /* ─── 3. GRAND 6-SPOKE CAPTAIN'S WHEEL ─── */
+    .vault-spoke-wheel {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fffbe6 0%, #f6d365 30%, #d4af37 70%, #8c6d1d 100%);
+      border: 5px solid #fff;
+      box-shadow: 0 10px 25px rgba(120, 60, 20, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
       transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .vault-box.unlocked .vault-wheel {
-      transform: rotate(720deg) scale(1.1);
+    .vault-portal-outer.unlocked .vault-spoke-wheel {
+      transform: rotate(720deg) scale(1.05);
     }
 
+    /* 6 Brass Spokes */
+    .vault-spoke {
+      position: absolute;
+      width: 8px;
+      height: 100%;
+      background: linear-gradient(90deg, #fff3c4 0%, #d4af37 50%, #7e5a17 100%);
+      border-radius: 4px;
+      top: 0;
+      left: calc(50% - 4px);
+    }
+
+    .vault-spoke:nth-child(1) { transform: rotate(0deg); }
+    .vault-spoke:nth-child(2) { transform: rotate(60deg); }
+    .vault-spoke:nth-child(3) { transform: rotate(120deg); }
+
+    /* Central Diamond Hub with Monogram */
+    .vault-wheel-hub {
+      position: relative;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ffccd8 45%, #d81b60 85%, #880e4f 100%);
+      border: 3px solid #ffd700;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), inset 0 2px 4px #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+
+    .vault-hub-monogram {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .vault-hub-icon {
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    /* ─── 4. PASSCODE INPUTS & CONTROLS ─── */
     .vault-code-inputs {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
-      margin: 18px 0 22px;
+      gap: 12px;
+      margin: 18px 0 20px;
+    }
+
+    .vault-input-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .vault-input-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #a83b6b;
+      margin-bottom: 5px;
+      text-transform: uppercase;
     }
 
     .vault-input {
-      width: 52px;
-      height: 60px;
-      background: #fff;
-      border: 2px solid rgba(232, 67, 147, 0.35);
-      border-radius: 14px;
-      color: var(--rose-deep);
+      width: 58px;
+      height: 64px;
+      background: linear-gradient(180deg, #ffffff 0%, #fff7fa 100%);
+      border: 2px solid rgba(212, 175, 55, 0.6);
+      border-radius: 16px;
+      color: #9b2259;
       font-family: var(--font-serif);
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
       text-align: center;
       outline: none;
-      box-shadow: 0 4px 12px rgba(232, 67, 147, 0.1);
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(232, 67, 147, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.9);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .vault-input:focus {
-      border-color: var(--rose-primary);
-      box-shadow: 0 0 20px rgba(232, 67, 147, 0.4);
+      border-color: #e84393;
+      box-shadow: 0 0 20px rgba(232, 67, 147, 0.45), 0 4px 16px rgba(212, 175, 55, 0.3);
+      transform: translateY(-2px);
     }
 
     .vault-divider {
-      color: var(--rose-deep);
+      color: #d4af37;
       font-size: 24px;
       font-weight: 700;
+      margin-top: 16px;
     }
 
-    .vault-hint {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: 20px;
+    .vault-hint-box {
+      background: rgba(255, 240, 246, 0.8);
+      border: 1px dashed rgba(232, 67, 147, 0.4);
+      border-radius: 12px;
+      padding: 8px 14px;
+      margin: 0 auto 16px;
+      font-size: 12px;
+      color: #7d3356;
+      max-width: 320px;
     }
 
     .error-msg {
-      color: #e84118;
-      font-size: 13px;
+      color: #c0392b;
+      font-size: 12.5px;
       margin-top: 12px;
       display: none;
       font-weight: 600;
+      background: #ffe6e6;
+      border: 1px solid #ffb3b3;
+      border-radius: 10px;
+      padding: 8px 12px;
     }
 
+    @keyframes shakeVault {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    /* ─── 5. TREASURE CHAMBER (THE 4 SURPRISES) ─── */
     .treasure-chamber {
       display: none;
       width: 100%;
+      max-width: 500px;
+      margin: 0 auto 40px;
       animation: unfoldTreasure 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
 
     @keyframes unfoldTreasure {
-      0% { opacity: 0; transform: scale(0.8) translateY(40px); }
+      0% { opacity: 0; transform: scale(0.9) translateY(40px); }
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .cassette-player {
-      width: 100%;
-      background: linear-gradient(145deg, #ffffff, #fff0f5);
-      border: 2px solid #ffccd8;
-      border-radius: 20px;
-      padding: 22px 18px;
-      box-shadow: 0 15px 40px rgba(232, 67, 147, 0.2);
+    .chamber-header-banner {
+      background: linear-gradient(135deg, #ffffff 0%, #fff0f7 50%, #ffe4ee 100%);
+      border: 2px solid rgba(212, 175, 55, 0.5);
+      border-radius: 22px;
+      padding: 18px 20px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(232, 67, 147, 0.15);
       margin-bottom: 24px;
+    }
+
+    .chamber-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: #d4af37;
+      font-weight: 700;
+    }
+
+    .chamber-title {
+      font-family: var(--font-romantic);
+      font-size: 34px;
+      color: #9b2259;
+      margin: 4px 0;
+    }
+
+    .chamber-subtitle {
+      font-size: 13.5px;
+      color: #723b56;
+    }
+
+    /* ─── SURPRISE 1: HEIRLOOM CASSETTE PLAYER ─── */
+    .cassette-player {
+      background: linear-gradient(145deg, #ffffff 0%, #fff4f8 60%, #ffeaf3 100%);
+      border: 2px solid #f6c0d4;
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 16px 45px rgba(232, 67, 147, 0.18), inset 0 0 0 1px rgba(255, 215, 0, 0.4);
+      margin-bottom: 26px;
       position: relative;
     }
 
-    .cassette-header {
+    .cassette-top-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
 
-    .cassette-label {
-      font-family: var(--font-romantic);
-      font-size: 28px;
-      color: var(--rose-deep);
+    .cassette-title-block {
+      text-align: left;
     }
 
-    .cassette-window {
-      background: #3b112c;
-      border: 2px solid #ffccd8;
-      border-radius: 12px;
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
+    .cassette-deck-label {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: #9b2259;
+      line-height: 1.3;
+    }
+
+    .cassette-sublabel {
+      font-size: 11px;
+      color: #9c6281;
+      letter-spacing: 1px;
+    }
+
+    /* Vintage Cassette Window with Rotating Spools & Tape */
+    .cassette-tape-housing {
+      background: radial-gradient(circle at 50% 30%, #2e0821 0%, #150310 100%);
+      border: 3px solid #f9d38c;
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.6);
+      position: relative;
       margin-bottom: 16px;
     }
 
-    .cassette-spool {
-      width: 44px;
-      height: 44px;
-      border: 4px dashed #ffd700;
+    .cassette-tape-line {
+      position: absolute;
+      top: 50%;
+      left: 60px;
+      right: 60px;
+      height: 4px;
+      background: #795548;
+      box-shadow: 0 0 4px rgba(0,0,0,0.8);
+      z-index: 1;
+    }
+
+    .cassette-spools-wrap {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tape-spool {
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: #25081b;
+      background: radial-gradient(circle, #fff7d6 0%, #d4af37 60%, #684812 100%);
+      border: 3px dashed #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 18px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.1s linear;
     }
 
-    .cassette-spool.spinning {
-      animation: spinSpool 2.5s infinite linear;
+    .tape-spool.spinning {
+      animation: spinSpool 2.2s infinite linear;
     }
 
     @keyframes spinSpool {
@@ -168,93 +460,423 @@
       to { transform: rotate(360deg); }
     }
 
+    .cassette-tape-badge {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 10px;
+      color: #ffd700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Analog VU Needle Meters */
+    .vu-meters-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 12px 0;
+    }
+
+    .vu-meter {
+      width: 90px;
+      height: 38px;
+      background: #250619;
+      border: 1.5px solid #d4af37;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 3px;
+    }
+
+    .vu-scale-ticks {
+      position: absolute;
+      top: 4px;
+      left: 10px;
+      right: 10px;
+      height: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .vu-tick {
+      width: 1px;
+      height: 8px;
+      background: #ffd700;
+      opacity: 0.6;
+    }
+
+    .vu-tick.red {
+      background: #ff4757;
+    }
+
+    .vu-needle {
+      position: absolute;
+      bottom: -6px;
+      width: 2px;
+      height: 32px;
+      background: #ff4757;
+      transform-origin: bottom center;
+      transform: rotate(-35deg);
+      transition: transform 0.1s ease;
+      box-shadow: 0 0 4px #ff4757;
+    }
+
+    .vu-label {
+      font-size: 9px;
+      color: #ffd700;
+      font-weight: 700;
+      letter-spacing: 1px;
+      z-index: 2;
+    }
+
+    /* Waveform visualizer */
     .waveform-visualizer {
       display: flex;
       justify-content: center;
       align-items: flex-end;
       gap: 4px;
-      height: 36px;
-      margin: 14px 0 18px;
+      height: 32px;
+      margin: 10px 0 14px;
     }
 
     .wave-bar {
       width: 5px;
       height: 6px;
-      background: linear-gradient(180deg, var(--rose-primary), #ffd700);
+      background: linear-gradient(180deg, #e84393 0%, #ffd700 100%);
       border-radius: 4px;
-      transition: height 0.15s ease;
+      transition: height 0.12s ease;
     }
 
     .waveform-visualizer.playing .wave-bar {
-      animation: bounceBar 0.5s infinite alternate ease-in-out;
+      animation: bounceBar 0.45s infinite alternate ease-in-out;
     }
 
-    .waveform-visualizer.playing .wave-bar:nth-child(2) { animation-delay: 0.1s; }
-    .waveform-visualizer.playing .wave-bar:nth-child(3) { animation-delay: 0.2s; }
-    .waveform-visualizer.playing .wave-bar:nth-child(4) { animation-delay: 0.35s; }
-    .waveform-visualizer.playing .wave-bar:nth-child(5) { animation-delay: 0.15s; }
-    .waveform-visualizer.playing .wave-bar:nth-child(6) { animation-delay: 0.25s; }
-    .waveform-visualizer.playing .wave-bar:nth-child(7) { animation-delay: 0.05s; }
+    .waveform-visualizer.playing .wave-bar:nth-child(1) { animation-delay: 0.05s; }
+    .waveform-visualizer.playing .wave-bar:nth-child(2) { animation-delay: 0.2s; }
+    .waveform-visualizer.playing .wave-bar:nth-child(3) { animation-delay: 0.35s; }
+    .waveform-visualizer.playing .wave-bar:nth-child(4) { animation-delay: 0.1s; }
+    .waveform-visualizer.playing .wave-bar:nth-child(5) { animation-delay: 0.25s; }
+    .waveform-visualizer.playing .wave-bar:nth-child(6) { animation-delay: 0.4s; }
+    .waveform-visualizer.playing .wave-bar:nth-child(7) { animation-delay: 0.15s; }
     .waveform-visualizer.playing .wave-bar:nth-child(8) { animation-delay: 0.3s; }
+    .waveform-visualizer.playing .wave-bar:nth-child(9) { animation-delay: 0.08s; }
+    .waveform-visualizer.playing .wave-bar:nth-child(10) { animation-delay: 0.22s; }
 
     @keyframes bounceBar {
       0% { height: 6px; }
-      100% { height: 32px; }
+      100% { height: 28px; }
     }
 
     .voice-main-btn {
-      width: 58px;
-      height: 58px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #ff75a0 0%, var(--rose-primary) 100%);
-      border: 2px solid #fff;
+      background: linear-gradient(135deg, #ff75a0 0%, #e84393 100%);
+      border: 3px solid #fff;
       color: #fff;
-      font-size: 22px;
+      font-size: 24px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 25px rgba(232, 67, 147, 0.45);
+      box-shadow: 0 10px 25px rgba(232, 67, 147, 0.45);
       transition: transform 0.2s ease;
       margin: 0 auto;
     }
 
     .voice-main-btn:active {
-      transform: scale(0.9);
+      transform: scale(0.92);
     }
 
-    .eternal-letter-scroll {
-      background: linear-gradient(135deg, #ffffff 0%, #fffaf4 100%);
-      border: 2px solid #ffccd8;
-      border-radius: 20px;
-      padding: 30px 22px;
-      color: var(--text-main);
-      box-shadow: 0 15px 40px rgba(232, 67, 147, 0.2);
-      position: relative;
-      margin-bottom: 24px;
+    /* ─── SURPRISE 2: 3D POLAROID KEEPSAKE ALIVE ALBUM ─── */
+    .polaroid-keepsake-box {
+      background: linear-gradient(145deg, #ffffff 0%, #fff7fa 100%);
+      border: 2px solid #ffd4e5;
+      border-radius: 24px;
+      padding: 24px 18px;
+      box-shadow: 0 16px 45px rgba(232, 67, 147, 0.15);
+      margin-bottom: 26px;
+      text-align: center;
     }
+
+    .keepsake-carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 15px 5px 25px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .keepsake-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .polaroid-card {
+      flex: 0 0 240px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      padding: 12px 12px 18px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+      scroll-snap-align: center;
+      position: relative;
+      transform: rotate(-1.5deg);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .polaroid-card:nth-child(even) {
+      transform: rotate(1.5deg);
+    }
+
+    .polaroid-card:hover, .polaroid-card:active {
+      transform: scale(1.03) rotate(0deg);
+      box-shadow: 0 16px 36px rgba(232, 67, 147, 0.25);
+    }
+
+    .polaroid-tape {
+      position: absolute;
+      top: -8px;
+      left: calc(50% - 25px);
+      width: 50px;
+      height: 18px;
+      background: rgba(255, 230, 180, 0.7);
+      border: 1px dashed rgba(212, 175, 55, 0.5);
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 3;
+    }
+
+    .polaroid-img-frame {
+      width: 100%;
+      height: 220px;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fdf2f6;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .polaroid-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .polaroid-card:hover .polaroid-img-frame img {
+      transform: scale(1.05);
+    }
+
+    .polaroid-caption {
+      font-family: var(--font-classy);
+      font-size: 13.5px;
+      color: #3b1747;
+      margin-top: 12px;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    .polaroid-date-stamp {
+      font-size: 10px;
+      color: #b33967;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* ─── SURPRISE 3: 3D VOWS TIME-CAPSULE ─── */
+    .vows-capsule-container {
+      background: linear-gradient(145deg, #ffffff 0%, #fff7fa 100%);
+      border: 2px solid #ffd4e5;
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 16px 45px rgba(232, 67, 147, 0.15);
+      margin-bottom: 26px;
+      text-align: center;
+      position: relative;
+    }
+
+    .gift-box-visual {
+      width: 100px;
+      height: 100px;
+      margin: 10px auto 16px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gift-box-base {
+      width: 80px;
+      height: 60px;
+      background: linear-gradient(135deg, #ff75a0 0%, #e84393 100%);
+      border-radius: 8px;
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      box-shadow: 0 8px 20px rgba(232, 67, 147, 0.35);
+      border: 2px solid #ffd700;
+    }
+
+    .gift-ribbon-vertical {
+      position: absolute;
+      width: 14px;
+      height: 100%;
+      background: linear-gradient(90deg, #fff7d6, #ffd700, #b8860b);
+      left: calc(50% - 7px);
+      top: 0;
+    }
+
+    .gift-box-lid {
+      width: 90px;
+      height: 22px;
+      background: linear-gradient(135deg, #ff8eb1 0%, #d81b60 100%);
+      border-radius: 6px;
+      position: absolute;
+      top: 24px;
+      left: 5px;
+      border: 2px solid #ffd700;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gift-bow {
+      position: absolute;
+      top: -14px;
+      font-size: 26px;
+    }
+
+    .gift-box-visual.opened .gift-box-lid {
+      transform: translateY(-28px) rotate(-18deg);
+      opacity: 0.85;
+    }
+
+    .vows-revealed-list {
+      display: none;
+      text-align: left;
+      margin-top: 20px;
+      animation: fadeInList 0.6s ease forwards;
+    }
+
+    @keyframes fadeInList {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .vow-card-item {
+      background: #ffffff;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-left: 4px solid #e84393;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(232, 67, 147, 0.08);
+    }
+
+    .vow-number {
+      font-size: 10px;
+      font-weight: 800;
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .vow-text {
+      font-family: var(--font-classy);
+      font-size: 14px;
+      color: #3b1747;
+      margin-top: 3px;
+      line-height: 1.45;
+    }
+
+    /* ─── SURPRISE 4: ETERNAL DECREE SCROLL & WAX SEAL ─── */
+    .eternal-letter-scroll {
+      background: linear-gradient(135deg, #ffffff 0%, #fffbf5 60%, #fff7eb 100%);
+      border: 2px solid #ecd3be;
+      border-radius: 24px;
+      padding: 32px 22px 26px;
+      color: var(--text-main);
+      box-shadow: 0 16px 45px rgba(184, 115, 51, 0.18);
+      position: relative;
+      margin-bottom: 26px;
+      overflow: hidden;
+    }
+
+    /* Parchment gold foil corners */
+    .parchment-corner {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border: 2px solid #d4af37;
+    }
+
+    .parchment-corner.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+    .parchment-corner.tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+    .parchment-corner.bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+    .parchment-corner.br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
 
     .letter-parchment-title {
       font-family: var(--font-romantic);
       font-size: 38px;
-      color: var(--rose-deep);
+      color: #9b2259;
       text-align: center;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .letter-parchment-body {
       font-family: var(--font-classy);
-      font-size: 16.5px;
+      font-size: 16px;
       line-height: 1.7;
       text-align: center;
       color: #3b1747;
-      margin: 15px 0;
+      margin: 16px 0;
+    }
+
+    .wax-seal-press-area {
+      text-align: center;
+      margin: 24px 0 10px;
+    }
+
+    .wax-seal-btn {
+      background: radial-gradient(circle at 35% 35%, #e74c3c 0%, #c0392b 60%, #7b1e17 100%);
+      border: 3px solid #f9d38c;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(192, 57, 43, 0.45);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .wax-seal-btn:active {
+      transform: scale(0.92);
+    }
+
+    .wax-seal-btn.stamped {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 12px 30px rgba(192, 57, 43, 0.5);
     }
 
     .letter-signature {
       font-family: var(--font-romantic);
       font-size: 30px;
-      color: var(--rose-primary);
+      color: #e84393;
       text-align: right;
       margin-top: 15px;
     }
@@ -272,60 +894,152 @@
     </div>
 
     <!-- Header -->
-    <h1 class="title-romantic" style="font-size: 42px;">The Secret Vault</h1>
-    <p class="subtitle-soft">Enter the sacred key to unlock what is kept only for you</p>
+    <h1 class="title-romantic" style="font-size: 40px; margin-bottom: 4px;">The Secret Vault</h1>
+    <p class="subtitle-soft">Enter our sacred date to unlock what is kept only for you</p>
 
-    <!-- Vault Box -->
+    <!-- ─── 3D BANK VAULT STAGE ─── -->
     <div class="vault-stage" id="vaultStage">
-      <div class="vault-box" id="vaultBox">
-        <div class="vault-wheel" id="vaultWheel">🔒</div>
+      <div class="vault-card" id="vaultCard">
         
-        <h3 style="font-family: var(--font-serif); color: var(--text-main); font-size: 20px; margin-bottom: 6px;">
-          Protected By Our Memory
+        <!-- Monogram Crest Tag -->
+        <div class="vault-monogram-tag">
+          <span>ALI 💖 IQRA</span>
+          <span>•</span>
+          <span>EST. 21-08-2024</span>
+        </div>
+
+        <!-- 3D Bank Safe Portal -->
+        <div class="vault-portal-outer" id="vaultPortal">
+          <div class="vault-bezel-frame">
+            <!-- 12 Rivets around circumference -->
+            <div class="vault-rivet" style="top: 8px; left: calc(50% - 4px);"></div>
+            <div class="vault-rivet" style="bottom: 8px; left: calc(50% - 4px);"></div>
+            <div class="vault-rivet" style="left: 8px; top: calc(50% - 4px);"></div>
+            <div class="vault-rivet" style="right: 8px; top: calc(50% - 4px);"></div>
+            <div class="vault-rivet" style="top: 25px; left: 45px;"></div>
+            <div class="vault-rivet" style="top: 25px; right: 45px;"></div>
+            <div class="vault-rivet" style="bottom: 25px; left: 45px;"></div>
+            <div class="vault-rivet" style="bottom: 25px; right: 45px;"></div>
+
+            <!-- 4 Retractable Heavy Locking Bolts -->
+            <div class="vault-bolt vault-bolt-top" id="boltTop"></div>
+            <div class="vault-bolt vault-bolt-bottom" id="boltBottom"></div>
+            <div class="vault-bolt vault-bolt-left" id="boltLeft"></div>
+            <div class="vault-bolt vault-bolt-right" id="boltRight"></div>
+
+            <!-- Inner Light Beam (revealed on open) -->
+            <div class="vault-light-shaft" id="lightShaft">
+              <span>✨</span>
+            </div>
+
+            <!-- The 3D Swinging Safe Door -->
+            <div class="vault-door" id="vaultDoor">
+              <!-- 6-Spoke Captain's Combination Wheel -->
+              <div class="vault-spoke-wheel" id="vaultWheel">
+                <div class="vault-spoke"></div>
+                <div class="vault-spoke"></div>
+                <div class="vault-spoke"></div>
+                <div class="vault-wheel-hub">
+                  <span class="vault-hub-monogram">A ∞ I</span>
+                  <span class="vault-hub-icon">🔒</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-serif); color: #3b1747; font-size: 21px; margin-bottom: 6px;">
+          Protected By Our Sacred Date
         </h3>
-        <p class="vault-hint">
-          "The day our stars aligned... (DD - MM - YY)"
-        </p>
+        
+        <div class="vault-hint-box">
+          "The day our destinies entwined... (DD - MM - YY)" 💭
+        </div>
 
         <!-- 3 Dual Box Inputs (21 - 08 - 24) -->
         <div class="vault-code-inputs">
-          <input type="tel" maxlength="2" class="vault-input" id="code1" placeholder="DD" inputmode="numeric">
-          <span class="vault-divider">-</span>
-          <input type="tel" maxlength="2" class="vault-input" id="code2" placeholder="MM" inputmode="numeric">
-          <span class="vault-divider">-</span>
-          <input type="tel" maxlength="2" class="vault-input" id="code3" placeholder="YY" inputmode="numeric">
+          <div class="vault-input-wrap">
+            <span class="vault-input-label">Day</span>
+            <input type="tel" maxlength="2" class="vault-input" id="code1" placeholder="DD" inputmode="numeric" autocomplete="off">
+          </div>
+          <span class="vault-divider">•</span>
+          <div class="vault-input-wrap">
+            <span class="vault-input-label">Month</span>
+            <input type="tel" maxlength="2" class="vault-input" id="code2" placeholder="MM" inputmode="numeric" autocomplete="off">
+          </div>
+          <span class="vault-divider">•</span>
+          <div class="vault-input-wrap">
+            <span class="vault-input-label">Year</span>
+            <input type="tel" maxlength="2" class="vault-input" id="code3" placeholder="YY" inputmode="numeric" autocomplete="off">
+          </div>
         </div>
 
-        <button class="btn-royal" id="unlockVaultBtn">
+        <button class="btn-royal" id="unlockVaultBtn" style="width: 100%; max-width: 320px; margin: 0 auto;">
           <span>🔓</span> Unlock The Secret Vault
         </button>
 
         <p class="error-msg" id="errorMsg">
-          That date didn't open the vault. Think of our special day... 💭
+          That date didn't open the vault. Think of our special anniversary day... 💭
         </p>
       </div>
     </div>
 
-    <!-- Unlocked Treasure Chamber -->
+    <!-- ─── UNLOCKED TREASURE CHAMBER ─── -->
     <div class="treasure-chamber" id="treasureChamber">
-      <!-- Cassette Voice Note -->
+      
+      <!-- Welcome Chamber Banner -->
+      <div class="chamber-header-banner">
+        <div class="chamber-tag">✦ Chapter V Sanctuary ✦</div>
+        <h2 class="chamber-title">Our Private Vault</h2>
+        <p class="chamber-subtitle">Four timeless surprises kept by Ali only for Iqra</p>
+      </div>
+
+      <!-- ─── SURPRISE 1: HEIRLOOM CASSETTE PLAYER ─── -->
       <div class="cassette-player">
-        <div class="cassette-header">
-          <div>
-            <span class="cassette-label">A Voice For Iqra’s 20th</span>
-            <div class="urdu-caption" style="font-size: 13px; text-align: left;">مِری آواز، اقراء کے نام 🎤</div>
+        <div class="cassette-top-row">
+          <div class="cassette-title-block">
+            <div class="cassette-deck-label">Surprise I: A Voice For Iqra’s 20th</div>
+            <div class="cassette-sublabel">مِری آواز، اقراء کے نام 🎤 • SIDE A</div>
           </div>
-          <span style="font-size: 11px; color: var(--rose-deep); background: #ffe4ec; padding: 4px 10px; border-radius: 20px; font-weight: 700;">
-            15-NOV-2026
-          </span>
+          <span class="cassette-tape-badge">STEREO 320K</span>
         </div>
 
-        <div class="cassette-window">
-          <div class="cassette-spool" id="spoolLeft">🌸</div>
-          <div style="font-size: 11px; color: #ffccd8; letter-spacing: 2px;">STEREO • 320KBPS</div>
-          <div class="cassette-spool" id="spoolRight">🌸</div>
+        <div class="cassette-tape-housing">
+          <div class="cassette-tape-line"></div>
+          <div class="cassette-spools-wrap">
+            <div class="tape-spool" id="spoolLeft">🌸</div>
+            <div style="font-size: 11px; color: #f9d38c; letter-spacing: 2px; font-weight: 700; z-index: 2;">
+              ALI & IQRA
+            </div>
+            <div class="tape-spool" id="spoolRight">🌸</div>
+          </div>
         </div>
 
+        <!-- Stereo Analog VU Meters -->
+        <div class="vu-meters-wrap">
+          <div class="vu-meter">
+            <div class="vu-scale-ticks">
+              <span class="vu-tick"></span>
+              <span class="vu-tick"></span>
+              <span class="vu-tick"></span>
+              <span class="vu-tick red"></span>
+            </div>
+            <div class="vu-needle" id="vuNeedleL"></div>
+            <span class="vu-label">LEFT CH</span>
+          </div>
+          <div class="vu-meter">
+            <div class="vu-scale-ticks">
+              <span class="vu-tick"></span>
+              <span class="vu-tick"></span>
+              <span class="vu-tick"></span>
+              <span class="vu-tick red"></span>
+            </div>
+            <div class="vu-needle" id="vuNeedleR"></div>
+            <span class="vu-label">RIGHT CH</span>
+          </div>
+        </div>
+
+        <!-- Frequency Equalizer Bars -->
         <div class="waveform-visualizer" id="waveVisualizer">
           <div class="wave-bar"></div>
           <div class="wave-bar"></div>
@@ -335,11 +1049,13 @@
           <div class="wave-bar"></div>
           <div class="wave-bar"></div>
           <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
         </div>
 
-        <button class="voice-main-btn" id="voicePlayBtn">▶</button>
-        <div style="font-size: 12.5px; color: var(--rose-deep); text-align: center; margin-top: 12px; font-weight: 600;" id="voiceStatusText">
-          Tap to listen to my voice message 🎤
+        <button class="voice-main-btn" id="voicePlayBtn" aria-label="Play Voice Note">▶</button>
+        <div style="font-size: 13px; color: #9b2259; text-align: center; margin-top: 12px; font-weight: 600;" id="voiceStatusText">
+          Tap to play Ali's voice message 🎤
         </div>
 
         <audio id="realVoiceAudio" preload="auto">
@@ -348,20 +1064,146 @@
         </audio>
       </div>
 
-      <!-- Eternal Handwritten Love Letter with Urdu Touch -->
-      <div class="eternal-letter-scroll">
-        <h2 class="letter-parchment-title">Happy 20th Birthday, Iqra</h2>
-        <div style="font-size: 11px; text-align: center; letter-spacing: 2px; color: var(--gold-warm); text-transform: uppercase; font-weight: 700;">
-          ✦ Forever & Always ✦
+      <!-- ─── SURPRISE 2: 3D POLAROID KEEPSAKE ALIVE ALBUM ─── -->
+      <div class="polaroid-keepsake-box">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #d4af37; font-weight: 700;">
+          Surprise II • یادوں کے نقوش
+        </div>
+        <h3 style="font-family: var(--font-romantic); font-size: 30px; color: #9b2259; margin: 4px 0 12px;">
+          A Journey in Frames
+        </h3>
+        <p style="font-size: 13px; color: #723b56; margin-bottom: 12px;">
+          Swipe through the precious moments that define our story 📸
+        </p>
+
+        <!-- Horizontal Polaroid Carousel -->
+        <div class="keepsake-carousel">
+          <!-- Card 1 -->
+          <div class="polaroid-card">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-img-frame">
+              <img src="assets/pics/pic1.jpg" alt="Iqra" loading="lazy">
+            </div>
+            <div class="polaroid-caption">"21-08-2024 • The day my universe found its home."</div>
+            <div class="polaroid-date-stamp">✦ The Genesis ✦</div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="polaroid-card">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-img-frame">
+              <img src="assets/pics/pic2.jpg" alt="Iqra" loading="lazy">
+            </div>
+            <div class="polaroid-caption">"Your laughter is the sweetest melody I have ever known."</div>
+            <div class="polaroid-date-stamp">✦ Radiant Joy ✦</div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="polaroid-card">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-img-frame">
+              <img src="assets/pics/pic3.jpg" alt="Iqra" loading="lazy">
+            </div>
+            <div class="polaroid-caption">"Every prayer whispered in the quiet hours begins with you."</div>
+            <div class="polaroid-date-stamp">✦ Sacred Duas ✦</div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="polaroid-card">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-img-frame">
+              <img src="assets/pics/pic4.jpg" alt="Iqra" loading="lazy">
+            </div>
+            <div class="polaroid-caption">"Twenty years of radiant grace, kindness, and light."</div>
+            <div class="polaroid-date-stamp">✦ Iqra at 20 ✦</div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="polaroid-card">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-img-frame">
+              <img src="assets/pics/pic5.jpg" alt="Iqra" loading="lazy">
+            </div>
+            <div class="polaroid-caption">"Ali & Iqra • Written in the stars, together in this life and Jannah."</div>
+            <div class="polaroid-date-stamp">✦ Forever & Always ✦</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SURPRISE 3: 3D VOWS TIME-CAPSULE ─── -->
+      <div class="vows-capsule-container">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #d4af37; font-weight: 700;">
+          Surprise III • دل کے عہد
+        </div>
+        <h3 style="font-family: var(--font-romantic); font-size: 30px; color: #9b2259; margin: 4px 0 10px;">
+          The 5 Sacred Vows of Ali
+        </h3>
+        <p style="font-size: 13px; color: #723b56; margin-bottom: 12px;">
+          Tap the ribbon to untie and reveal Ali's promises to Iqra 🎀
+        </p>
+
+        <!-- 3D Gift Box Animation -->
+        <div class="gift-box-visual" id="giftBoxVisual">
+          <div class="gift-box-base">
+            <div class="gift-ribbon-vertical"></div>
+          </div>
+          <div class="gift-box-lid" id="giftBoxLid">
+            <span class="gift-bow">🎀</span>
+          </div>
         </div>
 
-        <!-- Urdu Sentiment -->
-        <div class="urdu-poetry" style="font-size: 20px; color: var(--rose-deep); margin: 12px 0 16px;">
+        <button class="btn-royal" id="untieRibbonBtn" style="font-size: 13.5px; padding: 10px 22px; margin: 12px auto 8px; display: inline-flex; align-items: center; gap: 8px;">
+          <span>✨</span> Untie The Golden Ribbon
+        </button>
+
+        <!-- The 5 Revealed Vows -->
+        <div class="vows-revealed-list" id="vowsRevealedList">
+          <div class="vow-card-item">
+            <div class="vow-number">Vow I • عزت و تحفظ</div>
+            <div class="vow-text">To honor, protect, and cherish your heart through every season of life.</div>
+          </div>
+          <div class="vow-card-item">
+            <div class="vow-number">Vow II • خوشی اور سکون</div>
+            <div class="vow-text">To be your greatest comfort on hard days and your biggest celebration on joyful ones.</div>
+          </div>
+          <div class="vow-card-item">
+            <div class="vow-number">Vow III • جنت کا راستہ</div>
+            <div class="vow-text">To walk beside you on the path toward Jannah, hand in hand and prayer in heart.</div>
+          </div>
+          <div class="vow-card-item">
+            <div class="vow-number">Vow IV • خوابوں کی تعبیر</div>
+            <div class="vow-text">To support your dreams, believe in your ambitions, and never take your smile for granted.</div>
+          </div>
+          <div class="vow-card-item">
+            <div class="vow-number">Vow V • ابدی محبت</div>
+            <div class="vow-text">To love you more deeply and tenderly with every passing sunrise.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SURPRISE 4: ETERNAL DECREE SCROLL & WAX SEAL ─── -->
+      <div class="eternal-letter-scroll">
+        <div class="parchment-corner tl"></div>
+        <div class="parchment-corner tr"></div>
+        <div class="parchment-corner bl"></div>
+        <div class="parchment-corner br"></div>
+
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #d4af37; text-align: center; font-weight: 700;">
+          Surprise IV • ابدی تحریر
+        </div>
+        <h2 class="letter-parchment-title">Happy 20th Birthday, Iqra</h2>
+        
+        <div style="font-size: 11px; text-align: center; letter-spacing: 2px; color: var(--gold-warm); text-transform: uppercase; font-weight: 700;">
+          ✦ ALI & IQRA • FOREVER & ALWAYS ✦
+        </div>
+
+        <!-- Dignified classical Urdu Couplet (No 'Jaan') -->
+        <div class="urdu-poetry" style="font-size: 21px; color: #9b2259; margin: 16px 0 18px; line-height: 1.8;">
           مری ہر سانس تمہاری امانت ہے، آج بھی اور ہمیشہ بھی ❤️
         </div>
 
         <p class="letter-parchment-body">
-          From the day Allah crossed our paths on <strong>21-08-24</strong>, my entire universe found its true home.
+          From the day Allah crossed our paths on <strong>21-08-2024</strong>, my entire universe found its true sanctuary.
           <br><br>
           Today you turn 20 years old. Twenty years of spreading warmth, sweetness, and light to everyone fortunate enough to know you.
           Every dream I build for our future has your smile at the very heart of it.
@@ -369,18 +1211,28 @@
           May your 20s be the prelude to a lifetime of adventures, prayers fulfilled, and boundless joy in this life and in Jannah.
         </p>
 
+        <!-- Interactive Wax Seal Press Button -->
+        <div class="wax-seal-press-area">
+          <div class="wax-seal-btn" id="waxSealBtn" title="Press to seal with royal wax">
+            <img src="assets/wax-seal.svg" alt="Wax Seal" style="width: 44px; height: 44px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+          </div>
+          <div style="font-size: 11.5px; color: #a83b6b; font-weight: 700; margin-top: 8px;" id="sealStatusText">
+            Tap Wax Seal to Stamp Our Eternal Vow 📜✨
+          </div>
+        </div>
+
         <div class="letter-signature">
           With all the love in my soul,<br>
-          Yours, Now & In Jannah ❤️
+          Ali ❤️
         </div>
       </div>
 
       <!-- Celebration Action -->
-      <button class="btn-royal" id="celebrateBtn">
+      <button class="btn-royal" id="celebrateBtn" style="width: 100%; margin-bottom: 20px;">
         Launch Grand Birthday Fireworks 🎆
       </button>
 
-      <div style="height: 30px;"></div>
+      <div style="height: 35px;"></div>
     </div>
   </div>
 
@@ -394,11 +1246,13 @@
     const inputs = [c1, c2, c3];
     const unlockBtn = document.getElementById('unlockVaultBtn');
     const errorMsg = document.getElementById('errorMsg');
-    const vaultBox = document.getElementById('vaultBox');
+    const vaultCard = document.getElementById('vaultCard');
+    const vaultPortal = document.getElementById('vaultPortal');
     const vaultWheel = document.getElementById('vaultWheel');
     const vaultStage = document.getElementById('vaultStage');
     const treasureChamber = document.getElementById('treasureChamber');
 
+    // Input Handling with Acoustic Clicks
     inputs.forEach((input, index) => {
       input.addEventListener('input', () => {
         window.triggerHaptic(10);
@@ -419,6 +1273,16 @@
     });
 
     unlockBtn.addEventListener('click', verifyAndUnlock);
+    vaultWheel.addEventListener('click', () => {
+      window.triggerHaptic(15);
+      if (window.BirthdayAudio) window.BirthdayAudio.playMechanicalClick();
+      vaultWheel.style.transform = `rotate(${Math.floor(Math.random() * 360)}deg)`;
+      setTimeout(() => {
+        if (!vaultPortal.classList.contains('unlocked')) {
+          vaultWheel.style.transform = '';
+        }
+      }, 500);
+    });
 
     function verifyAndUnlock() {
       const v1 = c1.value.trim();
@@ -427,44 +1291,58 @@
 
       if (v1 === CODE_PARTS[0] && v2 === CODE_PARTS[1] && v3 === CODE_PARTS[2]) {
         errorMsg.style.display = 'none';
-        window.triggerHaptic([50, 100, 50, 100]);
+        window.triggerHaptic([60, 100, 60, 120]);
 
         if (window.BirthdayAudio) {
-          window.BirthdayAudio.playHarpChime([523.25, 659.25, 783.99, 1046.5]);
+          window.BirthdayAudio.playMechanicalClick();
+          setTimeout(() => {
+            window.BirthdayAudio.playHarpChime([523.25, 659.25, 783.99, 1046.5]);
+          }, 350);
         }
 
-        vaultWheel.textContent = '🔓';
-        vaultBox.classList.add('unlocked');
+        // Trigger Door & Wheel 3D Unlock Animation
+        vaultPortal.classList.add('unlocked');
+        vaultCard.classList.add('unlocked');
 
-        // Launch Grand Celebration Fireworks!
+        // Launch celebratory fireworks
         if (window.Fireworks) {
-          window.Fireworks.grandCelebration(8);
+          window.Fireworks.grandCelebration(7);
         }
 
+        // Transition to Treasure Chamber
         setTimeout(() => {
-          vaultStage.style.display = 'none';
-          treasureChamber.style.display = 'block';
-          treasureChamber.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 1100);
+          vaultStage.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          vaultStage.style.opacity = '0';
+          vaultStage.style.transform = 'scale(0.9)';
+          
+          setTimeout(() => {
+            vaultStage.style.display = 'none';
+            treasureChamber.style.display = 'block';
+            treasureChamber.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 600);
+        }, 1300);
 
       } else {
         window.triggerHaptic([80, 80]);
         errorMsg.style.display = 'block';
-        vaultBox.style.animation = 'shakeVault 0.5s ease';
-        setTimeout(() => { vaultBox.style.animation = ''; }, 500);
+        vaultCard.style.animation = 'shakeVault 0.5s ease';
+        setTimeout(() => { vaultCard.style.animation = ''; }, 500);
       }
     }
 
-    // Voice Note Engine
+    // ─── SURPRISE 1: VOICE NOTE & VU METERS ───
     const voiceBtn = document.getElementById('voicePlayBtn');
     const spoolL = document.getElementById('spoolLeft');
     const spoolR = document.getElementById('spoolRight');
     const waveViz = document.getElementById('waveVisualizer');
     const statusTxt = document.getElementById('voiceStatusText');
     const audioEl = document.getElementById('realVoiceAudio');
+    const vuL = document.getElementById('vuNeedleL');
+    const vuR = document.getElementById('vuNeedleR');
 
     let isVoicePlaying = false;
     let synthUtterance = null;
+    let vuInterval = null;
 
     voiceBtn.addEventListener('click', () => {
       window.triggerHaptic(15);
@@ -490,7 +1368,7 @@
 
       window.speechSynthesis.cancel();
       synthUtterance = new SpeechSynthesisUtterance(
-        "Happy 20th Birthday, my beautiful love. You are the most radiant blessing Allah has ever placed in my life. Every single beat of my heart belongs to you, today, tomorrow, and for all of eternity."
+        "Happy 20th Birthday, Iqra. You are the most radiant blessing Allah has ever placed in my life. Every single beat of my heart belongs to you, today, tomorrow, and for all of eternity."
       );
       synthUtterance.rate = 0.88;
       synthUtterance.pitch = 1.05;
@@ -524,13 +1402,65 @@
       spoolL.classList.toggle('spinning', playing);
       spoolR.classList.toggle('spinning', playing);
       waveViz.classList.toggle('playing', playing);
-      statusTxt.textContent = playing ? 'Playing Voice Message... 🌸' : 'Tap to listen again 🎤';
+      statusTxt.textContent = playing ? 'Playing Voice Message for Iqra... 🌸' : 'Tap to listen again 🎤';
+
+      if (playing) {
+        vuInterval = setInterval(() => {
+          const degL = -35 + Math.random() * 55;
+          const degR = -35 + Math.random() * 55;
+          if (vuL) vuL.style.transform = `rotate(${degL}deg)`;
+          if (vuR) vuR.style.transform = `rotate(${degR}deg)`;
+        }, 120);
+      } else {
+        if (vuInterval) clearInterval(vuInterval);
+        if (vuL) vuL.style.transform = 'rotate(-35deg)';
+        if (vuR) vuR.style.transform = 'rotate(-35deg)';
+      }
     }
 
+    // ─── SURPRISE 3: 3D GIFT CAPSULE UNTIE ───
+    const giftVisual = document.getElementById('giftBoxVisual');
+    const untieBtn = document.getElementById('untieRibbonBtn');
+    const vowsList = document.getElementById('vowsRevealedList');
+
+    function openCapsule() {
+      window.triggerHaptic([30, 60]);
+      if (window.BirthdayAudio) window.BirthdayAudio.playHarpChime([659.25, 783.99, 1046.5]);
+      giftVisual.classList.add('opened');
+      untieBtn.style.display = 'none';
+      vowsList.style.display = 'block';
+
+      if (window.Fireworks) {
+        window.Fireworks.burst(window.innerWidth / 2, window.innerHeight * 0.45, 20);
+      }
+    }
+
+    giftVisual.addEventListener('click', openCapsule);
+    untieBtn.addEventListener('click', openCapsule);
+
+    // ─── SURPRISE 4: INTERACTIVE WAX SEAL STAMP ───
+    const waxBtn = document.getElementById('waxSealBtn');
+    const sealStatus = document.getElementById('sealStatusText');
+
+    waxBtn.addEventListener('click', () => {
+      window.triggerHaptic([80, 120]);
+      waxBtn.classList.add('stamped');
+      sealStatus.textContent = '✦ Sealed For All of Eternity • Ali & Iqra ✦';
+      sealStatus.style.color = '#c0392b';
+
+      if (window.BirthdayAudio) {
+        window.BirthdayAudio.playHarpChime([523.25, 659.25, 783.99, 1046.5, 1318.5]);
+      }
+      if (window.Fireworks) {
+        window.Fireworks.grandCelebration(8);
+      }
+    });
+
+    // Grand Fireworks Button
     document.getElementById('celebrateBtn').addEventListener('click', () => {
       window.triggerHaptic([30, 60, 30]);
       if (window.BirthdayAudio) window.BirthdayAudio.playBirthdayMelody();
-      if (window.Fireworks) window.Fireworks.grandCelebration(7);
+      if (window.Fireworks) window.Fireworks.grandCelebration(8);
     });
   </script>
 </body>
