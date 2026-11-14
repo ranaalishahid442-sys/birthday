@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>A Royal Invitation • Happy 20th Birthday My Love</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ═══════════════════════════════════════════
+       PAGE 1 THEME: BLUSH ROSE GARDEN & ROYAL LETTER
+       ═══════════════════════════════════════════ */
+    body {
+      background: radial-gradient(circle at 50% 15%, #fff0f5 0%, #ffe4ec 50%, #fed6e2 100%);
+      overflow-x: hidden;
+    }
+
+    .floral-garland {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      font-size: 20px;
+      margin-bottom: 8px;
+      animation: floatGentle 3s infinite ease-in-out;
+    }
+
+    .turning-20-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      background: #ffffff;
+      border: 1.5px solid var(--border-gold);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-warm);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 15px rgba(212, 160, 23, 0.2);
+    }
+
+    /* ═══════════════════════════════════════════
+       CEREMONY STEP INDICATOR
+       ═══════════════════════════════════════════ */
+    .unseal-step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 18px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1.5px solid var(--border-rose);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--rose-deep);
+      box-shadow: 0 4px 15px rgba(232, 67, 147, 0.16);
+      margin-bottom: 14px;
+      transition: all 0.4s ease;
+      user-select: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       STAGE & 3D ENVELOPE CONTAINER
+       ═══════════════════════════════════════════ */
+    .envelope-stage {
+      width: 100%;
+      max-width: 380px;
+      margin: 10px auto 20px;
+      perspective: 1400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 330px;
+      height: 225px;
+      background: linear-gradient(145deg, #ffffff 0%, #fff2f6 50%, #fed8e4 100%);
+      border-radius: 18px;
+      box-shadow: 0 22px 50px rgba(232, 67, 147, 0.28), 0 0 30px rgba(255, 255, 255, 0.9);
+      border: 2px solid rgba(255, 117, 160, 0.45);
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+      cursor: pointer;
+    }
+
+    .envelope-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px dashed rgba(212, 175, 55, 0.4);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    /* Royal Postage Stamp in Corner */
+    .envelope-stamp {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 48px;
+      height: 56px;
+      background: #fff;
+      border: 1.5px dashed #d4af37;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .envelope-stamp-inner {
+      width: 100%;
+      height: 100%;
+      border: 0.5px solid rgba(232, 67, 147, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #fff5f8, #ffeef4);
+    }
+    .envelope-stamp-icon { font-size: 16px; line-height: 1; }
+    .envelope-stamp-txt { font-size: 7px; font-weight: 800; color: #b8860b; text-transform: uppercase; margin-top: 2px; letter-spacing: 0.5px; }
+
+    /* Postmark Circular Cancellation */
+    .envelope-postmark {
+      position: absolute;
+      top: 22px;
+      right: 48px;
+      width: 52px;
+      height: 52px;
+      border: 1.5px solid rgba(184, 134, 11, 0.45);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-15deg);
+      font-size: 6.5px;
+      font-weight: 800;
+      color: rgba(184, 134, 11, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Envelope Top Flap */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 165px solid transparent;
+      border-right: 165px solid transparent;
+      border-top: 125px solid #ffaec7;
+      transform-origin: top center;
+      transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s;
+      z-index: 6;
+      filter: drop-shadow(0 4px 12px rgba(232, 67, 147, 0.22));
+    }
+
+    .envelope-wrapper.unsealed .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    /* ═══════════════════════════════════════════
+       INTERACTIVE SILK RIBBON & BOW (STEP 1)
+       ═══════════════════════════════════════════ */
+    .ribbon-container {
+      position: absolute;
+      inset: 0;
+      z-index: 12;
+      pointer-events: all;
+      transition: opacity 0.5s ease;
+    }
+
+    .ribbon-container.untied {
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    /* Horizontal Satin Band */
+    .ribbon-band-h {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 28px;
+      transform: translateY(-50%);
+      background: linear-gradient(180deg, #ffd700 0%, #fff0a6 35%, #d4af37 70%, #b8860b 100%);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      z-index: 10;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+    }
+
+    /* Vertical Satin Band */
+    .ribbon-band-v {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 28px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #ffd700 0%, #fff0a6 35%, #d4af37 70%, #b8860b 100%);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15), inset 1px 0 2px rgba(255, 255, 255, 0.8);
+      z-index: 10;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+    }
+
+    .ribbon-container.untied .ribbon-band-h {
+      transform: translateY(-50%) scaleX(0);
+      opacity: 0;
+    }
+
+    .ribbon-container.untied .ribbon-band-v {
+      transform: translateX(-50%) scaleY(0);
+      opacity: 0;
+    }
+
+    /* Center Silk Ribbon Bow */
+    .ribbon-bow-wrap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 14;
+      cursor: pointer;
+      filter: drop-shadow(0 6px 14px rgba(184, 134, 11, 0.45));
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: ribbonBreath 2.8s infinite ease-in-out alternate;
+    }
+    .ribbon-bow-wrap:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    .ribbon-bow-wrap:active {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    @keyframes ribbonBreath {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      100% { transform: translate(-50%, -50%) scale(1.05); }
+    }
+
+    .ribbon-container.untied .ribbon-bow-wrap {
+      animation: ribbonDissolve 0.7s forwards ease-in;
+    }
+
+    @keyframes ribbonDissolve {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.3) rotate(15deg); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) scale(0.2) rotate(45deg); opacity: 0; }
+    }
+
+    /* ═══════════════════════════════════════════
+       ROYAL "20" WAX SEAL WITH CRACK PHYSICS (STEP 2)
+       ═══════════════════════════════════════════ */
+    .wax-seal-container {
+      position: absolute;
+      top: 92px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 82px;
+      height: 82px;
+      z-index: 8;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .wax-seal-container.active-pulse {
+      animation: sealPulse 1.8s infinite alternate ease-in-out;
+    }
+
+    @keyframes sealPulse {
+      0% { filter: drop-shadow(0 0 10px rgba(255, 117, 160, 0.5)) drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)); transform: translate(-50%, -50%) scale(1); }
+      100% { filter: drop-shadow(0 0 18px rgba(255, 117, 160, 0.85)) drop-shadow(0 0 25px rgba(255, 215, 0, 0.7)); transform: translate(-50%, -50%) scale(1.06); }
+    }
+
+    /* Fracture Overlay Lines on Seal */
+    .seal-crack-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .wax-seal-container.cracking .seal-crack-svg {
+      opacity: 1;
+    }
+
+    .wax-seal-container.shattered {
+      animation: sealShatter 0.75s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+      pointer-events: none;
+    }
+
+    @keyframes sealShatter {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      40% { transform: translate(-50%, -50%) scale(1.2) rotate(10deg); opacity: 0.9; }
+      100% { transform: translate(-50%, -50%) scale(0.1) rotate(90deg); opacity: 0; }
+    }
+
+    /* ═══════════════════════════════════════════
+       GRAND 3D TRI-FOLD DECKLE PARCHMENT LETTER
+       ═══════════════════════════════════════════ */
+    .parchment-viewport {
+      display: none;
+      width: 100%;
+      max-width: 375px;
+      margin: 18px auto 24px;
+      position: relative;
+      animation: emergeLetter 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      z-index: 20;
+    }
+
+    @keyframes emergeLetter {
+      0% { opacity: 0; transform: translateY(40px) scale(0.92); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .parchment-sheet {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(135deg, #fffdf8 0%, #fff9f0 50%, #fff4f8 100%);
+      border: 2px solid rgba(212, 175, 55, 0.6);
+      border-radius: 18px;
+      padding: 30px 20px 24px;
+      box-shadow: 0 20px 60px rgba(232, 67, 147, 0.25), 0 0 35px rgba(255, 255, 255, 0.95);
+      position: relative;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+
+    /* Deckle Gold Leaf Torn Edge Border */
+    .parchment-sheet::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1.5px dashed rgba(212, 175, 55, 0.45);
+      border-radius: 14px;
+      pointer-events: none;
+    }
+
+    /* Watermark Rose in Center Background */
+    .parchment-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 140px;
+      opacity: 0.04;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Dried Pressed Rose with Washi Tape */
+    .pressed-rose-badge {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 5;
+    }
+
+    .washi-tape-blush {
+      width: 32px;
+      height: 10px;
+      background: linear-gradient(90deg, rgba(255, 182, 193, 0.85), rgba(255, 218, 185, 0.85));
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transform: rotate(-8deg);
+      margin-bottom: -4px;
+    }
+
+    .pressed-flower-icon {
+      font-size: 26px;
+      filter: drop-shadow(0 2px 4px rgba(232, 67, 147, 0.3));
+      transform: rotate(5deg);
+    }
+
+    /* Royal Calligraphy Crown in Top-Right */
+    .parchment-insignia {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      text-align: right;
+      z-index: 5;
+    }
+    .insignia-crown { font-size: 18px; line-height: 1; }
+    .insignia-date { font-family: var(--font-serif); font-size: 8px; font-weight: 700; color: #b8860b; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* Shimmering Golden Calligraphy Header */
+    .parchment-header {
+      text-align: center;
+      margin-top: 12px;
+      margin-bottom: 8px;
+    }
+
+    .shimmer-script-title {
+      font-family: var(--font-romantic);
+      font-size: 38px;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #d81b60 0%, #b8860b 40%, #e84393 70%, #d4af37 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldInkFlow 4s linear infinite;
+    }
+
+    @keyframes goldInkFlow {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .parchment-subheading {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold-warm);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* Romantic Letter Body */
+    .parchment-body {
+      font-family: var(--font-classy);
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: #3f142b;
+      margin: 18px 4px 14px;
+      text-align: justify;
+      text-justify: inter-word;
+      position: relative;
+      z-index: 2;
+    }
+
+    .parchment-body p {
+      margin-bottom: 12px;
+    }
+
+    .parchment-salutation {
+      font-family: var(--font-romantic);
+      font-size: 26px;
+      color: var(--rose-deep);
+      display: block;
+      margin-bottom: 6px;
+      text-align: left;
+    }
+
+    /* Royal Urdu Couplet Calligraphy Box */
+    .urdu-shair-parchment {
+      background: linear-gradient(135deg, #fffbf4 0%, #fff0f5 100%);
+      border: 1.5px solid var(--border-gold);
+      border-radius: 14px;
+      padding: 16px 14px;
+      margin: 16px 0;
+      text-align: center;
+      box-shadow: inset 0 0 12px rgba(212, 160, 23, 0.12), 0 4px 15px rgba(232, 67, 147, 0.08);
+      position: relative;
+    }
+
+    .urdu-shair-lines {
+      font-family: var(--font-urdu);
+      font-size: 19px;
+      line-height: 1.85;
+      color: #5c183b;
+      direction: rtl;
+    }
+
+    .urdu-shair-divider {
+      color: var(--gold-warm);
+      font-size: 14px;
+      margin: 6px 0;
+    }
+
+    /* Signature */
+    .parchment-signature {
+      text-align: right;
+      margin-top: 14px;
+      font-family: var(--font-romantic);
+      font-size: 26px;
+      color: var(--rose-deep);
+      line-height: 1.2;
+    }
+
+    .parchment-signature-sub {
+      font-family: var(--font-classy);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold-warm);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════
+       OUT-OF-THE-BOX SURPRISE 1: THE SECRET GOLDEN HEART LOCKET
+       ═══════════════════════════════════════════ */
+    .locket-section {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(212, 175, 55, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .locket-prompt-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #995c00;
+      background: #fff8e7;
+      padding: 4px 12px;
+      border-radius: 50px;
+      border: 1px solid #ffd700;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(212, 160, 23, 0.2);
+      animation: pulseGentle 2s infinite ease-in-out;
+    }
+
+    /* 3D Heart Locket */
+    .heart-locket-wrap {
+      width: 140px;
+      height: 110px;
+      perspective: 800px;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* The Closed Golden Heart Face */
+    .locket-cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 10;
+      filter: drop-shadow(0 6px 14px rgba(184, 134, 11, 0.4));
+    }
+
+    .heart-locket-wrap.opened .locket-cover {
+      transform: rotateY(-145deg);
+    }
+
+    /* The Inside Base of the Locket (Reveals Photo & Message) */
+    .locket-inside {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      background: radial-gradient(circle, #fffdf8 0%, #fff1df 80%, #fedeb0 100%);
+      border: 2px solid #d4af37;
+      border-radius: 20px;
+      box-shadow: inset 0 0 10px rgba(184, 134, 11, 0.25);
+    }
+
+    .locket-photo-frame {
+      width: 52px;
+      height: 64px;
+      border-radius: 50% 50% 45% 45%;
+      overflow: hidden;
+      border: 2px solid #d4af37;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .locket-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    .locket-micro-letter {
+      flex: 1;
+      padding-left: 10px;
+      font-family: var(--font-serif);
+      font-size: 9.5px;
+      line-height: 1.35;
+      color: #5c183b;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    /* ═══════════════════════════════════════════
+       OUT-OF-THE-BOX SURPRISE 2: "SEAL WITH A KISS" (💋)
+       ═══════════════════════════════════════════ */
+    .kiss-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn-kiss-stamp {
+      background: linear-gradient(135deg, #ff75a0 0%, #e84393 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(232, 67, 147, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-kiss-stamp:hover { transform: scale(1.05); }
+    .btn-kiss-stamp:active { transform: scale(0.95); }
+
+    .kiss-count-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--rose-deep);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border-rose);
+      padding: 6px 12px;
+      border-radius: 50px;
+    }
+
+    /* Dynamic Kiss Marks on Parchment */
+    .stamped-kiss-mark {
+      position: absolute;
+      font-size: 32px;
+      line-height: 1;
+      pointer-events: none;
+      z-index: 15;
+      animation: kissPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      filter: drop-shadow(0 2px 5px rgba(232, 67, 147, 0.4));
+    }
+
+    @keyframes kissPop {
+      0% { transform: scale(0.2) rotate(var(--rot, 0deg)); opacity: 0; }
+      70% { transform: scale(1.25) rotate(var(--rot, 0deg)); opacity: 1; }
+      100% { transform: scale(1) rotate(var(--rot, 0deg)); opacity: 0.92; }
+    }
+
+    /* ═══════════════════════════════════════════
+       STARDUST PARTICLES OVER LETTER
+       ═══════════════════════════════════════════ */
+    .stardust-particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffd700;
+      box-shadow: 0 0 8px #ffd700, 0 0 15px #ff75a0;
+      pointer-events: none;
+      z-index: 30;
+      animation: stardustFade 0.8s ease-out forwards;
+    }
+
+    @keyframes stardustFade {
+      0% { transform: scale(1) translate(0, 0); opacity: 1; }
+      100% { transform: scale(0.2) translate(var(--tx, 0px), var(--ty, -25px)); opacity: 0; }
+    }
+
+    /* Controls beneath letter */
+    .parchment-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn-refold {
+      background: #ffffff;
+      border: 1.5px solid var(--border-gold);
+      color: var(--gold-warm);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(212, 160, 23, 0.15);
+      transition: all 0.3s ease;
+    }
+    .btn-refold:active { transform: scale(0.95); }
+
+    /* Countdown Grid */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      width: 100%;
+      margin: 14px 0 16px;
+    }
+
+    .countdown-box {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-rose);
+      border-radius: var(--radius-sm);
+      padding: 10px 4px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(232, 67, 147, 0.08);
+    }
+
+    .countdown-value {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--rose-deep);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .countdown-lbl {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 3px;
+      display: block;
+    }
+
+    .fireworks-quick-btn {
+      margin-top: 8px;
+      background: #fff;
+      border: 1.5px solid var(--border-gold);
+      color: var(--gold-warm);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(212, 160, 23, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .journey-action-wrap {
+      display: none;
+      width: 100%;
+      margin-top: 15px;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+    <!-- Top App Bar -->
+    <div class="top-bar">
+      <div class="chapter-badge">🌸 Chapter I • The Royal Invitation</div>
+      <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound">🎵</button>
+    </div>
+
+    <!-- Garland & Pill -->
+    <div class="floral-garland">🌸 🌹 🌷 💐 🌹 🌸</div>
+    <div class="turning-20-pill">✨ Turning 20 • A Milestone of Beauty ✨</div>
+
+    <!-- Romantic Header -->
+    <h1 class="title-romantic">Happy 20th Birthday</h1>
+    <h2 class="title-classy">To The Queen of My Heart</h2>
+    <p class="subtitle-soft">November 15, 2026 • A floral wonderland crafted with love</p>
+
+    <!-- Unsealing Step Pill -->
+    <div class="unseal-step-badge" id="unsealBadge">
+      <span>🎀</span> Step 1 of 2: Tap the Golden Ribbon to Untie
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         INTERACTIVE ENVELOPE STAGE (RIBBON & WAX SEAL)
+         ═══════════════════════════════════════════ -->
+    <div class="envelope-stage" id="envelopeStage">
+      <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope-flap" id="envelopeFlap"></div>
+        
+        <!-- Royal Postage Stamp & Cancellation -->
+        <div class="envelope-stamp">
+          <div class="envelope-stamp-inner">
+            <span class="envelope-stamp-icon">👑</span>
+            <span class="envelope-stamp-txt">NOOR 20</span>
+          </div>
+        </div>
+        <div class="envelope-postmark">
+          <span>★ ROYAL ★</span>
+          <span>15 NOV</span>
+          <span>PARIS/ISL</span>
+        </div>
+
+        <!-- Silk Ribbon Layer (Step 1) -->
+        <div class="ribbon-container" id="ribbonContainer" title="Tap to untie ribbon">
+          <div class="ribbon-band-h"></div>
+          <div class="ribbon-band-v"></div>
+          
+          <div class="ribbon-bow-wrap" id="ribbonBow">
+            <svg viewBox="0 0 100 80" width="76" height="60">
+              <defs>
+                <linearGradient id="bowGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fff4b8"/>
+                  <stop offset="40%" stop-color="#ffd700"/>
+                  <stop offset="80%" stop-color="#d4af37"/>
+                  <stop offset="100%" stop-color="#996515"/>
+                </linearGradient>
+                <filter id="bowShd">
+                  <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+                </filter>
+              </defs>
+              <!-- Left Loop -->
+              <path d="M 50 40 C 25 10 5 25 20 45 C 30 55 45 45 50 40 Z" fill="url(#bowGold)" filter="url(#bowShd)"/>
+              <!-- Right Loop -->
+              <path d="M 50 40 C 75 10 95 25 80 45 C 70 55 55 45 50 40 Z" fill="url(#bowGold)" filter="url(#bowShd)"/>
+              <!-- Left Fluttering Tail -->
+              <path d="M 45 42 Q 25 65 15 75 Q 30 70 42 50 Z" fill="url(#bowGold)" filter="url(#bowShd)"/>
+              <!-- Right Fluttering Tail -->
+              <path d="M 55 42 Q 75 65 85 75 Q 70 70 58 50 Z" fill="url(#bowGold)" filter="url(#bowShd)"/>
+              <!-- Center Brooch Knot -->
+              <circle cx="50" cy="40" r="10" fill="url(#bowGold)" filter="url(#bowShd)"/>
+              <circle cx="50" cy="40" r="6" fill="#e84393"/>
+              <circle cx="50" cy="40" r="2.5" fill="#ffffff"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Embossed "20" Wax Seal (Step 2) -->
+        <div class="wax-seal-container" id="waxSealContainer" title="Tap to break wax seal">
+          <img src="assets/wax-seal.svg" alt="Royal 20th Wax Seal" id="waxSealImg" style="width: 100%; height: 100%;">
+          
+          <!-- Dynamic Procedural Crack Lines -->
+          <svg class="seal-crack-svg" id="sealCracks" viewBox="0 0 100 100">
+            <path d="M50 15 L48 38 L30 45 L50 52 L68 40 L50 52 L54 78 L45 88" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M50 52 L22 68" stroke="#ffd700" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M50 52 L80 62" stroke="#ffd700" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         GRAND 3D TRI-FOLD DECKLE PARCHMENT LETTER
+         ═══════════════════════════════════════════ -->
+    <div class="parchment-viewport" id="parchmentViewport">
+      <div class="parchment-sheet" id="parchmentSheet">
+        <!-- Watermark Rose Background -->
+        <div class="parchment-watermark">🌹</div>
+
+        <!-- Dried Pressed Flower & Washi Tape -->
+        <div class="pressed-rose-badge">
+          <div class="washi-tape-blush"></div>
+          <span class="pressed-flower-icon">🌸</span>
+        </div>
+
+        <!-- Insignia Top-Right -->
+        <div class="parchment-insignia">
+          <div class="insignia-crown">👑</div>
+          <div class="insignia-date">15 • XI • 2026</div>
+        </div>
+
+        <!-- Shimmering Calligraphy Header -->
+        <div class="parchment-header">
+          <h2 class="shimmer-script-title">To The Queen of My Heart</h2>
+          <div class="parchment-subheading">✨ Celebrating 20 Beautiful Years of Noor ✨</div>
+        </div>
+
+        <!-- Letter Body -->
+        <div class="parchment-body">
+          <span class="parchment-salutation">My Dearest Soul,</span>
+          <p>
+            Twenty years ago, Allah blessed this world with your existence, and on the day you entered my life, my heart found its forever sanctuary and serene peace.
+          </p>
+          <p>
+            Stepping into your twenties today, you carry a radiance that turns every ordinary moment into something extraordinary. Your kindness, your gentle laughter, and your pure soul inspire me every single day.
+          </p>
+          <p>
+            I have crafted this entire royal celebration just for you: your sacred blessings, your 20th cake cutting ceremony with memories hanging in the air, our private cinema, and sweet secrets waiting to be unlocked.
+          </p>
+        </div>
+
+        <!-- Urdu Calligraphy Couplet -->
+        <div class="urdu-shair-parchment">
+          <div class="urdu-shair-lines">
+            تیرے چہرے کی رونق رہے سدا آباد<br>
+            تیری مسکان رہے سدا شاداب<br>
+            <div class="urdu-shair-divider">✦ 💖 ✦</div>
+            بیسویں سالگرہ مبارک ہو میری جان<br>
+            تجھ سے ہی وابستہ ہے میری ہر پہچان
+          </div>
+        </div>
+
+        <!-- Signature -->
+        <div class="parchment-signature">
+          Forever & Always Yours,<br>
+          <span style="font-size: 32px; color: #b81b6c;">Ali</span> 🕊️
+          <div class="parchment-signature-sub">On Your 20th Birthday</div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════
+             OUT-OF-THE-BOX SURPRISE 1: SECRET GOLDEN HEART LOCKET
+             ═══════════════════════════════════════════ -->
+        <div class="locket-section">
+          <div class="locket-prompt-pill" id="locketPill">
+            <span>✨</span> Tap The Golden Locket to Reveal Secret
+          </div>
+
+          <div class="heart-locket-wrap" id="heartLocket" title="Tap to open locket">
+            <!-- Inside (Photo & Secret Promise) -->
+            <div class="locket-inside">
+              <div class="locket-photo-frame">
+                <img src="assets/pics/pic2.jpg" alt="Her Radiant Smile">
+              </div>
+              <div class="locket-micro-letter">
+                <div style="font-size: 10px; font-weight: 800; color: #b81b6c; margin-bottom: 2px;">SECRET PROMISE 💌</div>
+                In a world of 8 billion souls, my eyes and my heart will always look only for you. Happy 20th, my whole world! 👑
+              </div>
+            </div>
+
+            <!-- Front Locket Cover (3D Hinge) -->
+            <div class="locket-cover">
+              <svg viewBox="0 0 140 110" width="100%" height="100%">
+                <defs>
+                  <linearGradient id="locketGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fff6cc"/>
+                    <stop offset="40%" stop-color="#ffd700"/>
+                    <stop offset="80%" stop-color="#d4af37"/>
+                    <stop offset="100%" stop-color="#aa771c"/>
+                  </linearGradient>
+                  <filter id="locketGlow">
+                    <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+                  </filter>
+                </defs>
+                <path d="M 70 100 C 70 100 12 60 12 30 C 12 12 28 4 45 4 C 57 4 66 12 70 20 C 74 12 83 4 95 4 C 112 4 128 12 128 30 C 128 60 70 100 70 100 Z" fill="url(#locketGold)" filter="url(#locketGlow)" stroke="#fff" stroke-width="1.5"/>
+                <!-- Filigree Pattern -->
+                <circle cx="70" cy="45" r="18" fill="none" stroke="#aa771c" stroke-width="1.2" stroke-dasharray="3,2"/>
+                <circle cx="70" cy="45" r="8" fill="#e84393"/>
+                <circle cx="70" cy="45" r="3.5" fill="#ffffff"/>
+                <!-- Latch -->
+                <circle cx="124" cy="30" r="3" fill="#ffffff" stroke="#aa771c" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════
+             OUT-OF-THE-BOX SURPRISE 2: "SEAL WITH A KISS"
+             ═══════════════════════════════════════════ -->
+        <div class="kiss-toolbar">
+          <button class="btn-kiss-stamp" id="kissStampBtn">
+            <span>💋</span> Leave a Rose Kiss
+          </button>
+          <div class="kiss-count-badge" id="kissCounter">
+            Kisses: <span id="kissCountVal">0</span> 💋
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls beneath the parchment -->
+      <div class="parchment-controls">
+        <button class="btn-refold" id="refoldBtn">
+          <span>🔄</span> Re-Seal Letter
+        </button>
+      </div>
+    </div>
+
+    <!-- Countdown Card -->
+    <div class="glass-card" style="margin-top: 20px;">
+      <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--rose-deep); text-align: center; margin-bottom: 8px; font-weight: 700;">
+        ⏳ Countdown To Your 20th Birthday
+      </div>
+      <div class="countdown-grid">
+        <div class="countdown-box">
+          <span class="countdown-value" id="cdDays">00</span>
+          <span class="countdown-lbl">Days</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-value" id="cdHours">00</span>
+          <span class="countdown-lbl">Hours</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-value" id="cdMins">00</span>
+          <span class="countdown-lbl">Mins</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-value" id="cdSecs">00</span>
+          <span class="countdown-lbl">Secs</span>
+        </div>
+      </div>
+      
+      <!-- Quick Fireworks Button -->
+      <div style="text-align: center;">
+        <button class="fireworks-quick-btn" id="launchFwBtn">
+          <span>🎆</span> Launch Celebratory Fireworks
+        </button>
+      </div>
+    </div>
+
+    <!-- Revealed Action Button -->
+    <div class="journey-action-wrap" id="journeyActionWrap">
+      <a href="blessing.html" class="btn-royal" id="nextChapterBtn">
+        Enter The Sanctuary of Noor 🕊️ →
+      </a>
+    </div>
+  </div>
+
+  <script src="assets/fireworks.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    // Elements
+    const envelope = document.getElementById('envelopeWrapper');
+    const envelopeStage = document.getElementById('envelopeStage');
+    const ribbonContainer = document.getElementById('ribbonContainer');
+    const ribbonBow = document.getElementById('ribbonBow');
+    const waxSealContainer = document.getElementById('waxSealContainer');
+    const unsealBadge = document.getElementById('unsealBadge');
+    const parchmentViewport = document.getElementById('parchmentViewport');
+    const parchmentSheet = document.getElementById('parchmentSheet');
+    const heartLocket = document.getElementById('heartLocket');
+    const locketPill = document.getElementById('locketPill');
+    const kissStampBtn = document.getElementById('kissStampBtn');
+    const kissCounter = document.getElementById('kissCountVal');
+    const refoldBtn = document.getElementById('refoldBtn');
+    const actionWrap = document.getElementById('journeyActionWrap');
+    const fwBtn = document.getElementById('launchFwBtn');
+
+    let stage = 1; // 1: ribbon tied, 2: ribbon untied, 3: letter opened
+    let kissCount = 0;
+    let lastStardustTime = 0;
+
+    // ─── STEP 1: UNTIE SILK RIBBON ───
+    function untieRibbon() {
+      if (stage !== 1) return;
+      stage = 2;
+
+      window.triggerHaptic([35, 45]);
+      if (window.BirthdayAudio && window.BirthdayAudio.playRibbonUntie) {
+        window.BirthdayAudio.playRibbonUntie();
+      }
+
+      ribbonContainer.classList.add('untied');
+      waxSealContainer.classList.add('active-pulse');
+
+      unsealBadge.innerHTML = '<span>✨</span> Step 2 of 2: Tap the Royal Wax Seal to Crack & Open';
+      unsealBadge.style.borderColor = '#d4af37';
+      unsealBadge.style.color = '#b8860b';
+    }
+
+    ribbonBow.addEventListener('click', (e) => {
+      e.stopPropagation();
+      untieRibbon();
+    });
+    ribbonContainer.addEventListener('click', untieRibbon);
+
+    // ─── STEP 2: CRACK WAX SEAL & UNFOLD PARCHMENT ───
+    function crackWaxSeal() {
+      if (stage !== 2) return;
+      stage = 3;
+
+      window.triggerHaptic([50, 40, 80]);
+      waxSealContainer.classList.add('cracking');
+
+      if (window.BirthdayAudio) {
+        if (window.BirthdayAudio.playWaxCrackHeavy) {
+          window.BirthdayAudio.playWaxCrackHeavy();
+        } else if (window.BirthdayAudio.playSealBreak) {
+          window.BirthdayAudio.playSealBreak();
+        }
+
+        setTimeout(() => {
+          if (window.BirthdayAudio.playHarpChime) {
+            window.BirthdayAudio.playHarpChime([523.25, 659.25, 783.99, 1046.5, 1318.5]);
+          }
+        }, 320);
+      }
+
+      // Shatter seal and open envelope flap
+      setTimeout(() => {
+        waxSealContainer.classList.add('shattered');
+        envelope.classList.add('unsealed');
+
+        // Fireworks celebration burst
+        if (window.Fireworks) {
+          window.Fireworks.grandCelebration(4);
+        }
+
+        unsealBadge.innerHTML = '<span>💌</span> Royal Letter Unfolded With Love';
+        unsealBadge.style.borderColor = '#e84393';
+        unsealBadge.style.color = '#e84393';
+
+        // Emerge Parchment Sheet
+        setTimeout(() => {
+          parchmentViewport.style.display = 'block';
+          parchmentViewport.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          actionWrap.style.display = 'block';
+        }, 600);
+      }, 350);
+    }
+
+    waxSealContainer.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (stage === 1) {
+        untieRibbon();
+        setTimeout(crackWaxSeal, 600);
+      } else if (stage === 2) {
+        crackWaxSeal();
+      }
+    });
+
+    envelope.addEventListener('click', () => {
+      if (stage === 1) {
+        untieRibbon();
+      } else if (stage === 2) {
+        crackWaxSeal();
+      }
+    });
+
+    // ─── SURPRISE 1: GOLDEN HEART LOCKET ───
+    heartLocket.addEventListener('click', () => {
+      const isOpened = heartLocket.classList.toggle('opened');
+      window.triggerHaptic([40, 60]);
+
+      if (window.BirthdayAudio && window.BirthdayAudio.playLocketHinge) {
+        window.BirthdayAudio.playLocketHinge();
+      }
+
+      if (isOpened) {
+        locketPill.innerHTML = '<span>💖</span> Secret Revealed! A Forever Promise';
+        locketPill.style.background = '#ffe6ef';
+        locketPill.style.borderColor = '#ff75a0';
+        locketPill.style.color = '#d81b60';
+
+        // Mini confetti hearts
+        if (window.Fireworks) {
+          window.Fireworks.launchSparkles(window.innerWidth / 2, window.innerHeight * 0.65);
+        }
+      } else {
+        locketPill.innerHTML = '<span>✨</span> Tap The Golden Locket to Reveal Secret';
+        locketPill.style.background = '#fff8e7';
+        locketPill.style.borderColor = '#ffd700';
+        locketPill.style.color = '#995c00';
+      }
+    });
+
+    // ─── SURPRISE 2: "SEAL WITH A KISS" (💋) ───
+    function stampKiss(x, y) {
+      kissCount++;
+      kissCounter.textContent = kissCount;
+      window.triggerHaptic([30, 40]);
+
+      if (window.BirthdayAudio && window.BirthdayAudio.playKissSmooch) {
+        window.BirthdayAudio.playKissSmooch();
+      }
+
+      const kiss = document.createElement('div');
+      kiss.className = 'stamped-kiss-mark';
+      kiss.textContent = '💋';
+      const rot = (Math.random() * 30 - 15).toFixed(1);
+      kiss.style.setProperty('--rot', rot + 'deg');
+
+      // Position relative to parchmentSheet
+      const rect = parchmentSheet.getBoundingClientRect();
+      const posX = x !== undefined ? (x - rect.left - 16) : (rect.width * (0.35 + Math.random() * 0.4));
+      const posY = y !== undefined ? (y - rect.top - 16) : (rect.height * (0.65 + Math.random() * 0.2));
+
+      kiss.style.left = Math.max(10, Math.min(rect.width - 40, posX)) + 'px';
+      kiss.style.top = Math.max(10, Math.min(rect.height - 40, posY)) + 'px';
+
+      parchmentSheet.appendChild(kiss);
+    }
+
+    kissStampBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      stampKiss();
+    });
+
+    // Tap directly on the parchment to leave a kiss!
+    parchmentSheet.addEventListener('click', (e) => {
+      // Don't stamp if clicking the locket, buttons, or links
+      if (e.target.closest('.locket-section') || e.target.closest('.kiss-toolbar') || e.target.closest('.parchment-controls')) {
+        return;
+      }
+      stampKiss(e.clientX, e.clientY);
+    });
+
+    // ─── SURPRISE 3: STARDUST SPARKLE TOUCH TRAIL ───
+    function createStardust(x, y) {
+      const now = performance.now();
+      if (now - lastStardustTime < 60) return;
+      lastStardustTime = now;
+
+      const rect = parchmentSheet.getBoundingClientRect();
+      const relX = x - rect.left;
+      const relY = y - rect.top;
+
+      const star = document.createElement('div');
+      star.className = 'stardust-particle';
+      star.style.left = relX + 'px';
+      star.style.top = relY + 'px';
+      star.style.setProperty('--tx', (Math.random() * 30 - 15) + 'px');
+      star.style.setProperty('--ty', (Math.random() * -30 - 10) + 'px');
+
+      parchmentSheet.appendChild(star);
+      setTimeout(() => star.remove(), 800);
+
+      if (window.BirthdayAudio && window.BirthdayAudio.playStardustChime && Math.random() > 0.6) {
+        window.BirthdayAudio.playStardustChime();
+      }
+    }
+
+    parchmentSheet.addEventListener('mousemove', (e) => {
+      createStardust(e.clientX, e.clientY);
+    });
+
+    parchmentSheet.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        createStardust(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    // ─── RE-FOLD & RE-SEAL LETTER ───
+    refoldBtn.addEventListener('click', () => {
+      window.triggerHaptic(25);
+      parchmentViewport.style.display = 'none';
+      envelope.classList.remove('unsealed');
+      waxSealContainer.classList.remove('shattered', 'cracking', 'active-pulse');
+      ribbonContainer.classList.remove('untied');
+      stage = 1;
+
+      unsealBadge.innerHTML = '<span>🎀</span> Step 1 of 2: Tap the Golden Ribbon to Untie';
+      unsealBadge.style.borderColor = 'var(--border-rose)';
+      unsealBadge.style.color = 'var(--rose-deep)';
+
+      envelopeStage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // Quick Fireworks Button
+    fwBtn.addEventListener('click', () => {
+      window.triggerHaptic(20);
+      if (window.Fireworks) window.Fireworks.grandCelebration(5);
+    });
+
+    // ─── COUNTDOWN TO 20TH BIRTHDAY ───
+    const TARGET_DATE = new Date('2026-11-15T00:00:00');
+    function updateCountdown() {
+      const now = new Date();
+      const diff = TARGET_DATE - now;
+      if (diff <= 0) {
+        document.getElementById('cdDays').textContent = '🎉';
+        document.getElementById('cdHours').textContent = '🥳';
+        document.getElementById('cdMins').textContent = '🎂';
+        document.getElementById('cdSecs').textContent = '💖';
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
+      document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
+      document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
